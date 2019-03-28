@@ -1,57 +1,27 @@
-const functions = require('firebase-functions');
-const admin = require('firebase-admin');
-admin.initializeApp(functions.config().firebase);
-const express = require('express');
-const cors = require('cors')({origin: true});
-const app = express();
+const functions = require('firebase-functions')
+const admin = require('firebase-admin')
+admin.initializeApp(functions.config().firebase)
+const express = require('express')
+const cors = require('cors')({ origin: true })
+const app = express()
 
-const stripe = require('stripe')(functions.config().stripe.token);
+const stripe = require('stripe')(functions.config().stripe.token)
 
-function charge(req, res) {
-    const body = JSON.parse(req.body);
-    const token = body.token.id;
-    const amount = body.charge.amount;
-    const currency = body.charge.currency;
+const charge = req => stripe.charges.create({
+  amount: 500,
+  currency: 'usd',
+  description: 'A test charge',
+  source: req.body
+})
 
-    // Charge card
-    stripe.charges.create({
-        amount,
-        currency,
-        description: 'WAW Profit Guide',
-        source: token,
-    }).then(charge => (
-        send(res, 200, {
-            message: 'Payment was successful!',
-            charge,
-        })
-    )).catch(err => {
-        console.log(err);
-        send(res, 500, {
-            error: err.message,
-        });
-    });
-}
+app.use(cors)
+app.post('/', (req, res) =>
+  charge(req)
+    .then((response) => res.json(response))
+    .catch(err => {
+      res.json(err)
+      res.status(500).end()
+    })
+)
 
-function send(res, code, body) {
-    res.send({
-        statusCode: code,
-        headers: {'Access-Control-Allow-Origin': '*'},
-        body: JSON.stringify(body),
-    });
-}
-
-app.use(cors);
-app.post('/', (req, res) => {
-
-    // Catch any unexpected errors to prevent crashing
-    try {
-        charge(req, res);
-    } catch(e) {
-        console.log(e);
-        send(res, 500, {
-            error: `The server received an unexpected error. Please try again and contact the site admin if the error persists.`,
-        });
-    }
-});
-
-exports.charge = functions.https.onRequest(app);
+exports.charge = functions.https.onRequest(app)

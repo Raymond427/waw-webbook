@@ -8,7 +8,8 @@
     "firebase-tools": "^6.5.0",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
-    "react-scripts": "2.1.8"
+    "react-scripts": "2.1.8",
+    "react-stripe-elements": "^2.0.3"
   },
   "scripts": {
     "start": "react-scripts start",
