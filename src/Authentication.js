@@ -30,11 +30,11 @@ const SignInAndSignUp = ({ setUser }) => {
         <div>
             <button onClick={() => setNewUser(true)} disabled={newUser}>Sign Up</button>
             <button onClick={() => setNewUser(false)} disabled={!newUser}>Sign In</button>
-            <form>
+            <form id="authForm">
                 <p>{authErrorMessage}</p>
                 <input type="email" placeholder="Email" value={email} onChange={event => setEmail(event.target.value)}/>
                 <input type="password" placeholder="Password" value={password} onChange={event => setPassword(event.target.value)}/>
-                <input type="submit" onClick={event => genericAuth(event, email, password)}/>
+                <input type="submit" onClick={event => genericAuth(event, email, password)} value={newUser ? 'Sign Up' : 'Sign In'}/>
             </form>
             {!newUser && <button>Reset Password</button>}
             <button onClick={() => handleAuth(signInWithGoogle)}>{`Sign ${newUser ? 'Up' : 'In'} with Google`}</button>
@@ -45,7 +45,7 @@ const SignInAndSignUp = ({ setUser }) => {
 const UserInfo = ({ setUser, user: { user: { photoURL, displayName, email } } }) =>
     <div>
         <img alt="user thumbnail" src={photoURL} />
-        <p>Name: {displayName}</p>
+        {displayName && <p>Name: {displayName}</p>}
         <p>Email: {email}</p>
         <button onClick={() => setUser()}>Sign Out</button>
     </div>
