@@ -19,6 +19,7 @@ const provider = new firebase.auth.GoogleAuthProvider()
 export const signUp = (email, password) => auth.createUserWithEmailAndPassword(email, password)
 export const signIn = (email, password) => auth.signInWithEmailAndPassword(email, password)
 export const signInWithGoogle = () => auth.signInWithPopup(provider)
+export const resetPassword = emailAddress => auth.sendPasswordResetEmail(emailAddress)
 firestore.settings({})
 
 export default firebase

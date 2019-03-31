@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { UserContext } from './UserProvider'
+import { Link } from 'react-router-dom'
 import { signInWithGoogle, signIn, signUp } from './firebase'
 
 const SignInAndSignUp = ({ setUser }) => {
@@ -36,7 +37,7 @@ const SignInAndSignUp = ({ setUser }) => {
                 <input type="password" placeholder="Password" value={password} onChange={event => setPassword(event.target.value)}/>
                 <input type="submit" onClick={event => genericAuth(event, email, password)} value={newUser ? 'Sign Up' : 'Sign In'}/>
             </form>
-            {!newUser && <button>Reset Password</button>}
+            {!newUser && <Link to='/resetPassword'><button>Forgot Password?</button></Link>}
             <button onClick={() => handleAuth(signInWithGoogle)}>{`Sign ${newUser ? 'Up' : 'In'} with Google`}</button>
         </div>
     )

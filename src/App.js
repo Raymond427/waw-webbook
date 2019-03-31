@@ -1,20 +1,18 @@
-import React, { useState } from 'react'
+import React from 'react'
+import Home from './Home'
 import './App.css'
 import UserProvider from './UserProvider'
-import Authentication from './Authentication'
-import Payment from './Payment'
+import { Switch, Route } from 'react-router-dom'
+import ResetPassword from './ResetPassword'
 
-const App = () => {
-    const [ showCheckOutForm, setShowCheckOutForm ] = useState(false)
-
-    return (
+const App = () =>
     <div>
         <UserProvider>
-            <Authentication />
-            <button onClick={() => setShowCheckOutForm(!showCheckOutForm)}>{ showCheckOutForm ? 'Cancel Payment' : 'Buy Nothing: $5.00'}</button>
-            { showCheckOutForm && <Payment />}
+            <Switch>
+                <Route exact path='/' component={Home}/>
+                <Route exact path='/resetPassword' component={ResetPassword}/>
+            </Switch>
         </UserProvider>
-    </div>)
-}
+    </div>
 
 export default App
