@@ -8,6 +8,7 @@ const SignInAndSignUp = ({ setUser }) => {
     const [ email, setEmail ] = useState('')
     const [ password, setPassword ] = useState('')
     const [ authErrorMessage, setAuthErrorMessage ] = useState('')
+    const [ isLoading, setIsLoading ] = useState(false)
 
     const handleUser = user => {
         setAuthErrorMessage('')
@@ -15,10 +16,13 @@ const SignInAndSignUp = ({ setUser }) => {
     }
     const handleAuthError = ({ message }) => setAuthErrorMessage(message)
 
-    const handleAuth = authProvider =>
-    authProvider()
-        .then(handleUser)
-        .catch(handleAuthError)
+    const handleAuth = authProvider => {
+        setIsLoading(true)
+        authProvider()
+            .then(handleUser)
+            .catch(handleAuthError)
+            .finally(() => setIsLoading(false))
+    }
 
     const genericAuth = (event, email, password) => {
         newUser
@@ -35,7 +39,7 @@ const SignInAndSignUp = ({ setUser }) => {
                 <p>{authErrorMessage}</p>
                 <input type="email" placeholder="Email" value={email} onChange={event => setEmail(event.target.value)}/>
                 <input type="password" placeholder="Password" value={password} onChange={event => setPassword(event.target.value)}/>
-                <input type="submit" onClick={event => genericAuth(event, email, password)} value={newUser ? 'Sign Up' : 'Sign In'}/>
+                <input type="submit" onClick={event => genericAuth(event, email, password)} value={isLoading ? 'Signing In...' : newUser ? 'Sign Up' : 'Sign In'} disabled={isLoading}/>
             </form>
             {!newUser && <Link to='/resetPassword'><button>Forgot Password?</button></Link>}
             <button onClick={() => handleAuth(signInWithGoogle)}>{`Sign ${newUser ? 'Up' : 'In'} with Google`}</button>
