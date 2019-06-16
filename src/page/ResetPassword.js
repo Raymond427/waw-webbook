@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { resetPassword } from './firebase'
+import { resetPassword } from '../firebase'
+import Form from '../form/Form'
+import { TextField } from '../form/Input'
 
 const ResetPassword = () => {
         const [ email, setEmail ] = useState('')
@@ -14,6 +16,9 @@ const ResetPassword = () => {
         return (
             <>
                 <Link to='/'>Back</Link>
+                <Form submitValue='Reset Password'>
+                    <TextField placeholder='Email' />
+                </Form>
                 <form id="resetPassword">
                     {submitionResults && <span>{submitionResults}</span>}
                     <input type="email" placeholder="Email" value={email} onChange={event => setEmail(event.target.value)}/>
