@@ -1,0 +1,11 @@
+.Login {
+    text-align: center;
+}
+
+.login-links, .login-links span {
+    margin: 10px auto;
+}
+
+.login-links span {
+    display: block;
+}

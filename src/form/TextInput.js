@@ -35,7 +35,7 @@ const TextInput = ({ id, errorMessage, pattern, required, autoCompleteValues, in
 
     return (
         <>
-            {type === 'textarea' ? <textarea {...inputProps} {...props} /> : <input type='text' {...inputProps} {...props} />}
+            {type === 'textarea' ? <textarea {...inputProps} {...props} /> : <input type={type} {...inputProps} {...props} />}
             {autoCompleteValues &&
                 <datalist className='text__datalist' id={dataListName}>
                     {autoCompleteValues.map((value, idx) =>

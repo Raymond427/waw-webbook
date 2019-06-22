@@ -19,7 +19,7 @@ const RatingInput = ({ id, showErrors, required, onBlur, onValid, onInValid, val
                     const value = idx + 1
 
                     return(
-                        <Star className={`rating__input-${value}`} id={`rating__input-${value}-${id}`} key={value} highlight={value <= rating} highlightColor={'yellow'} defaultColor={'white'} onClick={() => setRating(value)} />
+                        <Star className="rating__input-star" id={`rating__input-star-${value}-${id}`} key={value} highlight={value <= rating} highlightColor={'yellow'} defaultColor={'white'} onClick={() => setRating(value)} />
                     )
                 }
             )}

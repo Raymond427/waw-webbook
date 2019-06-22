@@ -8,6 +8,7 @@ import Login from './page/Login'
 import Account from './page/Account'
 import Orders from './page/Orders'
 import Feedback from './page/Feedback'
+import Payment from './page/Payment'
 import Navigation from './Navigation'
 
 const App = () =>
@@ -23,6 +24,7 @@ const App = () =>
                 <Route exact path='/orders' component={Orders} />
                 <Route exact path='/feedback' component={Feedback} />
                 <Route exact path='/reset-password' component={ResetPassword} />
+                <Route exact path='/pay' component={Payment} />
             </Switch>
         </UserProvider>
     </div>

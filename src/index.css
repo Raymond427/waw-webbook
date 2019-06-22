@@ -1,0 +1,37 @@
+html {
+    font-size: 16px;
+    overflow-x: hidden;
+    --primary-color: #1484FF;
+    --primary-background-color: #121212;
+    --primary-text-color: #FFFFFF;
+    --primary-placeholder-color: #878787;
+    --secondary-background-color: #1D1D1D;
+    --secondary-text-color: #000000;
+    --tertiary-color: #CF6679;
+}
+
+@media (max-width: 768px) {
+    html {
+        font-size: 12px;
+    }
+}
+
+body {
+    margin: 0;
+    background-color: var(--primary-background-color);
+    color: var(--primary-text-color);
+}
+
+h2, h3, h4, h5, h6 {
+    font-weight: normal;
+    text-align: center;
+}
+
+body, input, select, option {
+    font-family: 'Roboto', sans-serif;
+}
+
+a, a:visited, a:focus, a:hover {
+    text-decoration: none;
+    color: var(--primary-color);
+}

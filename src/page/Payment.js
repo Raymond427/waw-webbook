@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import { Redirect } from 'react-router-dom'
+import Order from '../Order'
 import { CardElement, injectStripe, Elements, StripeProvider } from 'react-stripe-elements'
 
 const STRIPE_API_KEY = 'pk_test_e7SFycDVuCMFeUwmn0bGr6iE00O4ZoyrYB'
@@ -25,14 +27,26 @@ const processPayment = (event, stripe, setIsLoading, setPaymentResult) => {
 }
 
 const CardForm = ({ stripe }) => {
+    const [ paymentSuccessful, setPaymentSuccessful] = useState(false)
+    const [ email ] = useState('')
     const [ paymentResult, setPaymentResult ] = useState('')
     const [ isLoading, setIsLoading ] = useState(false)
 
     return(
         <div>
-            {paymentResult && <p>{paymentResult}</p>}
-            <CardElement />
-            <button onClick={event => processPayment(event, stripe, setIsLoading, setPaymentResult)} disabled={isLoading}>{isLoading ? 'Processing...' : 'Pay $5.00'}</button>
+            {paymentSuccessful
+                ?   <>
+                        <h2>Payment Successful!</h2>
+                        <p>We’ve sent a reciept to {email}</p>
+                        <Order order={{}} />
+                        <button onClick={() => <Redirect to={''} />}>Read Chapter</button>
+                    </>
+                :   <>
+                        {paymentResult && <p>{paymentResult}</p>}
+                        <CardElement />
+                        <button onClick={event => processPayment(event, stripe, setIsLoading, setPaymentResult)} disabled={isLoading}>{isLoading ? 'Processing...' : 'Pay $5.00'}</button>
+                    </>
+            }
         </div>
     )
 }

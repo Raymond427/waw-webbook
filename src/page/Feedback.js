@@ -1,13 +1,14 @@
 import React from 'react'
 import { TextField, RatingField } from '../form/Input'
 import Form from '../form/Form'
+import '../styles/Feedback.css'
 
 const Feedback = () =>
     <div>
-        <h1>Give Feedback</h1>
+        <h2>Give Feedback</h2>
         <Form submitValue='Give Feedback'>
             <RatingField id='rating' errorMessage='Please provide a rating' valueHook={() => {}} />
-            <TextField type='textarea' placeholder='Enter your thoughts' />
+            <TextField id='feedback' type='textarea' placeholder='Enter your thoughts' valueHook={() => {}} />
         </Form>
     </div>
 
