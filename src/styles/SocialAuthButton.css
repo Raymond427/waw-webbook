@@ -1,0 +1,30 @@
+.social-button {
+    cursor: pointer;
+    font-size: 1.3rem;
+    height: 46px;
+    font-weight: bold;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    margin: 2rem auto;
+}
+
+.social-button span {
+    margin: auto 0.6rem;
+}
+
+.google-button {
+    width: 17rem;
+    background-color: white;
+    color: #757575;
+}
+
+.google-button:active {
+    background-color: #EEEEEE;
+}
+
+.facebook-button {
+    width: 18rem;
+    background-color: #3C5A99;
+    color: #FFFFFF;
+}

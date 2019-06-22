@@ -1,5 +1,7 @@
 import React, { useState, useEffect, cloneElement, Children } from 'react'
 import PropTypes from 'prop-types'
+import '../styles/Form.css'
+import Warning from '../icons/Warning'
 
 const SubmitButton = ({ id, onSubmit, submitValue = 'Submit', submittingValue, submitting = false, valid, setSubmissionAttempted }) => {
     const onClick = event => {
@@ -23,6 +25,7 @@ SubmitButton.propTypes = {
 
 const SubmissionErrorMessage = ({ errorMessage, id }) =>
     <div className='submission-error-message' id={id ? `submission-error-message-${id}` : ''}>
+        <Warning />
         <p className='submission-error-message__text' id={id ? `submission-error-message__text-${id}` : ''}>{errorMessage}</p>
     </div>
 

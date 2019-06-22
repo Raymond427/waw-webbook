@@ -5,6 +5,7 @@ import SelectInput from './SelectInput'
 import Checkboxes from './Checkbox'
 import RadioInput from './RadioInput'
 import RatingInput from './RatingInput'
+import '../styles/Input.css'
 
 const Label = ({ htmlFor, labelText, required }) =>
     <label className='field-label' id={`${htmlFor}-label`} htmlFor={htmlFor}>
@@ -19,7 +20,7 @@ Label.propTypes = {
 }
 
 const ErrorMessage = ({ id, errorMessage }) =>
-    <p className='field-error' id={`${id}-error`}>{errorMessage}</p>
+    <small className='field-error' id={`${id}-error`}>{errorMessage}</small>
 
 ErrorMessage.propTypes = {
     id: PropTypes.string.isRequired,

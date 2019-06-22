@@ -3,7 +3,9 @@ import { UserContext } from '../UserProvider'
 import { Link, Redirect } from 'react-router-dom'
 import { signInWithGoogle, signIn, signUp } from '../firebase'
 import Form from '../form/Form'
+import '../styles/Login.css'
 import { EmailField, PasswordField } from '../form/Input'
+import SocialAuthButton from '../SocialAuthButton'
 
 const SignInAndSignUp = ({ setUser, newUser, pathOnSignIn }) => {
     const [ authErrorMessage, setAuthErrorMessage ] = useState('')
@@ -35,7 +37,10 @@ const SignInAndSignUp = ({ setUser, newUser, pathOnSignIn }) => {
     }
 
     return (
-        <div>
+        <div className="Login">
+            <h2>{newUser? 'Sign Up' : 'Sign In'}</h2>
+            <SocialAuthButton name="google" onClick={() => handleAuth(signInWithGoogle)} newUser={newUser} />
+            <SocialAuthButton name="facebook" />
             <Form
                 onSubmit={genericAuth}
                 submitValue={newUser ? 'Sign Up' : 'Sign In'}
@@ -48,15 +53,12 @@ const SignInAndSignUp = ({ setUser, newUser, pathOnSignIn }) => {
             </Form>
             <p className='login-links'>
                 {newUser
-                    ? <>
-                        Already have an account? <Link to={{pathname: '/login', state: { newUser: false }}}>Sign In</Link>
-                      </>
+                    ? <span>Already have an account? <Link to={{pathname: '/login', state: { newUser: false }}}>Sign In</Link></span>
                     : <>
-                        Don't have an account? <Link to={{pathname: '/sign-up', state: { newUser: true }}}>Sign Up</Link>
+                        <span>Don't have an account? <Link to={{pathname: '/sign-up', state: { newUser: true }}}>Sign Up</Link></span>
+                        <Link to='/resetPassword'>Forgot Your Password?</Link>
                       </>}
             </p>
-            {!newUser && <Link to='/resetPassword'><button>Forgot Password?</button></Link>}
-            <button onClick={() => handleAuth(signInWithGoogle)}>{`Sign ${newUser ? 'Up' : 'In'} with Google`}</button>
             {userSignedIn && <Redirect to={pathOnSignIn} />}
         </div>
     )

@@ -4,9 +4,7 @@ import './index.css'
 import App from './App'
 import { Router } from 'react-router-dom'
 import ScrollToTop from './ScrollToTop'
-import { createBrowserHistory } from 'history'
-
-const history = createBrowserHistory()
+import history from './history'
 
 ReactDOM.render(
     <Router history={history}>

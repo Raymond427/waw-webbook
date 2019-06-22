@@ -1,0 +1,8 @@
+.chapter-carousel-slide .button {
+    display: block;
+    margin: 0 auto
+}
+
+.BrainhubCarousel__dots .BrainhubCarousel__dot:before {
+    background: var(--primary-text-color) !important;
+}
