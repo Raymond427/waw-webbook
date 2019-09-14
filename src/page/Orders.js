@@ -4,7 +4,7 @@ import Order from '../Order.js'
 import '../styles/Orders.css'
 
 const Orders = () =>
-    <div className="Orders">
+    <div className="Orders page">
         <h2>Orders</h2>
         <p>Have a question about an order?</p>
         <a href="mailto:admin@advancinginnovativeminds.org" target="_blank" rel="noopener noreferrer">

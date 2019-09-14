@@ -19,7 +19,7 @@ const ResetPassword = () => {
         }
 
         return (
-            <div className="ResetPassword">
+            <div className="ResetPassword page">
                 {passwordReset
                 ?   <p>Open the link we sent to {email} to reset your password</p>
                 :   <>

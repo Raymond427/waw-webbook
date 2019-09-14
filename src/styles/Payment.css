@@ -1,0 +1,23 @@
+.StripeElement {
+    height: 2.5rem;
+    background-color: #1D1D1D;
+    border-radius: 5px;
+}
+
+
+.__PrivateStripeElement, .__PrivateStripeElement > iframe {
+    height: 2.5rem !important;
+}
+
+.__PrivateStripeElement > iframe {
+}
+
+/*.CardField {
+    background-color: var(--primary-background-color) !important;
+    border-radius: 5px;
+    height: 2.5rem;
+}
+
+.InputContainer, .InputElement {
+    height: 2.5rem;
+} */

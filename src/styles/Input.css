@@ -1,3 +1,7 @@
+.page {
+    margin-top: 7rem;
+}
+
 .input {
     background-color: var(--secondary-background-color);
     color: var(--primary-text-color);

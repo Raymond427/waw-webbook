@@ -1,15 +1,16 @@
 import React from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import { UserContext } from '../UserProvider'
+import '../styles/Account.css'
 
 const Account = () =>
     <UserContext.Consumer>
         {({ user, setUser}) =>
-            <div>
+            <div className="Account page">
                 <h1>Account</h1>
-                <ul>
+                <ul className="account-links">
                     <li>{user && user.user.email}</li>
-                    <li onClick={() => setUser()}>
+                    <li id="account-link-log-out" onClick={() => setUser()}>
                         Log Out
                     </li>
                     <li>
