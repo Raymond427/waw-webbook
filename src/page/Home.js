@@ -49,7 +49,7 @@ const Home = () => {
                         <TextField labelText='TEXT FIELD' id='fooooo' errorMessage='WOMP WOMP' autoCompleteValues={[ '1', '2', '3', '4' ]} valueHook={setText} />
                         <TextAreaField labelText='TEXT Area FIELD' id='fooooo0' errorMessage='WOMP WOMP Area' autoCompleteValues={[ '4', '2', '3', '1' ]} valueHook={setTextArea} />                        
                     </Form> */}
-                    {/* <Form submitValue='Pay $3.00'>
+                    <Form submitValue='Pay $3.00'>
                         <TextField id='street-address-1' required errorMessage='Please provide a valid street address' placeholder='Street Address' valueHook={() => {}} />
                         <TextField id='street-address-2' required errorMessage='Please provide a valid street address' placeholder='Street Address Line 2' valueHook={() => {}} />
                         <TextField id='zip-code' required errorMessage='Please provide a valid zip code' placeholder='Zipcode' valueHook={() => {}} />
@@ -59,8 +59,7 @@ const Home = () => {
                         <SelectField id='exp-month' required errorMessage='Please provide a valid expiration month' placeholder='Month' options={[]} valueHook={() => {}} />
                         <SelectField id='exp-year' required errorMessage='Please provide a valid expiration year' placeholder='Year' options={[]} valueHook={() => {}} />                        
                         <TextField id='cvc' required errorMessage='Please provide a cvc' placeholder='CVC' valueHook={() => {}} />
-                    </Form> */}
-                    <ChapterCarousel chapters={chapters} />
+                    </Form>
                 </div>
             }
         </UserContext.Consumer>
