@@ -4,6 +4,8 @@
         "chapterNumber": 1,
         "description": "Dolor purus non enim praesent elementum facilisis leo. Ultricies integer quis auctor elit sed vulputate. Vivamus at augue eget arcu dictum varius duis at consectetur.",
         "available": true,
+        "cost": 400,
+        "free": false,
         "images": [
             {
                 "maxWidth": "768",
@@ -22,6 +24,8 @@
         "chapterNumber": 2,
         "description": "Dolor purus non enim praesent elementum facilisis leo. Ultricies integer quis auctor elit sed vulputate. Vivamus at augue eget arcu dictum varius duis at consectetur.",
         "available": false,
+        "cost": 400,
+        "free": false,
         "images": [
             {
                 "maxWidth": "768",
@@ -40,6 +44,8 @@
         "chapterNumber": 3,
         "description": "Dolor purus non enim praesent elementum facilisis leo. Ultricies integer quis auctor elit sed vulputate. Vivamus at augue eget arcu dictum varius duis at consectetur.",
         "available": false,
+        "cost": 400,
+        "free": false,
         "images": [
             {
                 "src": "warrenBuffett.jpg"

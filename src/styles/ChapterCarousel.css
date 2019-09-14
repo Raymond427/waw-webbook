@@ -1,0 +1,25 @@
+.home-carousel {
+    width: 600px;
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+}
+
+.arrow--inactive {
+    visibility: hidden;
+}
+
+@media (max-width: 1024px) {
+    .home-carousel {
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (max-width: 1024px) {
+    .home-carousel {
+        width: 100%;
+    }
+}

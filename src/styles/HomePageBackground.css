@@ -1,0 +1,36 @@
+.home-page-background {
+    height: 100%;
+    width: 100%;
+}
+
+.home-page-background-shade {
+    background: rgba(0, 0, 0, 0.5);
+    /* background: black;
+    background: -webkit-linear-gradient(to top, black, rgba(0, 0, 0, 0.0));
+    background: linear-gradient(to top, black, rgba(0, 0, 0, 0.0) 50%); */
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.home-page-background-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* object-position: right; */
+}
+
+.home-page-background-quote {
+    position: absolute;
+    top: 20rem;
+    left: 3rem;
+    max-width: 15rem;
+}
+
+.Logo {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 25rem;
+    top: 3rem;
+}
