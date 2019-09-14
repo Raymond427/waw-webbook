@@ -1,0 +1,25 @@
+.nav {
+    margin: 0.5rem 0rem;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    top: 0.5rem;
+}
+
+.MiniLogo {
+    position: absolute;
+    top: 0;
+    right: 47vw;
+}
+
+.back-wrapper {
+    position: absolute;
+    left: 1rem;
+    width: fit-content;
+}
+
+.account-link {
+    position: absolute;
+    right: 2rem;
+}

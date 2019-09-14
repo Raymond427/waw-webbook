@@ -9,12 +9,10 @@ import Account from './page/Account'
 import Orders from './page/Orders'
 import Feedback from './page/Feedback'
 import Payment from './page/Payment'
-import Navigation from './Navigation'
 
 const App = () =>
     <div className='App'>
         <UserProvider>
-            <Navigation />
             <Switch>
                 <Route exact path='/' component={Home} />
                 <Route exact path='/login' component={Login} />

@@ -1,17 +1,22 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { UserContext } from './UserProvider'
+import './styles/AuthenticationLinks.css'
+import Account from './icons/Account'
 
 const SignInAndSignUpLinks = () =>
-    <div>
+    <div className="AuthenticationLinks">
         <Link to={{pathname: '/login', state: { newUser: false }}}>Sign In</Link>
         <Link to={{pathname: '/sign-up', state: { newUser: true }}}>Sign Up</Link>
     </div>
 
 const AccountLink = ({ user: { user: { photoURL, displayName, email } } }) =>
-    <Link to='/account'>
-        {photoURL ? <img className='account-icon' alt='account icon' src={photoURL} /> : 'Account'}
-    </Link>
+    <div className="account-link">
+        <Link to='/account'>
+            {photoURL ? <img className='account-icon account-profile' alt='account icon' src={photoURL} /> : <Account />}
+        </Link>
+        <Link to="/pay">Pay</Link>
+    </div>
 
 const AuthenticationLinks = () =>
     <UserContext.Consumer>

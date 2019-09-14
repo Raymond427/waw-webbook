@@ -1,0 +1,16 @@
+.Account {
+    text-align: center;
+}
+
+.account-links {
+    display: contents;
+}
+
+.account-links li {
+    margin: 1rem 0;
+}
+
+#account-link-log-out {
+    cursor: pointer;
+    color: var(--primary-color);
+}
