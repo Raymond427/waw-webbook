@@ -1,6 +1,5 @@
 .social-button {
     cursor: pointer;
-    font-size: 1.3rem;
     height: 46px;
     font-weight: bold;
     border-radius: 3px;
@@ -14,7 +13,7 @@
 }
 
 .google-button {
-    width: 17rem;
+    width: 14rem;
     background-color: white;
     color: #757575;
 }
@@ -24,7 +23,7 @@
 }
 
 .facebook-button {
-    width: 18rem;
+    width: 16rem;
     background-color: #3C5A99;
     color: #FFFFFF;
 }

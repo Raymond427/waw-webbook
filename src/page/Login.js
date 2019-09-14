@@ -6,6 +6,7 @@ import Form from '../form/Form'
 import '../styles/Login.css'
 import { EmailField, PasswordField } from '../form/Input'
 import SocialAuthButton from '../SocialAuthButton'
+import Navigation from '../Navigation'
 
 const SignInAndSignUp = ({ setUser, newUser, pathOnSignIn }) => {
     const [ authErrorMessage, setAuthErrorMessage ] = useState('')
@@ -37,7 +38,8 @@ const SignInAndSignUp = ({ setUser, newUser, pathOnSignIn }) => {
     }
 
     return (
-        <div className="Login">
+        <div className="Login page">
+            <Navigation />
             <h2>{newUser? 'Sign Up' : 'Sign In'}</h2>
             <SocialAuthButton name="google" onClick={() => handleAuth(signInWithGoogle)} newUser={newUser} />
             <SocialAuthButton name="facebook" />
