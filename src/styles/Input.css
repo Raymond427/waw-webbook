@@ -2,14 +2,20 @@
     margin-top: 7rem;
 }
 
+.field {
+    display: inline-block;
+    width: 100%;
+}
+
 .input {
     background-color: var(--secondary-background-color);
     color: var(--primary-text-color);
     border: none;
     border-radius: 5px;
     height: 2.5rem;
-    padding: 0 10px;
-    margin: 10px 0;
+    padding: 0 1rem;
+    margin: 1rem 0rem;
+    width: calc(100% - 2rem);
 }
 
 input:-webkit-autofill {
@@ -32,8 +38,8 @@ input:-webkit-autofill {
     background-color: var(--primary-color);
     border: none;
     height: 2.5rem;
-    padding: 0 10px;
-    margin: 10px auto;
+    padding: 0 1rem;
+    margin: 1rem auto;
 }
 
 .button:hover {

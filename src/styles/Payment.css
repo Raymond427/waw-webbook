@@ -1,23 +1,14 @@
 .StripeElement {
-    height: 2.5rem;
     background-color: #1D1D1D;
     border-radius: 5px;
+    padding: 9px 16px 0 16px;
+    margin: 1rem 0;
+    height: calc(40px - 1rem);
 }
 
-
-.__PrivateStripeElement, .__PrivateStripeElement > iframe {
-    height: 2.5rem !important;
+@media (max-width: 560px) {
+    .StripeElement {
+        padding: 0.7rem 1rem 0.5rem;
+        height: calc(30px - 1rem);
+    }
 }
-
-.__PrivateStripeElement > iframe {
-}
-
-/*.CardField {
-    background-color: var(--primary-background-color) !important;
-    border-radius: 5px;
-    height: 2.5rem;
-}
-
-.InputContainer, .InputElement {
-    height: 2.5rem;
-} */

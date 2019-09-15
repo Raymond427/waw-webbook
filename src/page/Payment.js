@@ -70,13 +70,13 @@ const CardForm = ({ user, stripe, chapter, pathOnPurchase }) => {
                             <h2>Purchase {chapterName}</h2>
                             <Order productName={chapterName} items={purchaseItems} />
                             <Form onSubmit={processPayment} submitting={isLoading} submitValue={'Buy'} submittingValue={'Processing...'} errorMessage={paymentResult} >
-                                <TextField id='name' required errorMessage='Please provide a valid name' placeholder='Name on Card' valueHook={setName} />
+                                <TextField id='name' required errorMessage='Please provide your name as it appears on your card' placeholder='Name' valueHook={setName} />
                                 <TextField id='street-address-1' required errorMessage='Please provide a valid street address' placeholder='Street Address' valueHook={setStreetAddress} />
                                 <TextField id='street-address-2' errorMessage='Please provide a valid street address' placeholder='Street Address Line 2' valueHook={setStreetAddress2} />
                                 <TextField id='zip-code' required errorMessage='Please provide a valid zip code' placeholder='Zipcode' valueHook={setZipCode} />
                                 <TextField id='city' required errorMessage='Please provide a city' placeholder='City' valueHook={setCity} />
                                 <TextField id='state' required errorMessage='Please provide a state' placeholder='State' valueHook={setState} />
-                                <CardElement style={{base: { fontSize: '1rem', color: '#FFFFFF' }}} />
+                                <CardElement style={{base: { fontSize: '14px', color: '#FFFFFF', padding: '10px' }}} />
                             </Form>
                         </>
                 }
@@ -86,9 +86,9 @@ const CardForm = ({ user, stripe, chapter, pathOnPurchase }) => {
 
 const CheckoutForm = injectStripe(CardForm)
 
-const Payment = ({ match, location }) => {
+const Payment = ({ computedMatch, location }) => {
     const [ stripe, setStripe ] = useState(null)
-    const chapterName = match.params.productName
+    const chapterName = computedMatch.params.productName
     const chapter = chapters.find(chapter => chapter.name === chapterName)
     const pathOnPurchase = location.state.pathOnPurchase ? location.state.pathOnPurchase : '/'
 
