@@ -50,6 +50,11 @@ const App = () =>
                             condition={user}
                             Component={Feedback}
                         />
+                        <ProtectedRoute
+                            path='/orders'
+                            condition={user}
+                            Component={Orders}
+                        />
                         <ChapterRoute
                             path='/chapters/:chapterName'
                             Component={Chapter}
