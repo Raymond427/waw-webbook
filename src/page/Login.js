@@ -73,7 +73,7 @@ const Login = ({ location }) => {
                 <SignInAndSignUp
                     setUser={setUser}
                     newUser={location.state ? location.state.newUser : location.pathname === '/sign-up'}
-                    pathOnSignIn={location.state ? location.state.pathOnSignIn : '/'}
+                    pathOnSignIn={location.state && location.state.pathOnSignIn ? location.state.pathOnSignIn : '/'}
             />}
         </UserContext.Consumer>
     )

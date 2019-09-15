@@ -10,12 +10,11 @@ const SignInAndSignUpLinks = () =>
         <Link to={{pathname: '/sign-up', state: { newUser: true }}}>Sign Up</Link>
     </div>
 
-const AccountLink = ({ user: { user: { photoURL, displayName, email } } }) =>
+const AccountLink = ({ user: { user: { photoURL } } }) =>
     <div className="account-link">
         <Link to='/account'>
             {photoURL ? <img className='account-icon account-profile' alt='account icon' src={photoURL} /> : <Account />}
         </Link>
-        <Link to="/pay">Pay</Link>
     </div>
 
 const AuthenticationLinks = () =>

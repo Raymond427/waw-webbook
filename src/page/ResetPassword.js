@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { resetPassword } from '../firebase'
 import Form from '../form/Form'
 import { EmailField } from '../form/Input'
+import Navigation from '../Navigation'
 
 const ResetPassword = () => {
         const [ email, setEmail ] = useState('')
@@ -20,6 +21,7 @@ const ResetPassword = () => {
 
         return (
             <div className="ResetPassword page">
+                <Navigation />
                 {passwordReset
                 ?   <p>Open the link we sent to {email} to reset your password</p>
                 :   <>
