@@ -10,7 +10,9 @@
 .MiniLogo {
     position: absolute;
     top: 0;
-    right: 47vw;
+    left: 0;
+    right: 0;
+    margin: auto;
 }
 
 .back-wrapper {

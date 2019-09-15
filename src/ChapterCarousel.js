@@ -8,12 +8,13 @@ import '@brainhubeu/react-carousel/lib/style.css'
 import './styles/Home.css'
 import HomePageBackground from './HomepageBackground'
 import Navigation from './Navigation'
+import { capitalize, usdFormat } from './utils'
 
-const ChapterCarouselSlide = ({ name, description, available, chapterNumber, buttonText }) =>
+const ChapterCarouselSlide = ({ title, description, available, chapterName, buttonText, purchased }) =>
     <div className="chapter-carousel-slide">
-        <h1>{name}</h1>
+        <h1>{title}</h1>
         <p>{description}</p>
-        <button className="button" disabled={!available} onClick={() => history.push(`/chapters/${chapterNumber}`)}>{buttonText}</button>
+        <button className="button" disabled={!available} onClick={() => history.push(`/chapters/${chapterName}`)}>{buttonText}</button>
     </div>
 
 const ChapterCarousel = ({ chapters }) => {
@@ -45,20 +46,26 @@ const ChapterCarousel = ({ chapters }) => {
                     {[
                         <ChapterCarouselSlide
                             key="0-home"
-                            name="Select a Chapter"
+                            title="Select a Chapter"
+                            chapterName={chapters[0].name}
                             description="Dolor purus non enim praesent elementum facilisis leo. Ultricies integer quis auctor elit sed vulputate. Vivamus at augue eget arcu dictum varius duis at consectetur."
                             buttonText="Read the first Chapter for Free"
-                            chapterNumber={1}
                             available={true}
+                            purchased={chapters[0].purchased}
                         />,
-                        ...chapters.map(({ id, name, description, chapterNumber, available }) =>
+                        ...chapters.map(({ id, name, description, available, purchased, price }) =>
                             <ChapterCarouselSlide
                                 key={`${id}-${name}`}
-                                name={name}
+                                title={capitalize(name)}
+                                chapterName={name}
                                 description={description}
-                                buttonText={available ? `Read ${name}` : 'Coming Soon'}
-                                chapterNumber={chapterNumber}
+                                buttonText={
+                                    available
+                                        ? purchased ? `Read ${capitalize(name)}` : `Purchase ${capitalize(name)} for ${usdFormat(price)}`
+                                        : 'Coming Soon'
+                                }
                                 available={available}
+                                purchased={purchased}
                             />
                         )
                     ]}

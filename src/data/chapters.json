@@ -1,11 +1,11 @@
 [
     {
-        "name": "Habits",
-        "chapterNumber": 1,
+        "name": "habits",
         "description": "Dolor purus non enim praesent elementum facilisis leo. Ultricies integer quis auctor elit sed vulputate. Vivamus at augue eget arcu dictum varius duis at consectetur.",
         "available": true,
-        "cost": 400,
+        "price": 400,
         "free": false,
+        "purchased": true,
         "images": [
             {
                 "maxWidth": "768",
@@ -20,12 +20,12 @@
         "author": "Bruce Lee"
     },
     {
-        "name": "Product",
-        "chapterNumber": 2,
+        "name": "product",
         "description": "Dolor purus non enim praesent elementum facilisis leo. Ultricies integer quis auctor elit sed vulputate. Vivamus at augue eget arcu dictum varius duis at consectetur.",
-        "available": false,
-        "cost": 400,
+        "available": true,
+        "price": 400,
         "free": false,
+        "purchased": false,
         "images": [
             {
                 "maxWidth": "768",
@@ -40,12 +40,12 @@
         "author": "Simon Sinek"
     },
     {
-        "name": "Finances",
-        "chapterNumber": 3,
+        "name": "finances",
         "description": "Dolor purus non enim praesent elementum facilisis leo. Ultricies integer quis auctor elit sed vulputate. Vivamus at augue eget arcu dictum varius duis at consectetur.",
         "available": false,
-        "cost": 400,
+        "price": 400,
         "free": false,
+        "purchased": false,
         "images": [
             {
                 "src": "warrenBuffett.jpg"

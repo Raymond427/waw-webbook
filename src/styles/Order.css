@@ -1,4 +1,5 @@
 .Order {
+    text-align: center;
     background-color: var(--secondary-background-color);
     border-radius: 3px;
     width: 13rem;

@@ -5,6 +5,12 @@
     width: 80%;
 }
 
+@media (max-width: 560px) {
+    .chapter-carousel-slide {
+        padding: 0 1rem;
+    }
+}
+
 .chapter-carousel-slide .button {
     display: block;
     margin: 0 auto
