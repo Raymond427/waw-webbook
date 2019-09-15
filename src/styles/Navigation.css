@@ -9,10 +9,17 @@
 
 .MiniLogo {
     position: absolute;
+    height: 3rem;
     top: 0;
     left: 0;
     right: 0;
     margin: auto;
+}
+
+@media (max-width: 560px) {
+    .MiniLogo {
+        height: 2.5rem;
+    }
 }
 
 .back-wrapper {
@@ -23,5 +30,6 @@
 
 .account-link {
     position: absolute;
-    right: 2rem;
+    right: 1rem;
 }
+

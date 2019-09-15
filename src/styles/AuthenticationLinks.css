@@ -9,10 +9,10 @@
 }
 
 .AuthenticationLinks {
-    right: 2rem;
+    right: 1rem;
     width: fit-content;
     position: absolute;
-    top: 0;
+    top: 0.75rem;
 }
 
 .AuthenticationLinks a {
