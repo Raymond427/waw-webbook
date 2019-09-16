@@ -33,3 +33,12 @@
     right: 1rem;
 }
 
+.Moon {
+    height: 3rem;
+    position: relative;
+    left: -7rem;
+    float: right;
+    top: 0.25rem;
+    cursor: pointer;
+}
+

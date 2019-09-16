@@ -1,0 +1,31 @@
+.chapter-container {
+    max-width: 768px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.chapter-background-image {
+    object-fit: cover;
+    object-position: top;
+    width: 100%;
+}
+
+.chapter-content {
+    background-color: var(--primary-background-color);
+    position: relative;
+    border-radius: 3rem;
+    top: -4rem;
+    height: 100rem;
+    padding-top: 0.5rem;
+}
+
+.chapter-content > .nav {
+    position: sticky;
+    background-color: var(--primary-background-color);
+}
+
+main {
+    position: relative;
+    top: 4rem;
+    padding: 0 2rem;
+}
