@@ -10,6 +10,21 @@ html {
     --tertiary-color: #CF6679;
 }
 
+html[data-theme="light"] {
+    --primary-background-color: #F4F5FA;
+    --primary-text-color: #121212;
+    --secondary-background-color: #E8E9EF;
+    --secondary-text-color: #121212;
+}
+
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *:before,
+html.theme-transition *:after {
+  transition: all 750ms !important;
+  transition-delay: 0 !important;
+}
+
 @media (max-width: 768px) {
     html {
         font-size: 12px;

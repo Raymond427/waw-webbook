@@ -5,16 +5,19 @@
 }
 
 .chapter-background-image {
+    position: fixed;
     object-fit: cover;
     object-position: top;
     width: 100%;
+    max-width: 768px;
+    height: 30.5rem;
 }
 
 .chapter-content {
     background-color: var(--primary-background-color);
     position: relative;
     border-radius: 3rem;
-    top: -4rem;
+    top: 25rem;
     height: 100rem;
     padding-top: 0.5rem;
 }
@@ -22,10 +25,18 @@
 .chapter-content > .nav {
     position: sticky;
     background-color: var(--primary-background-color);
+    margin: 0 1.5rem;
+    width: calc(100% - 3rem);
+    height: 4rem;
+    top: 0;
+    padding-top: 0.5rem;
+}
+
+.chapter-content > .nav > a > .MiniLogo {
+    top: 0.5rem;
 }
 
 main {
     position: relative;
-    top: 4rem;
     padding: 0 2rem;
 }

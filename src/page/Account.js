@@ -1,12 +1,14 @@
 import React from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import { UserContext } from '../UserProvider'
+import Navigation from '../Navigation'
 import '../styles/Account.css'
 
 const Account = () =>
     <UserContext.Consumer>
         {({ user, setUser}) =>
             <div className="Account page">
+                <Navigation />
                 <h1>Account</h1>
                 <ul className="account-links">
                     <li>{user && user.user.email}</li>

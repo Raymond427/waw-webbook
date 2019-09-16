@@ -33,12 +33,21 @@
     right: 1rem;
 }
 
-.Moon {
-    height: 3rem;
+.them-toggle-button {
+    background: none;
+    border: none;
+    height: 2.5rem;
+    width: 3rem;
+    padding: 0;
     position: relative;
     left: -7rem;
     float: right;
     top: 0.25rem;
     cursor: pointer;
+}
+
+.them-toggle-button svg {
+    height: 3rem;
+    width: 3rem;
 }
 

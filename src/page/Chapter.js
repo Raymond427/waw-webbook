@@ -38,7 +38,7 @@ const Chapter = ({ chapter = chapters[0] }) => {
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pretium quam vulputate dignissim suspendisse. Feugiat nibh sed pulvinar proin. Sit amet tellus cras adipiscing enim eu turpis egestas. Donec ac odio tempor orci dapibus. At quis risus sed vulputate odio ut enim blandit. Morbi blandit cursus risus at ultrices mi tempus imperdiet. Tellus pellentesque eu tincidunt tortor aliquam nulla facilisi cras. Velit ut tortor pretium viverra suspendisse potenti nullam. Arcu cursus vitae congue mauris rhoncus aenean vel elit scelerisque. Orci sagittis eu volutpat odio.</p>
                         <p>Lacus laoreet non curabitur gravida arcu ac tortor dignissim. Bibendum est ultricies integer quis auctor elit sed. Tempor nec feugiat nisl pretium fusce id. Porta lorem mollis aliquam ut porttitor leo a. Gravida rutrum quisque non tellus orci ac auctor augue. Sit amet tellus cras adipiscing enim eu turpis egestas. Dictumst quisque sagittis purus sit amet volutpat consequat. Egestas maecenas pharetra convallis posuere morbi leo urna. Mauris rhoncus aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque. Suspendisse sed nisi lacus sed.</p>
                         <figure>
-                            <video width="400" controls>
+                            <video width="320" controls>
                                 <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
                                 Your browser does not support HTML5 video.
                             </video>

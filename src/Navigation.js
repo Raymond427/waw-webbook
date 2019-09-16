@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import AuthenticationLinks from './AuthenticationLinks'
 import Arrow from './icons/Arrow'
 import MiniLogo from './icons/MiniLogo'
-import Moon from './icons/Moon'
+import ThemeToggler from './ThemeToggler'
 import { UserContext } from './UserProvider'
 
 export default ({ hideLogo = false, hideBack = false, backPath = '/', showThemeToggle = false }) =>
@@ -19,7 +19,7 @@ export default ({ hideLogo = false, hideBack = false, backPath = '/', showThemeT
                     <Link to="/">
                         <MiniLogo />
                     </Link>}
-                {user && showThemeToggle && <Moon />}
+                {user && showThemeToggle && <ThemeToggler />}
                 <AuthenticationLinks />
             </nav>
         }

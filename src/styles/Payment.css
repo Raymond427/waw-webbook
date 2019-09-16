@@ -1,5 +1,5 @@
 .StripeElement {
-    background-color: #1D1D1D;
+    background-color: var(--secondary-background-color);
     border-radius: 5px;
     padding: 9px 16px 0 16px;
     margin: 1rem 0;
