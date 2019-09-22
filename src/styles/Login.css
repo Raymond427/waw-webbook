@@ -9,3 +9,7 @@
 .login-links span {
     display: block;
 }
+
+.Login > .form {
+    max-width: 15rem;
+}

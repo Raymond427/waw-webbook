@@ -10,11 +10,11 @@ import HomePageBackground from './HomepageBackground'
 import Navigation from './Navigation'
 import { capitalize, usdFormat } from './utils'
 
-const ChapterCarouselSlide = ({ title, description, available, chapterName, buttonText, purchased }) =>
+const ChapterCarouselSlide = ({ title, description, available, chapterName, buttonText, currentSlide }) =>
     <div className="chapter-carousel-slide">
         <h1>{title}</h1>
         <p>{description}</p>
-        <button className="button" disabled={!available} onClick={() => history.push(`/chapters/${chapterName}`)}>{buttonText}</button>
+        <button className="button" tabIndex={currentSlide ? '0' : '-1'} disabled={!available} onClick={() => history.push(`/chapters/${chapterName}`)}>{buttonText}</button>
     </div>
 
 const ChapterCarousel = ({ chapters }) => {
@@ -52,6 +52,7 @@ const ChapterCarousel = ({ chapters }) => {
                             buttonText="Read the first Chapter for Free"
                             available={true}
                             purchased={chapters[0].purchased}
+                            currentSlide={currentIndex === 0}
                         />,
                         ...chapters.map(({ id, name, description, available, purchased, price }) =>
                             <ChapterCarouselSlide
@@ -66,6 +67,7 @@ const ChapterCarousel = ({ chapters }) => {
                                 }
                                 available={available}
                                 purchased={purchased}
+                                currentSlide={currentIndex === id + 1}
                             />
                         )
                     ]}

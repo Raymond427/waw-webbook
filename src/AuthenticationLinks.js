@@ -10,18 +10,16 @@ const SignInAndSignUpLinks = () =>
         <Link to={{pathname: '/sign-up', state: { newUser: true }}}>Sign Up</Link>
     </div>
 
-const AccountLink = ({ user: { user: { photoURL } } }) =>
-    <div className="account-link">
-        <Link to='/account'>
-            {photoURL ? <img className='account-icon account-profile' alt='account icon' src={photoURL} /> : <Account />}
-        </Link>
-    </div>
+const AccountLink = ({ user: { user: { photoURL } }, history }) =>
+    <button className="account-link" onClick={() => history.push('/account')}>
+        {photoURL ? <img className='account-icon account-profile' alt='account icon' src={photoURL} /> : <Account />}
+    </button>
 
-const AuthenticationLinks = () =>
+const AuthenticationLinks = ({ history }) =>
     <UserContext.Consumer>
         {({ user }) =>
             user
-                ? <AccountLink user={user} />
+                ? <AccountLink user={user} history={history} />
                 : <SignInAndSignUpLinks />
 
         }

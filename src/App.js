@@ -55,9 +55,10 @@ const App = () =>
                             condition={user}
                             Component={Orders}
                         />
-                        <Route
+                        <ChapterRoute
                             path='/chapters/:chapterName'
-                            component={Chapter}
+                            Component={Chapter}
+                            user={user}
                         />
                         <Route component={Home} />
                     </Switch>

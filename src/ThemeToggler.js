@@ -15,7 +15,7 @@ const ThemeToggler = () => {
     }
 
     return(
-        <button className="them-toggle-button" onClick={toggleTheme}>
+        <button className="theme-toggle-button" onClick={toggleTheme}>
             {(!theme || theme === 'dark') ? <Sun /> : <Moon />}
         </button>
     )

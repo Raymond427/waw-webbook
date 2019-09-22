@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import ChapterCarousel from '../ChapterCarousel'
 import chapters from '../data/chapters.json'
 

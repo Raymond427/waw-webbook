@@ -6,8 +6,9 @@ import Arrow from './icons/Arrow'
 import MiniLogo from './icons/MiniLogo'
 import ThemeToggler from './ThemeToggler'
 import { UserContext } from './UserProvider'
+import { withRouter } from 'react-router-dom'
 
-export default ({ hideLogo = false, hideBack = false, backPath = '/', showThemeToggle = false }) =>
+export default withRouter(({ hideLogo = false, hideBack = false, backPath, showThemeToggle = false, history }) =>
     <UserContext.Consumer>
         {({ user }) =>
             <nav className="nav">
@@ -16,11 +17,12 @@ export default ({ hideLogo = false, hideBack = false, backPath = '/', showThemeT
                         <Link to={backPath}><Arrow left /></Link>
                     </div>}
                 {!hideLogo &&
-                    <Link to="/">
+                    <button className="nav-home-button" onClick={() => history.push('/')}>
                         <MiniLogo />
-                    </Link>}
+                    </button>}
                 {user && showThemeToggle && <ThemeToggler />}
-                <AuthenticationLinks />
+                <AuthenticationLinks history={history} />
             </nav>
         }
     </UserContext.Consumer>
+)
