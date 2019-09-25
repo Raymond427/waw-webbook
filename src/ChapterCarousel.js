@@ -9,6 +9,7 @@ import './styles/Home.css'
 import HomePageBackground from './HomepageBackground'
 import Navigation from './Navigation'
 import { capitalize, usdFormat } from './utils'
+import homePageImages from './data/homePageImages.json'
 
 const ChapterCarouselSlide = ({ title, description, available, chapterName, buttonText, currentSlide }) =>
     <div className="chapter-carousel-slide">
@@ -32,14 +33,14 @@ const ChapterCarousel = ({ chapters }) => {
             <HomePageBackground
                 showLogo
                 name="Select a Chapter"
-                images={[{ src: 'island.png' }]}
+                images={homePageImages.home.images}
             />
             :
             <HomePageBackground
                 name={currentChapter.name}
-                images={currentChapter.images}
-                quote={currentChapter.quote}
-                author={currentChapter.author}
+                images={homePageImages[currentChapter.name].images}
+                quote={homePageImages[currentChapter.name].quote}
+                author={homePageImages[currentChapter.name].author}
             />}
             <div className="home-carousel">
                 <Carousel arrowLeft={<Arrow className={firstIndex ? ' arrow--inactive' : ''} left />} arrowRight={<Arrow className={lastIndex ? ' arrow--inactive' : ''} />} addArrowClickHandler centered draggable keepDirectionWhenDragging slidesPerPage={1} value={currentIndex} onChange={onChange}>
