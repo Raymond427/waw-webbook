@@ -76,7 +76,7 @@ const CardForm = ({ user, stripe, chapter, pathOnPurchase }) => {
                                 <TextField id='zip-code' required errorMessage='Please provide a valid zip code' placeholder='Zipcode' valueHook={setZipCode} />
                                 <TextField id='city' required errorMessage='Please provide a city' placeholder='City' valueHook={setCity} />
                                 <TextField id='state' required errorMessage='Please provide a state' placeholder='State' valueHook={setState} />
-                                <CardElement style={{base: { fontSize: '14px', color: '#FFFFFF', padding: '10px' }}} />
+                                <CardElement style={{base: { fontSize: '14px', color: '#FFFFFF' }}} />
                             </Form>
                         </>
                 }
