@@ -20,16 +20,8 @@ const App = () =>
                 {({ user }) =>
                     <Switch>
                         <Route exact path='/' component={Home} />
-                        <ProtectedRoute
-                            path='/login'
-                            condition={!user}
-                            Component={Login}
-                        />
-                        <ProtectedRoute
-                            path='/sign-up'
-                            condition={!user}
-                            Component={Login}
-                        />
+                        <Route exact path='/login' component={Login} />
+                        <Route exact path='/sign-up' component={Login} />
                         <ProtectedRoute
                             path='/reset-password'
                             condition={!user}
