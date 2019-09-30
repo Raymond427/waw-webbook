@@ -18,13 +18,20 @@
     left: calc(50% - 2rem);
 }
 
-@media (max-width: 560px) {
+.MiniLogo {
+    height: 2.5rem;
+}
+
+@media (max-width: 768px) {
     .MiniLogo {
         height: 2.5rem;
     }
 }
 
-.back-wrapper {
+.back-button {
+    padding: 0;
+    background: none;
+    border: none;
     position: absolute;
     left: 1rem;
     width: fit-content;
@@ -47,10 +54,15 @@
     width: 3rem;
     padding: 0;
     position: relative;
-    left: -7rem;
+    left: -5.5rem;
     float: right;
-    top: -0.2rem;
     cursor: pointer;
+}
+
+@media (max-width: 340px) {
+    .theme-toggle-button {
+        left: -4.8rem;
+    }
 }
 
 .theme-toggle-button svg {

@@ -1,16 +1,17 @@
 import React from 'react'
 import chapters from '../data/chapters.json'
+import chapterImages from '../data/homePageImages.json'
 import '../styles/Chapter.css'
 import Navigation from '../Navigation'
 
 const Chapter = ({ chapter = chapters[0] }) => {
-    const backgroundImgSrc = chapter.images[chapter.images.length - 1].src
+    const backgroundImgSrc = chapterImages[chapter.name].images[2].src
     return (
         <div className="Chapter">
             <div className="chapter-container">
                 <img className="chapter-background-image" alt="chapter background" src={require(`../images/${backgroundImgSrc}`)} />
                 <div className="chapter-content">
-                    <Navigation hideBack showThemeToggle />
+                    <Navigation showThemeToggle />
                     <main>
                         <h1>Habits</h1>
                         <p>Mattis molestie a iaculis at erat pellentesque. Dolor purus non enim praesent elementum facilisis leo. Ultricies integer quis auctor elit sed vulputate. Vivamus at augue eget arcu dictum varius duis at consectetur.</p>
