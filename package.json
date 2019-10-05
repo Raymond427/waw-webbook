@@ -9,6 +9,7 @@
     "firebase-tools": "^6.5.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.5",
+    "react-div-100vh": "^0.3.4",
     "react-dom": "^16.8.5",
     "react-scripts": "2.1.8",
     "react-stripe-elements": "^2.0.3",
