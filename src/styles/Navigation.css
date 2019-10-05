@@ -26,6 +26,10 @@
     .MiniLogo {
         height: 2.5rem;
     }
+
+    .back-button svg {
+        height: 2.5rem;
+    }
 }
 
 .back-button {

@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './index.css'
-import App from './App'
+import './styles/index.css'
+import App from './component'
 import { Router } from 'react-router-dom'
-import ScrollToTop from './ScrollToTop'
+import ScrollToTop from './component/ScrollToTop'
 import history from './history'
 
 ReactDOM.render(

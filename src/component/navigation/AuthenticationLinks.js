@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { UserContext } from './UserProvider'
-import './styles/AuthenticationLinks.css'
-import Account from './icons/Account'
+import { UserContext } from '../authentication/UserProvider'
+import '../../styles/AuthenticationLinks.css'
+import Account from '../icon/Account'
 
 const SignInAndSignUpLinks = () =>
     <div className="AuthenticationLinks">

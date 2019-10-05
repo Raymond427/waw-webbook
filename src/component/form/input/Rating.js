@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Star from '../Star'
+import Star from '../../icon/Star'
 
 const RatingInput = ({ id, showErrors, required, onBlur, onValid, onInValid, valueHook, maxValue = 5 }) => {
     const [ rating, setRating ] = useState(0)

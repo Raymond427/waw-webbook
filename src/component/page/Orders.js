@@ -1,8 +1,8 @@
 import React from 'react'
-import orders from '../data/orders.json'
-import Order from '../Order.js'
-import Navigation from '../Navigation'
-import '../styles/Orders.css'
+import orders from '../../data/orders'
+import Order from '../Order'
+import Navigation from '../navigation'
+import '../../styles/Orders.css'
 
 const Orders = () =>
     <div className="Orders page">

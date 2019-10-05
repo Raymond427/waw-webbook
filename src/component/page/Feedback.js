@@ -1,8 +1,8 @@
 import React from 'react'
-import { TextField, RatingField } from '../form/Input'
-import Form from '../form/Form'
-import Navigation from '../Navigation'
-import '../styles/Feedback.css'
+import { TextField, RatingField } from '../form/input'
+import Form from '../form'
+import Navigation from '../navigation'
+import '../../styles/Feedback.css'
 
 const Feedback = () =>
     <div className="Feedback page">

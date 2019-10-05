@@ -1,6 +1,6 @@
 import React from 'react'
-import './styles/Order.css'
-import { usdFormat, totalPrice, formatDate } from './utils'
+import '../styles/Order.css'
+import { usdFormat, totalPrice, formatDate } from '../utils'
 
 const Order = ({ id, productName, datePurchased, items }) =>
     <div className="Order">

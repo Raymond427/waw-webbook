@@ -1,15 +1,15 @@
 import React from 'react'
-import chapters from '../data/chapters.json'
-import chapterImages from '../data/homePageImages.json'
-import '../styles/Chapter.css'
-import Navigation from '../Navigation'
+import chapters from '../../data/chapters'
+import chapterImages from '../../data/homePageImages'
+import '../../styles/Chapter.css'
+import Navigation from '../navigation'
 
 const Chapter = ({ chapter = chapters[0] }) => {
     const backgroundImgSrc = chapterImages[chapter.name].images[2].src
     return (
         <div className="Chapter">
             <div className="chapter-container">
-                <img className="chapter-background-image" alt="chapter background" src={require(`../images/${backgroundImgSrc}`)} />
+                <img className="chapter-background-image" alt="chapter background" src={require(`../../images/${backgroundImgSrc}`)} />
                 <div className="chapter-content">
                     <Navigation showThemeToggle />
                     <main>

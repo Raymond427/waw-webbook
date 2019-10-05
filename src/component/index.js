@@ -1,8 +1,8 @@
 import React from 'react'
-import './App.css'
-import UserProvider, { UserContext } from './UserProvider'
+import '../styles/App.css'
+import UserProvider, { UserContext } from './authentication/UserProvider'
 import { Switch, Route } from 'react-router-dom'
-import Home from './page/Home'
+import Home from './page/home'
 import ResetPassword from './page/ResetPassword'
 import Login from './page/Login'
 import Account from './page/Account'
@@ -10,8 +10,8 @@ import Orders from './page/Orders'
 import Feedback from './page/Feedback'
 import Payment from './page/Payment'
 import Chapter from './page/Chapter'
-import ChapterRoute from './ChapterRoute'
-import ProtectedRoute from './ProtectedRoute'
+import ChapterRoute from './routing/ChapterRoute'
+import ProtectedRoute from './routing/ProtectedRoute'
 
 const App = () =>
     <div className='App'>

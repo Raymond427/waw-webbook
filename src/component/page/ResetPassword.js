@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { resetPassword } from '../firebase'
-import Form from '../form/Form'
-import { EmailField } from '../form/Input'
-import Navigation from '../Navigation'
+import { resetPassword } from '../../firebase'
+import Form from '../form'
+import { EmailField } from '../form/input'
+import Navigation from '../navigation'
 
 const ResetPassword = () => {
         const [ email, setEmail ] = useState('')

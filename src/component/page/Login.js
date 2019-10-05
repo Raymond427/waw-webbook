@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import { UserContext } from '../UserProvider'
+import { UserContext } from '../authentication/UserProvider'
 import { Link, Redirect } from 'react-router-dom'
-import { signInWithGoogle, signIn, signUp } from '../firebase'
-import Form from '../form/Form'
-import '../styles/Login.css'
-import { EmailField, PasswordField } from '../form/Input'
-import SocialAuthButton from '../SocialAuthButton'
-import Navigation from '../Navigation'
+import { signInWithGoogle, signIn, signUp } from '../../firebase'
+import Form from '../form'
+import '../../styles/Login.css'
+import { EmailField, PasswordField } from '../form/input'
+import SocialAuthButton from '../authentication/SocialAuthButton'
+import Navigation from '../navigation'
 
 const SignInAndSignUp = ({ setUser, newUser, pathOnSignIn }) => {
     const [ authErrorMessage, setAuthErrorMessage ] = useState('')

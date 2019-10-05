@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link, Redirect } from 'react-router-dom'
-import { UserContext } from '../UserProvider'
-import Navigation from '../Navigation'
-import '../styles/Account.css'
+import { UserContext } from '../authentication/UserProvider'
+import Navigation from '../navigation'
+import '../../styles/Account.css'
 
 const Account = () =>
     <UserContext.Consumer>

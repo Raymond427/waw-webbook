@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import Carousel, { Dots } from '@brainhubeu/react-carousel'
-import history from './history'
-import Arrow from './icons/Arrow'
-import './styles/ChapterCarousel.css'
-import './styles/ChapterCarouselSlide.css'
+import history from '../../../history'
+import Arrow from '../../icon/Arrow'
+import '../../../styles/ChapterCarousel.css'
+import '../../../styles/ChapterCarouselSlide.css'
 import '@brainhubeu/react-carousel/lib/style.css'
-import './styles/Home.css'
+import '../../../styles/Home.css'
 import HomePageBackground from './HomepageBackground'
-import Navigation from './Navigation'
-import { capitalize, usdFormat } from './utils'
-import homePageImages from './data/homePageImages.json'
+import Navigation from '../../navigation'
+import { capitalize, usdFormat } from '../../../utils'
+import homePageImages from '../../../data/homePageImages.json'
 
 const ChapterCarouselSlide = ({ title, description, available, chapterName, buttonText, currentSlide }) =>
     <div className="chapter-carousel-slide">

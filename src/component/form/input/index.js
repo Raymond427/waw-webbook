@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import TextInput from './TextInput'
-import SelectInput from './SelectInput'
+import TextInput from './Text'
+import SelectInput from './Select'
 import Checkboxes from './Checkbox'
-import RadioInput from './RadioInput'
-import RatingInput from './RatingInput'
-import '../styles/Input.css'
+import RadioInput from './Radio'
+import RatingInput from './Rating'
+import '../../../styles/Input.css'
 
 const Label = ({ htmlFor, labelText, required }) =>
     <label className='field-label' id={`${htmlFor}-label`} htmlFor={htmlFor}>

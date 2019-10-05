@@ -1,10 +1,10 @@
 import React from 'react'
-import './styles/Navigation.css'
+import '../../styles/Navigation.css'
 import AuthenticationLinks from './AuthenticationLinks'
-import Arrow from './icons/Arrow'
-import MiniLogo from './icons/MiniLogo'
-import ThemeToggler from './ThemeToggler'
-import { UserContext } from './UserProvider'
+import Arrow from '../icon/Arrow'
+import MiniLogo from '../icon/MiniLogo'
+import ThemeToggler from '../ThemeToggler'
+import { UserContext } from '../authentication/UserProvider'
 import { withRouter } from 'react-router-dom'
 
 export default withRouter(({ hideLogo = false, hideBack = false, backPath, showThemeToggle = false, history }) =>

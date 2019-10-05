@@ -1,6 +1,6 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
-import chapters from './data/chapters.json'
+import chapters from '../../data/chapters'
 
 const ChapterRoute = ({ condition = true, Component, redirectOnRestricted = '/', computedMatch, user, ...rest }) => {
     const chapterName = computedMatch.params.chapterName

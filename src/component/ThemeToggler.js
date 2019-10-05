@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import Sun from './icons/Sun'
-import Moon from './icons/Moon'
+import Sun from './icon/Sun'
+import Moon from './icon/Moon'
 
 const ThemeToggler = () => {
     const [ theme, setTheme ] = useState(document.documentElement.getAttribute('data-theme'))
