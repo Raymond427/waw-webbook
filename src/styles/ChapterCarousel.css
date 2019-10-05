@@ -25,6 +25,12 @@
 
 @media (max-width: 560px) {
     .home-carousel {
+        width: 400px;
+    }
+}
+
+@media (max-width: 400px) {
+    .home-carousel {
         width: 300px;
     }
 }

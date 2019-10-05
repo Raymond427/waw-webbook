@@ -29,6 +29,12 @@ html.theme-transition *:after {
 
 @media (max-width: 768px) {
     html {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 320px) {
+    html {
         font-size: 12px;
     }
 }
