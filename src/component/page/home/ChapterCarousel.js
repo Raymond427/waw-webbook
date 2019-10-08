@@ -43,7 +43,7 @@ const ChapterCarousel = ({ chapters }) => {
                 author={homePageImages[currentChapter.name].author}
             />}
             <div className="home-carousel">
-                <Carousel arrowLeft={<Arrow className={firstIndex ? ' arrow--inactive' : ''} left />} arrowRight={<Arrow className={lastIndex ? ' arrow--inactive' : ''} />} addArrowClickHandler centered draggable keepDirectionWhenDragging slidesPerPage={1} value={currentIndex} onChange={onChange}>
+                <Carousel arrowLeft={<Arrow className={firstIndex ? ' arrow--inactive' : ''} color="#FFFFFF" left />} arrowRight={<Arrow className={lastIndex ? ' arrow--inactive' : ''} color="#FFFFFF" />} addArrowClickHandler centered draggable keepDirectionWhenDragging slidesPerPage={1} value={currentIndex} onChange={onChange}>
                     {[
                         <ChapterCarouselSlide
                             key="0-home"

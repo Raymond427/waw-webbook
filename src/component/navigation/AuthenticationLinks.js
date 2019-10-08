@@ -12,7 +12,7 @@ const SignInAndSignUpLinks = () =>
 
 const AccountLink = ({ user: { user: { photoURL } }, history }) =>
     <button className="account-link" onClick={() => history.push('/account')}>
-        {photoURL ? <img className='account-icon account-profile' alt='account icon' src={photoURL} /> : <Account />}
+        {photoURL ? <img className='account-icon account-profile' alt='account icon' src={photoURL} /> : <Account color={history.location.pathname === '/' ? '#FFFFFF' : 'var(--primary-text-color)'} />}
     </button>
 
 const AuthenticationLinks = ({ history }) =>
