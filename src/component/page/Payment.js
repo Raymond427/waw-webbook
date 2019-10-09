@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Order from '../Order'
-import { TextField, SelectField } from '../form/input'
+import { TextField } from '../form/input'
 import { injectStripe, Elements, StripeProvider, CardElement } from 'react-stripe-elements'
 import history from '../../history'
 import Form from '../form'
@@ -99,7 +99,7 @@ const Payment = ({ computedMatch, location }) => {
 
     return (
         <div className="Payment page">
-            <Navigation hideBack />
+            <Navigation />
             <UserContext.Consumer>
                 {({ user }) =>
                     <StripeProvider stripe={stripe} apiKey={STRIPE_API_KEY}>
