@@ -33,7 +33,13 @@
                 }
             ],
             "quote": "I fear not the man who has practiced 10,000 kicks once, but I do fear the man who has practiced one kick 10,000 times",
-            "author": "Bruce Lee"
+            "author": "Bruce Lee",
+            "chapterBackgroundImages": [
+                {
+                    "maxWidth": "1440",
+                    "src": "bruceLee-1440.jpg"
+                }
+            ]
         },
     "product":
         {
@@ -52,7 +58,13 @@
                 }
             ],
             "quote": "People don’t buy what you do, they buy why you do it.",
-            "author": "Simon Sinek"
+            "author": "Simon Sinek",
+            "chapterBackgroundImages": [
+                {
+                    "maxWidth": "1440",
+                    "src": "simonSinek-1440.jpg"
+                }
+            ]
         },
     "finances":
         {
@@ -71,6 +83,12 @@
                 }
             ],
             "quote": "Only when you combine sound intellect with emotional discipline do you get rational behavior.",
-            "author": "Warren Buffett"
+            "author": "Warren Buffett",
+            "chapterBackgroundImages": [
+                {
+                    "maxWidth": "1440",
+                    "src": "warrenBuffett-1440.jpg"
+                }
+            ]
         }
 }

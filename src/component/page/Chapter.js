@@ -3,13 +3,14 @@ import chapters from '../../data/chapters'
 import chapterImages from '../../data/homePageImages'
 import '../../styles/Chapter.css'
 import Navigation from '../navigation'
+import Picture from '../Picture'
 
 const Chapter = ({ chapter = chapters[0] }) => {
-    const backgroundImgSrc = chapterImages[chapter.name].images[2].src
+    const backgroundImgs = chapterImages[chapter.name].chapterBackgroundImages
     return (
         <div className="Chapter">
             <div className="chapter-container">
-                <img className="chapter-background-image" alt="chapter background" src={require(`../../images/${backgroundImgSrc}`)} />
+                <Picture className="chapter-background-image" alt="chapter background" images={backgroundImgs} />
                 <div className="chapter-content">
                     <Navigation showThemeToggle />
                     <main>
