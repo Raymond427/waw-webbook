@@ -17,6 +17,7 @@ html[data-theme="light"] {
     --primary-text-color: #121212;
     --secondary-background-color: #E8E9EF;
     --secondary-text-color: #121212;
+    font-weight: normal;
 }
 
 html.theme-transition,

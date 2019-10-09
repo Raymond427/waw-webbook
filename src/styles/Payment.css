@@ -8,7 +8,7 @@
 
 @media (max-width: 768px) {
     .StripeElement {
-        padding: 6px 16px 6px 16px;
-        height: calc(30px - 1rem);
+        padding: 9px 16px 6px 16px;
+        height: 20px;
     }
 }

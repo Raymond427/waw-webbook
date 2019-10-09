@@ -4,7 +4,10 @@
 }
 
 .home-page-background-shade {
-    background: rgba(0, 0, 0, 0.5);
+    background: #5f2c82;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, #5f2c82, #49a09d);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, #5f2c82, #49a09d); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    opacity: 0.6;
     position: absolute;
     height: 100%;
     width: 100%;
@@ -59,5 +62,11 @@
 @media (max-width: 560px) {
     .Logo {
         height: 20rem;
+    }
+}
+
+@media (max-height: 550px) {
+    .Logo, .home-page-background-quote {
+        display: none;
     }
 }

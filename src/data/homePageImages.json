@@ -4,15 +4,15 @@
             "images": [
                 {
                     "maxWidth": "411",
-                    "src": "island-411.png"
+                    "src": "home-411.jpg"
                 },
                 {
                     "maxWidth": "768",
-                    "src": "island-768.jpg"
+                    "src": "home-768.jpg"
                 },
                 {
                     "maxWidth": "1440",
-                    "src": "island-1440.jpg"
+                    "src": "home-1440.jpg"
                 }
             ]
         },
