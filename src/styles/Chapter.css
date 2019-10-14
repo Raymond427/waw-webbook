@@ -1,5 +1,5 @@
 .chapter-container {
-    max-width: 768px;
+    max-width: 1024px;
     width: 100%;
     margin: 0 auto;
 }
@@ -9,7 +9,7 @@
     object-fit: cover;
     object-position: top;
     width: 100%;
-    max-width: 768px;
+    max-width: 1024px;
     height: 30.5rem;
 }
 
@@ -18,7 +18,6 @@
     position: relative;
     border-radius: 3rem;
     top: 25rem;
-    height: 100rem;
     padding-top: 0.5rem;
 }
 
@@ -40,7 +39,85 @@
     top: 0.5rem;
 }
 
+.chapter-content-list-heading {
+    color: var(--primary-color);
+    text-align: left;
+}
+
+.chapter-aside {
+    background-color: var(--primary-color);
+    color: var(--primary-text-color);
+    padding: 0.5rem 2rem;
+    width: 35%;
+    float: right;
+    margin: 0.5rem 0 0.5rem 2rem;
+    font-size: 0.9rem;
+    line-height: 1.3rem;
+}
+
+.chapter-note span {
+    display: inline;
+    color: var(--primary-color);
+}
+
+.chapter-note p {
+    display: inline;
+    font-style: italic;
+    font-size: 1rem;
+}
+
+.chapter-quote {
+    font-style: italic;
+}
+
+.chapter-quote-icon {
+    font-size: 3rem;
+}
+
+.chapter-figure {
+    margin: 0;
+}
+
+.chapter-figure-video, .chapter-figure-image {
+    width: 100%;
+}
+
+.chapter-figure-caption {
+    font-style: italic;
+    font-size: 1rem;
+}
+
 main {
     position: relative;
-    padding: 0 2rem;
+    padding: 0 6rem;
+    letter-spacing: 0.05rem;
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+}
+
+main h1, main h2, main h3 {
+    line-height: 2rem;
+}
+
+@media (max-width: 768px) {
+    main {
+        padding: 0 2rem;
+    }
+}
+
+@media (max-width: 560px) {
+    .chapter-aside {
+        width: inherit;
+        float: none;
+        margin: 1rem auto;
+        display: block;
+        font-size: 1.2rem;
+        line-height: 1.5rem;
+    }
+}
+
+@media (max-width: 400px) {
+    main {
+        padding: 0 1rem;
+    }
 }

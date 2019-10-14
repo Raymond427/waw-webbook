@@ -58,7 +58,11 @@ body, input, select, option {
     font-family: 'Roboto', sans-serif;
 }
 
-a, a:visited, a:focus, a:hover {
+a, a:visited, a:focus {
     text-decoration: none;
+    color: var(--primary-text-color);
+}
+
+a:hover {
     color: var(--primary-color);
 }

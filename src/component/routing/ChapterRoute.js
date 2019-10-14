@@ -17,7 +17,10 @@ const ChapterRoute = ({ condition = true, Component, redirectOnRestricted = '/',
     return (condition
         ?
             user
-                ? chapter.purchased ? <Component chapter={chapter} {...rest} /> : <Redirect to={{ pathname: `/buy/${chapterName}`, state: { pathOnPurchase: `/chapters/${chapterName} `}}} />
+                ?
+                    chapter.purchased
+                        ? <Component chapter={chapter} {...rest} />
+                        : <Redirect to={{ pathname: `/buy/${chapterName}`, state: { pathOnPurchase: `/chapters/${chapterName} `}}} />
                 : <Redirect to={{ pathname: '/login', state: { pathOnSignIn: `/chapters/${chapterName}` }}} />
         :
             <Redirect to='/' />
