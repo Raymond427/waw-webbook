@@ -21,7 +21,7 @@ export const signUp = (email, password) => auth.createUserWithEmailAndPassword(e
 export const signIn = (email, password) => auth.signInWithEmailAndPassword(email, password)
 export const signInWithGoogle = () => auth.signInWithPopup(googleProvider)
 export const signInWithFacebook = () => auth.signInWithPopup(facebookProvider).then(({ user }) => user)
-export const resetPassword = emailAddress => auth.sendPasswordResetEmail(emailAddress)
+export const sendPasswordResetEmail = emailAddress => auth.sendPasswordResetEmail(emailAddress)
 firestore.settings({})
 
 export default firebase

@@ -65,7 +65,7 @@ const SignInAndSignUp = ({ setUser, newUser, pathOnSignIn }) => {
                     ? <span>Already have an account? <Link to={{pathname: '/login', state: { newUser: false }}}>Sign In</Link></span>
                     : <>
                         <span>Don't have an account? <Link to={{pathname: '/sign-up', state: { newUser: true }}}>Sign Up</Link></span>
-                        <Link to='/resetPassword'>Forgot Your Password?</Link>
+                        <Link to='/reset-password'>Forgot Your Password?</Link>
                       </>}
             </p>
             {userSignedIn && <Redirect to={pathOnSignIn} />}

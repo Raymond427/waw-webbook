@@ -1,32 +1,37 @@
 import React, { useState } from 'react'
-import { resetPassword } from '../../firebase'
+import { sendPasswordResetEmail } from '../../firebase'
 import Form from '../form'
 import { EmailField } from '../form/input'
 import Navigation from '../navigation'
 
 const ResetPassword = () => {
         const [ email, setEmail ] = useState('')
-        const [ passwordReset, setPasswordReset ] = useState(false)
-        const [ submitionResults, setSubmissionResults ] = useState('')
+        const [ passwordResetEmailSent, setPasswordResetEmailSent ] = useState(false)
+        const [ submittonError, setSubmissionError ] = useState('')
+        const [ isLoading, setIsLoading ] = useState(false)
 
         const handlePasswordReset = emailAddress => {
-            resetPassword(emailAddress)
-                .then(status => {
-                    setSubmissionResults(status)
-                    if (status === 200) { setPasswordReset(true) }
-                }).catch(error =>
-                    setSubmissionResults(error)
-                )
+            setIsLoading(true)
+            sendPasswordResetEmail(emailAddress)
+                .then(() => setPasswordResetEmailSent(true))
+                .catch(error => setSubmissionError(error))
+                .finally(() => setIsLoading(false))
         }
 
         return (
             <div className="ResetPassword page">
                 <Navigation />
-                {passwordReset
-                ?   <p>Open the link we sent to {email} to reset your password</p>
+                {passwordResetEmailSent
+                ?   <h2>Open the link we sent to {email} to reset your password</h2>
                 :   <>
                         <h2>Enter your email to reset your password</h2>
-                        <Form submitValue='Reset Password' onSubmit={() => handlePasswordReset(email)}>
+                        <Form
+                            submitValue="Reset Password"
+                            onSubmit={() => handlePasswordReset(email)}
+                            submitting={isLoading}
+                            submittingValue="Sending Your Reset Email..."
+                            errorMessage={submittonError}
+                        >
                             <EmailField valueHook={setEmail} />
                         </Form>
                     </>
