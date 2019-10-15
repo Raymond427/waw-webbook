@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { UserContext } from '../authentication/UserProvider'
 import '../../styles/AuthenticationLinks.css'
@@ -10,10 +10,15 @@ const SignInAndSignUpLinks = () =>
         <Link to={{pathname: '/sign-up', state: { newUser: true }}}>Sign Up</Link>
     </div>
 
-const AccountLink = ({ user: { user: { photoURL } }, history }) =>
-    <button className="account-link" onClick={() => history.push('/account')}>
-        {photoURL ? <img className='account-icon account-profile' alt='account icon' src={photoURL} /> : <Account color={history.location.pathname === '/' ? '#FFFFFF' : 'var(--primary-text-color)'} />}
-    </button>
+const AccountLink = ({ user: { user: { photoURL } }, history }) => {
+    const [ showDefaultIcon, setShowDefaultIcon ] = useState(false)
+
+    return (
+        <button className="account-link" onClick={() => history.push('/account')}>
+            {photoURL && !showDefaultIcon ? <img className='account-icon account-profile' alt='account icon' src={photoURL} onError={() => setShowDefaultIcon(true)} /> : <Account color={history.location.pathname === '/' ? '#FFFFFF' : 'var(--primary-text-color)'} />}
+        </button>
+    )
+}
 
 const AuthenticationLinks = ({ history }) =>
     <UserContext.Consumer>

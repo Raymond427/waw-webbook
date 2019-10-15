@@ -1,12 +1,19 @@
 import React, { useState } from 'react'
 import { UserContext } from '../authentication/UserProvider'
 import { Link, Redirect } from 'react-router-dom'
-import { signInWithGoogle, signIn, signUp } from '../../firebase'
+import { signInWithGoogle, signIn, signUp, signInWithFacebook } from '../../firebase'
 import Form from '../form'
 import '../../styles/Login.css'
 import { EmailField, PasswordField } from '../form/input'
 import SocialAuthButton from '../authentication/SocialAuthButton'
 import Navigation from '../navigation'
+
+const convertFaceBookUserObject = ({ photoURL, email }) => ({
+    user: {
+        photoURL,
+        email
+    }
+})
 
 const SignInAndSignUp = ({ setUser, newUser, pathOnSignIn }) => {
     const [ authErrorMessage, setAuthErrorMessage ] = useState('')
@@ -15,18 +22,18 @@ const SignInAndSignUp = ({ setUser, newUser, pathOnSignIn }) => {
     const [ email, setEmail ] = useState('')
     const [ password, setPassword ] = useState('')
 
-    const handleUser = user => {
+    const handleUser = (user, isFaceBook = false) => {
         setAuthErrorMessage('')
-        setUser(user)
+        setUser(isFaceBook ? convertFaceBookUserObject(user) : user)
         setuserSignedIn(true)
     }
 
     const handleAuthError = ({ message }) => setAuthErrorMessage(message)
 
-    const handleAuth = authProvider => {
+    const handleAuth = (authProvider, isFaceBook = false) => {
         setIsLoading(true)
         authProvider()
-            .then(handleUser)
+            .then(user => handleUser(user, isFaceBook))
             .catch(handleAuthError)
             .finally(() => setIsLoading(false))
     }
@@ -42,7 +49,7 @@ const SignInAndSignUp = ({ setUser, newUser, pathOnSignIn }) => {
             <Navigation />
             <h2>{newUser? 'Sign Up' : 'Sign In'}</h2>
             <SocialAuthButton name="google" onClick={() => handleAuth(signInWithGoogle)} newUser={newUser} />
-            <SocialAuthButton name="facebook" />
+            <SocialAuthButton name="facebook" onClick={() => handleAuth(signInWithFacebook, true)} newUser={newUser} />
             <Form
                 onSubmit={genericAuth}
                 submitValue={newUser ? 'Sign Up' : 'Sign In'}

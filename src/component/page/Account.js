@@ -11,7 +11,7 @@ const Account = () =>
                 <Navigation />
                 <h1>Account</h1>
                 <ul className="account-links">
-                    <li>{user && user.user.email}</li>
+                    {user && user.user && <li>{user.user.email}</li>}
                     <li id="account-link-log-out" onClick={() => setUser()}>
                         Log Out
                     </li>

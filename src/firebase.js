@@ -15,10 +15,12 @@ firebase.initializeApp(config)
 
 export const firestore = firebase.firestore()
 export const auth = firebase.auth()
-const provider = new firebase.auth.GoogleAuthProvider()
+const googleProvider = new firebase.auth.GoogleAuthProvider()
+const facebookProvider = new firebase.auth.FacebookAuthProvider();
 export const signUp = (email, password) => auth.createUserWithEmailAndPassword(email, password)
 export const signIn = (email, password) => auth.signInWithEmailAndPassword(email, password)
-export const signInWithGoogle = () => auth.signInWithPopup(provider)
+export const signInWithGoogle = () => auth.signInWithPopup(googleProvider)
+export const signInWithFacebook = () => auth.signInWithPopup(facebookProvider).then(({ user }) => user)
 export const resetPassword = emailAddress => auth.sendPasswordResetEmail(emailAddress)
 firestore.settings({})
 
