@@ -8,13 +8,6 @@ import { EmailField, PasswordField } from '../form/input'
 import SocialAuthButton from '../authentication/SocialAuthButton'
 import Navigation from '../navigation'
 
-const convertFaceBookUserObject = ({ photoURL, email }) => ({
-    user: {
-        photoURL,
-        email
-    }
-})
-
 const SignInAndSignUp = ({ setUser, newUser, pathOnSignIn }) => {
     const [ authErrorMessage, setAuthErrorMessage ] = useState('')
     const [ userSignedIn, setuserSignedIn ] = useState(false)
@@ -22,18 +15,18 @@ const SignInAndSignUp = ({ setUser, newUser, pathOnSignIn }) => {
     const [ email, setEmail ] = useState('')
     const [ password, setPassword ] = useState('')
 
-    const handleUser = (user, isFaceBook = false) => {
+    const handleUser = user => {
         setAuthErrorMessage('')
-        setUser(isFaceBook ? convertFaceBookUserObject(user) : user)
+        setUser(user)
         setuserSignedIn(true)
     }
 
     const handleAuthError = ({ message }) => setAuthErrorMessage(message)
 
-    const handleAuth = (authProvider, isFaceBook = false) => {
+    const handleAuth = (authProvider) => {
         setIsLoading(true)
         authProvider()
-            .then(user => handleUser(user, isFaceBook))
+            .then(handleUser)
             .catch(handleAuthError)
             .finally(() => setIsLoading(false))
     }
@@ -49,7 +42,7 @@ const SignInAndSignUp = ({ setUser, newUser, pathOnSignIn }) => {
             <Navigation />
             <h2>{newUser? 'Sign Up' : 'Sign In'}</h2>
             <SocialAuthButton name="google" onClick={() => handleAuth(signInWithGoogle)} newUser={newUser} />
-            <SocialAuthButton name="facebook" onClick={() => handleAuth(signInWithFacebook, true)} newUser={newUser} />
+            <SocialAuthButton name="facebook" onClick={() => handleAuth(signInWithFacebook)} newUser={newUser} />
             <Form
                 onSubmit={genericAuth}
                 submitValue={newUser ? 'Sign Up' : 'Sign In'}

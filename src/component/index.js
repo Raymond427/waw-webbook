@@ -12,6 +12,7 @@ import Payment from './page/Payment'
 import Chapter from './page/Chapter'
 import ChapterRoute from './routing/ChapterRoute'
 import ProtectedRoute from './routing/ProtectedRoute'
+import UserManagementRoute from './routing/UserManagementRoute'
 
 const App = () =>
     <div className='App'>
@@ -22,6 +23,7 @@ const App = () =>
                         <Route exact path='/' component={Home} />
                         <Route exact path='/login' component={Login} />
                         <Route exact path='/sign-up' component={Login} />
+                        <UserManagementRoute path='/usermgmt' />
                         <ProtectedRoute
                             path='/reset-password'
                             condition={!user}
