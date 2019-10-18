@@ -1,0 +1,22 @@
+.page {
+    margin-top: 7rem;
+    text-align: center;
+}
+
+.button {
+    border-radius: 5px;
+    background-color: var(--primary-color);
+    border: none;
+    height: 2.5rem;
+    padding: 0 1rem;
+    margin: 1rem auto;
+}
+
+.button:hover {
+    cursor: pointer;
+}
+
+.button:disabled {
+    cursor: not-allowed;
+    color: var(--secondary-text-color);
+}

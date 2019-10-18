@@ -2,7 +2,6 @@ import React from 'react'
 import orders from '../../data/orders'
 import Order from '../Order'
 import Navigation from '../navigation'
-import '../../styles/Orders.css'
 
 const Orders = () =>
     <div className="Orders page">

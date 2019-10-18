@@ -14,7 +14,7 @@
     height: 3.5rem;
     background: none;
     border: none;
-    top: 0;
+    top: -0.2rem;
     left: calc(50% - 2rem);
 }
 
@@ -39,6 +39,7 @@
     position: absolute;
     left: 1rem;
     width: fit-content;
+    top: 0.4rem;
 }
 
 .account-link {

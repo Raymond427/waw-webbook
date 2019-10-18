@@ -51,7 +51,9 @@ body {
 }
 
 h2, h3, h4, h5, h6 {
+    font-weight: normal;
     text-align: center;
+    padding: 0 0.5rem;
 }
 
 body, input, select, option {
@@ -60,7 +62,7 @@ body, input, select, option {
 
 a, a:visited, a:focus {
     text-decoration: none;
-    color: var(--primary-text-color);
+    color: var(--primary-color);
 }
 
 a:hover {

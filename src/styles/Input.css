@@ -1,7 +1,3 @@
-.page {
-    margin-top: 7rem;
-}
-
 .field {
     display: inline-block;
     width: 100%;
@@ -31,22 +27,4 @@ input:-webkit-autofill {
 .field-error {
     color: var(--tertiary-color);
     display: block;
-}
-
-.button {
-    border-radius: 5px;
-    background-color: var(--primary-color);
-    border: none;
-    height: 2.5rem;
-    padding: 0 1rem;
-    margin: 1rem auto;
-}
-
-.button:hover {
-    cursor: pointer;
-}
-
-.button:disabled {
-    cursor: not-allowed;
-    color: var(--secondary-text-color);
 }

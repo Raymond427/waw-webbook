@@ -40,13 +40,18 @@
 }
 
 .chapter-content-list-heading {
-    color: var(--primary-color);
+    color: var(--primary-text-color);
     text-align: left;
+}
+
+.chapter-content-list-link {
+    cursor: pointer;
+    color: var(--primary-color);
 }
 
 .chapter-aside {
     background-color: var(--primary-color);
-    color: var(--primary-text-color);
+    color: #FFFFFF;
     padding: 0.5rem 2rem;
     width: 35%;
     float: right;
@@ -85,6 +90,10 @@
 .chapter-figure-caption {
     font-style: italic;
     font-size: 1rem;
+}
+
+.chapter-article {
+    padding-top: 2.1rem;
 }
 
 main {

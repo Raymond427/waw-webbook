@@ -3,9 +3,9 @@ import { verifyPasswordResetCode, handlePasswordReset } from '../../firebase'
 import Form from '../form'
 import { PasswordField } from '../form/input'
 import Navigation from '../navigation'
-import { Link, Redirect } from 'react-router-dom'
+import { Redirect, withRouter } from 'react-router-dom'
 
-const PasswordReset = ({ searchParams }) => {
+const PasswordReset = withRouter(({ searchParams, history }) => {
     const [ verifyingActionCode, setVerifyingActionCode ] = useState(true)
     const [ email, setEmail ] = useState(false)
     const [ actionCodeVerified, setActionCodeVerified ] = useState(false)
@@ -43,16 +43,22 @@ const PasswordReset = ({ searchParams }) => {
 
         if (verifyingActionCode) {
             return (
-                <>
-                    <p>Verifying Password Reset Link...</p>
-                </>
+                    <h2>Verifying Password Reset Link...</h2>
             )
         }
         if (!actionCodeVerified) {
             return (
                 <>
                     <h2>Looks like your password reset link has expired</h2>
-                    <Link to="/reset-password">Get Another Link</Link>
+                    <button
+                        className="button"
+                        onClick={event => {
+                            event.preventDefault()
+                            history.push('/reset-password')
+                        }}
+                    >
+                        Get Another Link
+                    </button>
                 </>
             )
         } else {
@@ -60,7 +66,15 @@ const PasswordReset = ({ searchParams }) => {
             ?   (
                     <>
                         <h2>Your password has been reset!</h2>
-                        <Link to="/login">Log In</Link>
+                        <button
+                            className="button"
+                            onClick={event => {
+                                event.preventDefault()
+                                history.push('/login')
+                            }}
+                        >
+                            Log In
+                        </button>
                     </>
                 )
             :   <>
@@ -84,6 +98,6 @@ const PasswordReset = ({ searchParams }) => {
             <PageContents />
         </div>
     )
-}
+})
 
 export default PasswordReset

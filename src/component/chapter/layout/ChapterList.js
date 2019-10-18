@@ -21,9 +21,14 @@ const ChapterContentList = () => (
                 <ul className="chapter-content-list">
                     {contentList.map(chapterTitle => (
                         <li key={chapterTitle}>
-                            <a href={`#${kebabCase(chapterTitle)}`} className="chapter-content-list-link">
+                            <p
+                                onClick={() => {
+                                    document.getElementById(kebabCase(chapterTitle)).scrollIntoView({behavior: 'smooth'})
+                                    }}
+                                className="chapter-content-list-link"
+                            >
                                 {capitalize(chapterTitle)}
-                            </a>
+                            </p>
                         </li>
                     ))}
                 </ul>
