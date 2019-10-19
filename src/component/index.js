@@ -13,52 +13,55 @@ import Chapter from './page/Chapter'
 import ChapterRoute from './routing/ChapterRoute'
 import ProtectedRoute from './routing/ProtectedRoute'
 import UserManagementRoute from './routing/UserManagementRoute'
+import ThemeProvider from './theme/ThemeProvider'
 
 const App = () =>
     <div className='App'>
-        <UserProvider>
-            <UserContext.Consumer>
-                {({ user }) =>
-                    <Switch>
-                        <Route exact path='/' component={Home} />
-                        <Route exact path='/login' component={Login} />
-                        <Route exact path='/sign-up' component={Login} />
-                        <UserManagementRoute path='/usermgmt' />
-                        <ProtectedRoute
-                            path='/reset-password'
-                            condition={!user}
-                            Component={ResetPassword}
-                        />
-                        <ProtectedRoute
-                            path='/account'
-                            condition={user}
-                            Component={Account}
-                        />
-                        <ProtectedRoute
-                            path='/buy/:productName'
-                            condition={user}
-                            Component={Payment}
-                        />
-                        <ProtectedRoute
-                            path='/feedback'
-                            condition={user}
-                            Component={Feedback}
-                        />
-                        <ProtectedRoute
-                            path='/orders'
-                            condition={user}
-                            Component={Orders}
-                        />
-                        <ChapterRoute
-                            path='/chapters/:chapterName'
-                            Component={Chapter}
-                            user={user}
-                        />
-                        <Route component={Home} />
-                    </Switch>
-                }
-            </UserContext.Consumer>
-        </UserProvider>
+        <ThemeProvider>
+            <UserProvider>
+                <UserContext.Consumer>
+                    {({ user }) =>
+                        <Switch>
+                            <Route exact path='/' component={Home} />
+                            <Route exact path='/login' component={Login} />
+                            <Route exact path='/sign-up' component={Login} />
+                            <UserManagementRoute path='/usermgmt' />
+                            <ProtectedRoute
+                                path='/reset-password'
+                                condition={!user}
+                                Component={ResetPassword}
+                            />
+                            <ProtectedRoute
+                                path='/account'
+                                condition={user}
+                                Component={Account}
+                            />
+                            <ProtectedRoute
+                                path='/buy/:productName'
+                                condition={user}
+                                Component={Payment}
+                            />
+                            <ProtectedRoute
+                                path='/feedback'
+                                condition={user}
+                                Component={Feedback}
+                            />
+                            <ProtectedRoute
+                                path='/orders'
+                                condition={user}
+                                Component={Orders}
+                            />
+                            <ChapterRoute
+                                path='/chapters/:chapterName'
+                                Component={Chapter}
+                                user={user}
+                            />
+                            <Route component={Home} />
+                        </Switch>
+                    }
+                </UserContext.Consumer>
+            </UserProvider>
+        </ThemeProvider>
     </div>
 
 export default App

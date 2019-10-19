@@ -3,7 +3,7 @@ import '../../styles/Navigation.css'
 import AuthenticationLinks from './AuthenticationLinks'
 import Arrow from '../icon/Arrow'
 import MiniLogo from '../icon/MiniLogo'
-import ThemeToggler from '../ThemeToggler'
+import ThemeToggler from '../theme/ThemeToggler'
 import { UserContext } from '../authentication/UserProvider'
 import { withRouter } from 'react-router-dom'
 
