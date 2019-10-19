@@ -10,7 +10,7 @@ const SubmitButton = ({ id, onSubmit, submitValue = 'Submit', submittingValue, s
     }
 
     return (
-        <input className='button form-submit' id={id ? `form-submit-${id}` : ''} type='submit' onClick={onClick} value={submitting ? submittingValue : submitValue} disabled={submitting}/>
+        <input className='button form-submit' id={id ? `form-submit-${id}` : null} type='submit' onClick={onClick} value={submitting ? submittingValue : submitValue} disabled={submitting}/>
     )
 }
 
@@ -24,9 +24,9 @@ SubmitButton.propTypes = {
 }
 
 const SubmissionErrorMessage = ({ errorMessage, id }) =>
-    <div className='submission-error-message' id={id ? `submission-error-message-${id}` : ''}>
+    <div className='submission-error-message' id={id ? `submission-error-message-${id}` : null}>
         <Warning />
-        <p className='submission-error-message__text' id={id ? `submission-error-message__text-${id}` : ''}>{errorMessage}</p>
+        <p className='submission-error-message__text' id={id ? `submission-error-message__text-${id}` : null}>{errorMessage}</p>
     </div>
 
 SubmissionErrorMessage.propTypes = {
@@ -34,7 +34,7 @@ SubmissionErrorMessage.propTypes = {
     id: PropTypes.string
 }
 
-const Form = ({ children, onSubmit, submitValue = 'Submit', submittingValue, submitting = false, id = '', errorMessage }) => {
+const Form = ({ children, onSubmit, submitValue = 'Submit', submittingValue, submitting = false, id, errorMessage }) => {
     const [ valid, setValidity ] = useState(true)
     const [ submissionAttempted, setSubmissionAttempted ] = useState(false)
     const [ invalidFields, setInvalidFeilds ] = useState([])
@@ -44,10 +44,16 @@ const Form = ({ children, onSubmit, submitValue = 'Submit', submittingValue, sub
     const addToInValidFields = name => setInvalidFeilds(fields => [ ...fields, name ])
     const removeFromInValidFields = name => setInvalidFeilds(fields => fields.filter(fieldName => fieldName !== name))
 
-    const inputs = Children.map(children, child => cloneElement(child, { submissionAttempted, addToInValidFields, removeFromInValidFields }))
+    const inputs = Children.map(children, child => {
+        const displayName = (child.type && child.type.displayName) ? child.type.displayName : null
+        const isStripeElement = displayName ==='CardElement'
+        return isStripeElement
+            ? cloneElement(child)
+            : cloneElement(child, { submissionAttempted, addToInValidFields, removeFromInValidFields })
+    })
 
-    return(
-        <form className='form' id={id}>
+    return (
+        <form className='form' id={id || null}>
             {errorMessage && <SubmissionErrorMessage id={id} errorMessage={errorMessage} />}
             {inputs}
             <SubmitButton id={id} onSubmit={onSubmit} submitValue={submitValue} submitting={submitting} submittingValue={submittingValue} setSubmissionAttempted={setSubmissionAttempted} valid={valid} />

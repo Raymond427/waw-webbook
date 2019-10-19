@@ -8,9 +8,8 @@ import { EmailField, PasswordField } from '../form/input'
 import SocialAuthButton from '../authentication/SocialAuthButton'
 import Navigation from '../navigation'
 
-const SignInAndSignUp = ({ setUser, newUser, pathOnSignIn }) => {
+const SignInAndSignUp = ({ setUser, newUser }) => {
     const [ authErrorMessage, setAuthErrorMessage ] = useState('')
-    const [ userSignedIn, setuserSignedIn ] = useState(false)
     const [ isLoading, setIsLoading ] = useState(false)
     const [ email, setEmail ] = useState('')
     const [ password, setPassword ] = useState('')
@@ -18,17 +17,18 @@ const SignInAndSignUp = ({ setUser, newUser, pathOnSignIn }) => {
     const handleUser = user => {
         setAuthErrorMessage('')
         setUser(user)
-        setuserSignedIn(true)
     }
 
-    const handleAuthError = ({ message }) => setAuthErrorMessage(message)
+    const handleAuthError = ({ message }) => {
+        setIsLoading(false)
+        setAuthErrorMessage(message)
+    }
 
     const handleAuth = (authProvider) => {
         setIsLoading(true)
         authProvider()
             .then(handleUser)
             .catch(handleAuthError)
-            .finally(() => setIsLoading(false))
     }
 
     const genericAuth = () => {
@@ -61,7 +61,6 @@ const SignInAndSignUp = ({ setUser, newUser, pathOnSignIn }) => {
                         <Link to='/reset-password'>Forgot Your Password?</Link>
                       </>}
             </p>
-            {userSignedIn && <Redirect to={pathOnSignIn} />}
         </div>
     )
 }
@@ -69,12 +68,19 @@ const SignInAndSignUp = ({ setUser, newUser, pathOnSignIn }) => {
 const Login = ({ location }) => {
     return (
         <UserContext.Consumer>
-            {({ setUser }) =>
-                <SignInAndSignUp
-                    setUser={setUser}
-                    newUser={location.state ? location.state.newUser : location.pathname === '/sign-up'}
-                    pathOnSignIn={location.state && location.state.pathOnSignIn ? location.state.pathOnSignIn : '/'}
-            />}
+            {({ user, setUser }) => {
+                const pathOnSignIn = (location.state && location.state.pathOnSignIn) ? location.state.pathOnSignIn : '/'
+
+                return user
+                    ? <Redirect to={pathOnSignIn} />
+                    : (
+                        <SignInAndSignUp
+                            setUser={setUser}
+                            newUser={location.state ? location.state.newUser : location.pathname === '/sign-up'}
+                            pathOnSignIn={location.state && pathOnSignIn ? pathOnSignIn : '/'}
+                        />
+                    )
+            }}
         </UserContext.Consumer>
     )
 }

@@ -8,7 +8,7 @@ const Feedback = () =>
     <div className="Feedback page">
         <Navigation />
         <h2>Give Feedback</h2>
-        <Form submitValue='Give Feedback'>
+        <Form submitValue='Give Feedback' submittingValue="Submitting your feedback..." onSubmit={() => {}}>
             <RatingField id='rating' required errorMessage='Please provide a rating' valueHook={() => {}} />
             <TextField id='feedback' type='textarea' placeholder='Enter your thoughts' valueHook={() => {}} />
         </Form>

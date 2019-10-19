@@ -8,7 +8,7 @@ import '../../styles/Payment.css'
 import { UserContext } from '../authentication/UserProvider'
 import chapters from '../../data/chapters'
 import Navigation from '../navigation'
-import { capitalize, totalPrice } from '../../utils'
+import { capitalize } from '../../utils'
 
 const STRIPE_API_KEY = 'pk_test_e7SFycDVuCMFeUwmn0bGr6iE00O4ZoyrYB'
 const FIREBASE_CHARGE_CARD_FUNCTION_URL = 'https://us-central1-waw-webbook.cloudfunctions.net/charge'
@@ -54,7 +54,6 @@ const CardForm = ({ user, stripe, chapter, pathOnPurchase }) => {
         { name: chapterName, price: chapter.price },
         { name: 'Processing', price: chapter.price * 0.3 }
     ]
-    const price = totalPrice(purchaseItems)
 
     return(
             <div>
