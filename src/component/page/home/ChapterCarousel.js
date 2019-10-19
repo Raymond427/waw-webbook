@@ -10,7 +10,6 @@ import HomePageBackground from './HomepageBackground'
 import Navigation from '../../navigation'
 import { capitalize, usdFormat } from '../../../utils'
 import homePageImages from '../../../data/homePageImages.json'
-import { CSSTransition } from 'react-transition-group'
 
 const ChapterCarouselSlide = ({ title, description, available, chapterName, buttonText, currentSlide }) =>
     <div className="chapter-carousel-slide">
@@ -32,12 +31,14 @@ const ChapterCarousel = ({ chapters }) => {
             <Navigation hideLogo hideBack />
                 {currentIndex === 0 ? (
                     <HomePageBackground
+                        key="Select a Chapter"
                         showLogo
                         name="Select a Chapter"
                         images={homePageImages.home.images}
                     />
                 ) : (
                     <HomePageBackground
+                        key={currentChapter.name}
                         name={currentChapter.name}
                         images={homePageImages[currentChapter.name].images}
                         quote={homePageImages[currentChapter.name].quote}

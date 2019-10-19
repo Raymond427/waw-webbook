@@ -4,3 +4,7 @@
     height: inherit;
     overflow-y: hidden;
 }
+
+.Home > .nav {
+    z-index: 3;
+}

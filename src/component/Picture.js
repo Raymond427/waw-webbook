@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Picture = ({ className, images, alt = "" }) => (
-    <picture>
+    <picture className={className}>
         {images.length > 1 && images.map(({ src, maxWidth }) =>
             <source key={src} srcSet={require(`../images/${src}`)} media={maxWidth ? `(max-width: ${maxWidth}px)` : ''}></source>
         )}
