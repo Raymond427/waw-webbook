@@ -21,9 +21,15 @@
 }
 
 .info-icon {
-    width: 3rem;
+    width: 4rem;
+    margin: auto;
 }
 
 .form-submit {
     color: var(--secondary-text-color);
+    font-size: 1rem;
+}
+
+.LoadingGIF {
+    height: 0.8rem;
 }

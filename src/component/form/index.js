@@ -2,6 +2,7 @@ import React, { useState, useEffect, cloneElement, Children } from 'react'
 import PropTypes from 'prop-types'
 import '../../styles/Form.css'
 import Warning from '../icon/Warning'
+import LoadingGIF from '../icon/LoadingGIF'
 
 const SubmitButton = ({ id, onSubmit, submitValue = 'Submit', submittingValue, submitting = false, valid, setSubmissionAttempted }) => {
     const onClick = event => {
@@ -9,8 +10,17 @@ const SubmitButton = ({ id, onSubmit, submitValue = 'Submit', submittingValue, s
         event.preventDefault()
     }
 
+    const SubmittingValue = ({ value }) => (
+        <span>
+            <LoadingGIF />
+            {` ${value}`}
+        </span>
+    )
+
     return (
-        <input className='button form-submit' id={id ? `form-submit-${id}` : null} type='submit' onClick={onClick} value={submitting ? submittingValue : submitValue} disabled={submitting}/>
+        <button className='button form-submit' id={id ? `form-submit-${id}` : null} type='submit' onClick={onClick} disabled={submitting}>
+            {submitting ? <SubmittingValue value={submittingValue} /> : submitValue}
+        </button>
     )
 }
 
