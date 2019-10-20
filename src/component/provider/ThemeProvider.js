@@ -24,9 +24,7 @@ const ThemeProvider = ({ children }) => {
         window.setTimeout(() => document.documentElement.classList.remove('theme-transition'), 200)
     }
 
-    useEffect(() => {
-        changeTheme(theme)
-    }, [])
+    useEffect(() => changeTheme(theme), [])
 
     return (
         <ThemeContext.Provider value={{ theme, toggleTheme }}>

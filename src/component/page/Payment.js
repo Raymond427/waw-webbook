@@ -5,7 +5,7 @@ import { injectStripe, Elements, StripeProvider, CardElement } from 'react-strip
 import history from '../../history'
 import Form from '../form'
 import '../../styles/Payment.css'
-import { UserContext } from '../authentication/UserProvider'
+import { UserContext } from '../provider/UserProvider'
 import chapters from '../../data/chapters'
 import Navigation from '../navigation'
 import { capitalize } from '../../utils'

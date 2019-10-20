@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, Redirect } from 'react-router-dom'
-import { UserContext } from '../authentication/UserProvider'
+import { UserContext } from '../provider/UserProvider'
 import Navigation from '../navigation'
 import '../../styles/Account.css'
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import Sun from '../icon/Sun'
 import Moon from '../icon/Moon'
-import { ThemeContext } from './ThemeProvider'
+import { ThemeContext } from '../provider/ThemeProvider'
 import { THEMES } from '../../utils/constants'
 
 const ThemeToggler = () => (

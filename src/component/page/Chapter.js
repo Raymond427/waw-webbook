@@ -8,23 +8,22 @@ import Habits from '../chapter/chapterContent/habits'
 
 const Chapter = ({ chapter = chapters[0] }) => {
     const backgroundImgs = chapterImages[chapter.name].chapterBackgroundImages
+    const ChapterContents = chapterName => {
+        switch (chapterName) {
+            case chapterName === 'habits':
+                return <Habits />
+            default:
+                return <Habits />
+        }
+    }
+
     return (
         <div className="Chapter">
             <div className="chapter-container">
                 <Picture className="chapter-background-image" alt="chapter background" images={backgroundImgs} />
                 <div className="chapter-content">
                     <Navigation showThemeToggle />
-                        <Habits />
-                        {/* <h4>FURTHER READING</h4>
-                        <ul>
-                            <li><a href="#">Excepteur sint occaecat</a></li>
-                            <li><a href="#">Duis aute irure</a></li>
-                            <li><a href="#">Ut enim ad minim</a></li>
-                            <li><a href="#">Sed odio morbi quis commodo odio</a></li>
-                            <li><a href="#">Excepteur sint occaecat</a></li>
-                        </ul>
-                        <h4>NEXT CHAPTER</h4>
-                        <button>Product</button> */}
+                    {ChapterContents(chapter.name)}
                 </div>
             </div>
         </div>

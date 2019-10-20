@@ -13,21 +13,14 @@ const config = {
 
 firebase.initializeApp(config)
 
-export const firestore = firebase.firestore()
 export const auth = firebase.auth()
-
 export const signInWithGoogle = () => {
     const googleProvider = new firebase.auth.GoogleAuthProvider()
     return auth.signInWithPopup(googleProvider)
 }
 export const signInWithFacebook = () => {
     const facebookProvider = new firebase.auth.FacebookAuthProvider()
-    return auth.signInWithPopup(facebookProvider).then(({ user: { photoURL, email } }) => ({
-            user: {
-                photoURL,
-                email
-            }
-    }))
+    return auth.signInWithPopup(facebookProvider).then(({ user }) => ({ user: { ...user } }))
 }
 
 export const signUp = (email, password) => auth.createUserWithEmailAndPassword(email, password)
@@ -37,6 +30,10 @@ export const sendPasswordResetEmail = emailAddress => auth.sendPasswordResetEmai
 export const verifyPasswordResetCode = actionCode => auth.verifyPasswordResetCode(actionCode)
 export const handlePasswordReset = (newPassword, actionCode) => auth.confirmPasswordReset(newPassword, actionCode)
 
+const firestore = firebase.firestore()
 firestore.settings({})
+export const postFeedback = feedback => firestore.collection('/feedback').add(feedback)
+export const getChapters = () => firestore.collection('/chapter')
+export const getOrders = uid => firestore.collection('/order').where('uid', '===', uid)
 
 export default firebase

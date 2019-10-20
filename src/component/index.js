@@ -1,6 +1,6 @@
 import React from 'react'
 import '../styles/App.css'
-import UserProvider, { UserContext } from './authentication/UserProvider'
+import UserProvider, { UserContext } from './provider/UserProvider'
 import { Switch, Route } from 'react-router-dom'
 import Home from './page/home'
 import ResetPassword from './page/ResetPassword'
@@ -13,7 +13,7 @@ import Chapter from './page/Chapter'
 import ChapterRoute from './routing/ChapterRoute'
 import ProtectedRoute from './routing/ProtectedRoute'
 import UserManagementRoute from './routing/UserManagementRoute'
-import ThemeProvider from './theme/ThemeProvider'
+import ThemeProvider from './provider/ThemeProvider'
 
 const App = () =>
     <div className='App'>

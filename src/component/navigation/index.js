@@ -4,7 +4,7 @@ import AuthenticationLinks from './AuthenticationLinks'
 import Arrow from '../icon/Arrow'
 import MiniLogo from '../icon/MiniLogo'
 import ThemeToggler from '../theme/ThemeToggler'
-import { UserContext } from '../authentication/UserProvider'
+import { UserContext } from '../provider/UserProvider'
 import { withRouter } from 'react-router-dom'
 
 export default withRouter(({ hideLogo = false, hideBack = false, backPath, showThemeToggle = false, history }) =>

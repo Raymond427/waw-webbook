@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { UserContext } from '../authentication/UserProvider'
+import { UserContext } from '../provider/UserProvider'
 import { Link, Redirect } from 'react-router-dom'
 import { signInWithGoogle, signIn, signUp, signInWithFacebook } from '../../firebase'
 import Form from '../form'
@@ -65,24 +65,21 @@ const SignInAndSignUp = ({ setUser, newUser }) => {
     )
 }
 
-const Login = ({ location }) => {
-    return (
-        <UserContext.Consumer>
-            {({ user, setUser }) => {
-                const pathOnSignIn = (location.state && location.state.pathOnSignIn) ? location.state.pathOnSignIn : '/'
-
-                return user
-                    ? <Redirect to={pathOnSignIn} />
-                    : (
-                        <SignInAndSignUp
-                            setUser={setUser}
-                            newUser={location.state ? location.state.newUser : location.pathname === '/sign-up'}
-                            pathOnSignIn={location.state && pathOnSignIn ? pathOnSignIn : '/'}
-                        />
-                    )
-            }}
-        </UserContext.Consumer>
-    )
-}
+const Login = ({ location }) => (
+    <UserContext.Consumer>
+        {({ user, setUser }) => {
+            const pathOnSignIn = (location.state && location.state.pathOnSignIn) ? location.state.pathOnSignIn : '/'
+            return user
+                ? <Redirect to={pathOnSignIn} />
+                : (
+                    <SignInAndSignUp
+                        setUser={setUser}
+                        newUser={location.state ? location.state.newUser : location.pathname === '/sign-up'}
+                        pathOnSignIn={location.state && pathOnSignIn ? pathOnSignIn : '/'}
+                    />
+                )
+        }}
+    </UserContext.Consumer>
+)
 
 export default Login
