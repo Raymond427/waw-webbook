@@ -12,3 +12,8 @@
         height: 20px;
     }
 }
+
+.payment-request-button-divisor {
+    text-align: center;
+    margin: 1rem auto;
+}

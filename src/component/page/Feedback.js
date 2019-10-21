@@ -23,7 +23,6 @@ const FeedBackForm = ({ user, setPosted }) => {
         }).then(() => {
             setPosted(true)
         }).catch(error => {
-            console.log(error)
             setPostingError(error.message)
         })
     }

@@ -6,20 +6,23 @@ const cors = require('cors')({ origin: true })
 const app = express()
 
 const stripe = require('stripe')(functions.config().stripe.token)
-
-const charge = req => stripe.charges.create({
-  amount: 500,
-  currency: 'usd',
-  description: 'A test charge',
-  source: req.body
-})
+const charge = req => {
+  return stripe.charges.create({
+    amount: 500,
+    currency: 'usd',
+    description: 'A test charge',
+    source: req.body
+  })
+}
 
 app.use(cors)
 app.post('/', (req, res) =>
   charge(req)
-    .then((response) => res.json(response))
+    .then(response => {
+      return res.json(response)
+    })
     .catch(err => {
-      res.json(err)
+      res.json(JSON.stringify(err))
       res.status(500).end()
     })
 )

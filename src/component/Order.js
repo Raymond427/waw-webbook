@@ -1,14 +1,14 @@
 import React from 'react'
 import '../styles/Order.css'
-import { usdFormat, totalPrice, formatDate } from '../utils'
+import { usdFormat, totalPrice, formatDate, capitalize } from '../utils'
 
-const Order = ({ id, productName, datePurchased, items }) =>
+const Order = ({ id, productName, datePurchased, charges }) =>
     <div className="Order">
-        <p>{productName}</p>
+        <p>Chapter: {capitalize(productName)}</p>
         {id && <p>{`Order ID: ${id}`}</p>}
         {datePurchased && <p>{formatDate(datePurchased)}</p>}
-        <div className="items-container">
-            {items.map(({ name, price }, idx) =>
+        <div className="charges-container">
+            {charges.map(({ name, price }, idx) =>
                 <div className="item" key={`${name}-${idx}`}>
                     <span>{name}</span>
                     <span>{usdFormat(price)}</span>
@@ -16,7 +16,7 @@ const Order = ({ id, productName, datePurchased, items }) =>
             )}
             <div className="item">
                 <span>Total:</span>
-                <span>{usdFormat(totalPrice(items))}</span>
+                <span>{usdFormat(totalPrice(charges))}</span>
             </div>
         </div>
     </div>

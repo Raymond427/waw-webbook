@@ -16,13 +16,15 @@ import UserManagementRoute from './routing/UserManagementRoute'
 import ThemeProvider from './provider/ThemeProvider'
 
 const App = () =>
-    <div className='App'>
+    <div>
         <ThemeProvider>
             <UserProvider>
                 <UserContext.Consumer>
                     {({ user }) =>
                         <Switch>
-                            <Route exact path='/' component={Home} />
+                            <Route exact path='/'>
+                                <Home user={user} />
+                            </Route>
                             <Route exact path='/login' component={Login} />
                             <Route exact path='/sign-up' component={Login} />
                             <UserManagementRoute path='/usermgmt' />
@@ -49,6 +51,7 @@ const App = () =>
                             <ProtectedRoute
                                 path='/orders'
                                 condition={user}
+                                user={user}
                                 Component={Orders}
                             />
                             <ChapterRoute
@@ -56,7 +59,9 @@ const App = () =>
                                 Component={Chapter}
                                 user={user}
                             />
-                            <Route component={Home} />
+                            <Route>
+                                <Home user={user} />
+                            </Route>
                         </Switch>
                     }
                 </UserContext.Consumer>

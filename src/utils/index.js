@@ -1,3 +1,5 @@
+import { CHAPTER_ORDER } from "./constants";
+
 export const lowerCase = string => string.replace(/^\w/, c => c.toLowerCase())
 
 export const kebabCase = string => lowerCase(string).replace(/ /g, '-');
@@ -19,3 +21,5 @@ export const formatDate = timestamp => new Date(timestamp).toLocaleDateString("e
     hour: 'numeric',
     minute: 'numeric'
 })
+
+export const compareChapterNames = (a, b) => CHAPTER_ORDER.indexOf(a.name) > CHAPTER_ORDER.indexOf(b.name) ? 1 : -1

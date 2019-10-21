@@ -33,7 +33,8 @@ export const handlePasswordReset = (newPassword, actionCode) => auth.confirmPass
 const firestore = firebase.firestore()
 firestore.settings({})
 export const postFeedback = feedback => firestore.collection('/feedback').add(feedback)
-export const getChapters = () => firestore.collection('/chapter')
-export const getOrders = uid => firestore.collection('/order').where('uid', '===', uid)
+export const getChapters = () => firestore.collection('/chapters').get()
+export const getOrders = uid => firestore.collection('/orders').where('userId', '==', uid).orderBy('datePurchased', 'desc').get()
+export const postOrder = order => firestore.collection('/orders').add(order)
 
 export default firebase
