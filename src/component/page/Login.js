@@ -7,6 +7,7 @@ import '../../styles/Login.css'
 import { EmailField, PasswordField } from '../form/input'
 import SocialAuthButton from '../authentication/SocialAuthButton'
 import Navigation from '../navigation'
+import { useLocation } from 'react-router-dom'
 
 const SignInAndSignUp = ({ setUser, newUser }) => {
     const [ authErrorMessage, setAuthErrorMessage ] = useState('')
@@ -65,21 +66,24 @@ const SignInAndSignUp = ({ setUser, newUser }) => {
     )
 }
 
-const Login = ({ location }) => (
-    <UserContext.Consumer>
-        {({ user, setUser }) => {
-            const pathOnSignIn = (location.state && location.state.pathOnSignIn) ? location.state.pathOnSignIn : '/'
-            return user
-                ? <Redirect to={pathOnSignIn} />
-                : (
-                    <SignInAndSignUp
-                        setUser={setUser}
-                        newUser={location.state ? location.state.newUser : location.pathname === '/sign-up'}
-                        pathOnSignIn={location.state && pathOnSignIn ? pathOnSignIn : '/'}
-                    />
-                )
-        }}
-    </UserContext.Consumer>
-)
+const Login = ({ user }) => {
+    const location = useLocation()
+
+    return (
+        <UserContext.Consumer>
+            {({ setUser }) => {
+                const pathOnSignIn = (location.state && location.state.pathOnSignIn) ? location.state.pathOnSignIn : '/'
+                return user
+                    ? <Redirect to={pathOnSignIn} />
+                    : (
+                        <SignInAndSignUp
+                            setUser={setUser}
+                            newUser={location.state ? location.state.newUser : location.pathname === '/sign-up'}
+                            pathOnSignIn={location.state && pathOnSignIn ? pathOnSignIn : '/'}
+                        />
+                    )
+            }}
+        </UserContext.Consumer>
+)}
 
 export default Login

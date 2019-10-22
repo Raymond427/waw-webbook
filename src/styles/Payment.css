@@ -17,3 +17,14 @@
     text-align: center;
     margin: 1rem auto;
 }
+
+.PaymentRequestButton {
+    background-color: var(--primary-background-color);
+}
+
+.PaymentRequestButton > div {
+    max-width: 20rem;
+    top: -2rem;
+    left: 50%;
+    transform: translateX(-50%);
+}

@@ -5,8 +5,6 @@ import { injectStripe, Elements, StripeProvider, CardElement, PaymentRequestButt
 import history from '../../history'
 import Form from '../form'
 import '../../styles/Payment.css'
-import { UserContext } from '../provider/UserProvider'
-import chapters from '../../data/chapters'
 import Navigation from '../navigation'
 import { capitalize, totalPrice } from '../../utils'
 import { postOrder } from '../../firebase'
@@ -16,7 +14,7 @@ import { ThemeContext } from '../provider/ThemeProvider'
 const STRIPE_API_KEY = 'pk_test_e7SFycDVuCMFeUwmn0bGr6iE00O4ZoyrYB'
 const FIREBASE_CHARGE_CARD_FUNCTION_URL = 'https://us-central1-waw-webbook.cloudfunctions.net/charge'
 
-const PaymentRequest = ({ stripe, amount, postOrderPayload, setPaymentSuccessful }) => {
+const PaymentRequest = ({ stripe, amount, postOrderPayload, setPaymentSuccessful, chapterName }) => {
     const [ canMakePayment, setCanMakePayment ] = useState(false)
     const [ paymentRequest, setPaymentRequest ] = useState(null)
 
@@ -25,7 +23,7 @@ const PaymentRequest = ({ stripe, amount, postOrderPayload, setPaymentSuccessful
             currency: 'usd',
             country: 'US',
             total: {
-                label: 'Demo total',
+                label: `Work After Work Profit Guide: ${chapterName}`,
                 amount,
             },
             requestPayerName: true,
@@ -41,7 +39,7 @@ const PaymentRequest = ({ stripe, amount, postOrderPayload, setPaymentSuccessful
 
         setPaymentRequest(paymentRequest)
     }, [])
-  
+
     return (
         <ThemeContext.Consumer>
             {({ theme }) => (canMakePayment && paymentRequest) ? (
@@ -50,10 +48,7 @@ const PaymentRequest = ({ stripe, amount, postOrderPayload, setPaymentSuccessful
                             paymentRequest={paymentRequest}
                             className="PaymentRequestButton"
                             style={{
-                                paymentRequestButton: {
-                                    theme,
-                                    height: '64px',
-                                },
+                                paymentRequestButton: { theme },
                             }}
                         />
                         <p className="payment-request-button-divisor">OR</p>
@@ -64,7 +59,7 @@ const PaymentRequest = ({ stripe, amount, postOrderPayload, setPaymentSuccessful
     )
 }
 
-const CardForm = ({ user, stripe, chapter, PaymentRequestButton, pathOnPurchase }) => {
+const CardForm = ({ user, stripe, chapter, PaymentRequestButton }) => {
     const [ paymentSuccessful, setPaymentSuccessful] = useState(false)
     const [ paymentResult, setPaymentResult ] = useState('')
     const [ isLoading, setIsLoading ] = useState(false)
@@ -139,7 +134,7 @@ const CardForm = ({ user, stripe, chapter, PaymentRequestButton, pathOnPurchase 
                     :   <>
                             <h2>Purchase {capitalizedChapterName}</h2>
                             <Order productName={capitalizedChapterName} charges={charges} />
-                            <PaymentRequestButton cardData={cardData} amount={totalCost} postOrderPayload={postOrderPayload} setPaymentSuccessful={setPaymentSuccessful} />
+                            <PaymentRequestButton cardData={cardData} amount={totalCost} postOrderPayload={postOrderPayload} setPaymentSuccessful={setPaymentSuccessful} chapterName={capitalizedChapterName}/>
                             <Form onSubmit={processPayment} submitting={isLoading} submitValue={'Buy'} submittingValue={'Processing...'} errorMessage={paymentResult} >
                                 <TextField id='name' required errorMessage='Please provide your name as it appears on your card' placeholder='Name' valueHook={setName} />
                                 <TextField id='street-address-1' required errorMessage='Please provide a valid street address' placeholder='Street Address' valueHook={setStreetAddress} />
@@ -158,11 +153,10 @@ const CardForm = ({ user, stripe, chapter, PaymentRequestButton, pathOnPurchase 
 const CheckoutForm = injectStripe(CardForm)
 const PaymentRequestButton = injectStripe(PaymentRequest)
 
-const Payment = ({ computedMatch, location }) => {
+const Payment = ({ user, chapters, computedMatch }) => {
     const [ stripe, setStripe ] = useState(null)
-    const capitalizedChapterName = computedMatch.params.productName
-    const chapter = chapters.find(chapter => chapter.name === capitalizedChapterName)
-    const pathOnPurchase = location.state.pathOnPurchase ? location.state.pathOnPurchase : '/'
+    const chapterName = computedMatch.params.productName
+    const chapter = chapters.find(chapter => chapter.name === chapterName)
 
     useEffect(() => {
         window.Stripe
@@ -173,15 +167,11 @@ const Payment = ({ computedMatch, location }) => {
     return (
         <div className="Payment page">
             <Navigation />
-            <UserContext.Consumer>
-                {({ user }) =>
-                    <StripeProvider stripe={stripe} apiKey={STRIPE_API_KEY}>
-                        <Elements>
-                            <CheckoutForm user={user} chapter={chapter} pathOnPurchase={pathOnPurchase} PaymentRequestButton={PaymentRequestButton} />
-                        </Elements>
-                    </StripeProvider>
-                }
-            </UserContext.Consumer>
+            <StripeProvider stripe={stripe} apiKey={STRIPE_API_KEY}>
+                <Elements>
+                    <CheckoutForm user={user} chapter={chapter} PaymentRequestButton={PaymentRequestButton} />
+                </Elements>
+            </StripeProvider>
         </div>
     )
 }

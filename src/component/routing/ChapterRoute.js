@@ -1,8 +1,7 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
-import chapters from '../../data/chapters'
 
-const ChapterRoute = ({ condition = true, Component, redirectOnRestricted = '/', computedMatch, user, ...rest }) => {
+const ChapterRoute = ({ condition = true, Component, redirectOnRestricted = '/', computedMatch, user, chapters, ...rest }) => {
     const chapterName = computedMatch.params.chapterName
     if (!chapterName) {
         return <Redirect to='/' />
@@ -18,7 +17,7 @@ const ChapterRoute = ({ condition = true, Component, redirectOnRestricted = '/',
         ?
             user
                 ?
-                    chapter.purchased
+                    (chapter.purchased || chapter.price === 0)
                         ? <Component chapter={chapter} {...rest} />
                         : <Redirect to={{ pathname: `/buy/${chapterName}`, state: { pathOnPurchase: `/chapters/${chapterName} `}}} />
                 : <Redirect to={{ pathname: '/login', state: { pathOnSignIn: `/chapters/${chapterName}` }}} />

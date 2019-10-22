@@ -4,7 +4,6 @@ import Form from '../form'
 import Navigation from '../navigation'
 import { postFeedback } from '../../firebase'
 import '../../styles/Feedback.css'
-import { UserContext } from '../provider/UserProvider'
 import { useHistory } from 'react-router-dom'
 
 const FeedBackForm = ({ user, setPosted }) => {
@@ -35,7 +34,7 @@ const FeedBackForm = ({ user, setPosted }) => {
     )
 }
 
-const Feedback = () => {
+const Feedback = ({ user }) => {
     const [ posted, setPosted ] = useState(false)
     const history = useHistory()
 
@@ -54,11 +53,7 @@ const Feedback = () => {
                 : (
                     <>
                         <h2>Give Feedback</h2>
-                        <UserContext.Consumer>
-                            {({ user }) => (
-                                <FeedBackForm user={user} setPosted={setPosted} />
-                            )}
-                        </UserContext.Consumer>
+                        <FeedBackForm user={user} setPosted={setPosted} />
                     </>
                 )}
         </div>

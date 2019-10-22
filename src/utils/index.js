@@ -22,4 +22,9 @@ export const formatDate = timestamp => new Date(timestamp).toLocaleDateString("e
     minute: 'numeric'
 })
 
+export const addPurchasedProp = (user, orders, chapters) => chapters.map(chapter => ({
+    ...chapter,
+    purchased: (user && orders.some(order => order.productName === chapter.name))
+}))
+
 export const compareChapterNames = (a, b) => CHAPTER_ORDER.indexOf(a.name) > CHAPTER_ORDER.indexOf(b.name) ? 1 : -1

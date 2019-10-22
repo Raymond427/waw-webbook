@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from 'react'
-import { getOrders } from '../../firebase'
+import { orderSubscription } from '../../firebase'
 
 export const { Provider, Consumer } = React.createContext()
 export const OrderConsumer = Consumer
 
 export default ({ user, children }) => {
     const [ orders, setOrders ] = useState([])
+
+    const updateOrders = snapShot => setOrders(snapShot.docs.map(doc => ({ id: doc.id, ...doc.data() })))
+    let unSubscribeFromOrders = undefined
+
     useEffect(() => {
-        const fetchOrders = () => getOrders(user.user.uid).then(snapShot =>
-            setOrders(snapShot.docs.map(doc => ({ id: doc.id, ...doc.data() })))
-        )
         if (user) {
-            fetchOrders()
+            unSubscribeFromOrders = orderSubscription(user.user.uid, updateOrders).onSnapshot(updateOrders)
+            return unSubscribeFromOrders
         }
-    }, [])
+    }, [ user ])
     
     return (
         <Provider value={{ orders }}>
