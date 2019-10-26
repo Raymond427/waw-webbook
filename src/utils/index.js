@@ -1,4 +1,4 @@
-import { CHAPTER_ORDER } from "./constants";
+import { CHAPTER_ORDER } from "./constants"
 
 export const lowerCase = string => string.replace(/^\w/, c => c.toLowerCase())
 
@@ -26,5 +26,7 @@ export const addPurchasedProp = (user, orders, chapters) => chapters.map(chapter
     ...chapter,
     purchased: (user && orders.some(order => order.productName === chapter.name))
 }))
+
+export const purchasedIsSet = chapters => chapters.every(({ purchased }) => typeof purchased === 'boolean')
 
 export const compareChapterNames = (a, b) => CHAPTER_ORDER.indexOf(a.name) > CHAPTER_ORDER.indexOf(b.name) ? 1 : -1
