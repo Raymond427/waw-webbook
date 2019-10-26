@@ -1,5 +1,6 @@
 .account-links {
     display: contents;
+    list-style: none;
 }
 
 .account-links li {

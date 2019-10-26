@@ -4,9 +4,9 @@ import { UserContext } from '../provider/UserProvider'
 import Navigation from '../navigation'
 import '../../styles/Account.css'
 
-const Account = () =>
+const Account = ({ user }) =>
     <UserContext.Consumer>
-        {({ user, setUser}) =>
+        {({ setUser}) =>
             <div className="Account page">
                 <Navigation />
                 <h1>Account</h1>

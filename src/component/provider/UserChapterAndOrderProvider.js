@@ -2,7 +2,6 @@ import React from 'react'
 import OrderProvider, { OrderConsumer } from './OrderProvider'
 import ChapterProvider, { ChapterConsumer } from './ChapterProvider'
 import UserProvider, { UserContext } from './UserProvider'
-import { compareChapterNames, addPurchasedProp } from '../../utils'
 
 const UserChapterAndOrderProvider = ({ children }) => (
     <UserProvider>
@@ -11,9 +10,9 @@ const UserChapterAndOrderProvider = ({ children }) => (
                 <OrderProvider user={user}>
                     <OrderConsumer>
                         {({ orders }) => (
-                            <ChapterProvider>
+                            <ChapterProvider user={user} orders={orders}>
                                 <ChapterConsumer>
-                                    {({ chapters }) => children({ user, orders, chapters: addPurchasedProp(user, orders, chapters).sort(compareChapterNames)})}
+                                    {({ chapters }) => children({ user, orders, chapters })}
                                 </ChapterConsumer>
                             </ChapterProvider>
                         )}

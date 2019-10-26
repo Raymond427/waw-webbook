@@ -39,6 +39,7 @@ const App = () =>
                         <ProtectedRoute
                             path='/account'
                             condition={user}
+                            user={user}
                             Component={Account}
                         />
                         <ProtectedRoute

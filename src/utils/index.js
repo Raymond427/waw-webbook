@@ -22,10 +22,10 @@ export const formatDate = timestamp => new Date(timestamp).toLocaleDateString("e
     minute: 'numeric'
 })
 
-export const addPurchasedProp = (user, orders, chapters) => chapters.map(chapter => ({
+export const addPurchasedProp = (user, orders, chapter) => ({
     ...chapter,
-    purchased: (user && orders.some(order => order.productName === chapter.name))
-}))
+    purchased: user ? orders.some(order => order.productName === chapter.name) : undefined
+})
 
 export const purchasedIsSet = chapters => chapters.every(({ purchased }) => typeof purchased === 'boolean')
 

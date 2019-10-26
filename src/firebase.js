@@ -18,6 +18,7 @@ export const signInWithGoogle = () => {
     const googleProvider = new firebase.auth.GoogleAuthProvider()
     return auth.signInWithPopup(googleProvider)
 }
+
 export const signInWithFacebook = () => {
     const facebookProvider = new firebase.auth.FacebookAuthProvider()
     return auth.signInWithPopup(facebookProvider).then(({ user }) => ({ user: { ...user } }))
