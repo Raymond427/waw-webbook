@@ -8,6 +8,11 @@
     z-index: 2;
 }
 
+.home-carousel > .WhiteLoadingGIF {
+    margin: 0 auto;
+    display: block;
+}
+
 .arrow--inactive {
     visibility: hidden;
 }

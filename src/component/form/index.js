@@ -2,7 +2,7 @@ import React, { useState, useEffect, cloneElement, Children } from 'react'
 import PropTypes from 'prop-types'
 import '../../styles/Form.css'
 import Warning from '../icon/Warning'
-import LoadingGIF from '../icon/LoadingGIF'
+import LoadingGIF from '../icon/WhiteLoadingGIF'
 
 const SubmitButton = ({ id, onSubmit, submitValue = 'Submit', submittingValue, submitting = false, valid, setSubmissionAttempted }) => {
     const onClick = event => {

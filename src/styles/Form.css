@@ -34,6 +34,6 @@
     font-size: 1rem;
 }
 
-.LoadingGIF {
-    height: 0.8rem;
+.form-submit > span > .WhiteLoadingGIF {
+    height: 1rem;
 }
