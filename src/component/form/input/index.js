@@ -37,10 +37,12 @@ const Field = ({ id, type, labelText, required, errorMessage, input, addToInVali
         setValidity(false)
         addToInValidFields(id)
     }
+
     const onValid = () => {
         setValidity(true)
         removeFromInValidFields(id)
     }
+    
     const onBlur = valid => {
         setTouched(true)
         valid ? onValid() : onInValid()

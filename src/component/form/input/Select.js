@@ -13,25 +13,23 @@ const SelectInput = ({ id, options, errorMessage, labelText, required, showError
     }, [])
 
     return (
-        <>
-            <select
-                className={`input select__input ${showErrors ? `select__input--invalid select__input` : 'select__input'}`}
-                defaultValue={value}
-                id={id}
-                onBlur={() => onBlur(isValid())}
-                onChange={event => setValue(event.target.value)}
-                {...props}
-            >
-                {
-                    [ { value: '', text: placeholder }, ...options ]
-                        .map(({ value, text }, idx) =>
-                            <option value={value} key={`${value}-${idx}`}>
-                                {text}
-                            </option>
-                        )
-                }
-            </select>
-        </>
+        <select
+            className={`input select__input ${showErrors ? `select__input--invalid select__input` : 'select__input'}`}
+            defaultValue={value}
+            id={id}
+            onBlur={() => onBlur(isValid())}
+            onChange={event => setValue(event.target.value)}
+            {...props}
+        >
+            {
+                [ { value: '', text: placeholder }, ...options ]
+                    .map(({ value, text }, idx) =>
+                        <option value={value} key={`${value}-${idx}`}>
+                            {text}
+                        </option>
+                    )
+            }
+        </select>
     )
 }
 

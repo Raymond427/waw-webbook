@@ -5,6 +5,11 @@ const RatingInput = ({ id, showErrors, required, onBlur, onValid, onInValid, val
     const [ rating, setRating ] = useState(0)
     const isValid = () => required ? rating > 0 : true
 
+    const onRatingButtonClick = (event, value) => {
+        event.preventDefault()
+        setRating(value)
+    }
+
     useEffect(() => valueHook(rating), [ rating ])
     
     useEffect(() => {
@@ -19,7 +24,9 @@ const RatingInput = ({ id, showErrors, required, onBlur, onValid, onInValid, val
                     const value = idx + 1
 
                     return(
-                        <Star className="rating__input-star" id={`rating__input-star-${value}-${id}`} key={value} highlight={value <= rating} highlightColor={'yellow'} defaultColor={'white'} onClick={() => setRating(value)} />
+                        <button className="rating-button" key={value} onClick={event => onRatingButtonClick(event, value)}>
+                            <Star className="rating__input-star" id={`rating__input-star-${value}-${id}`} highlight={value <= rating} highlightColor={'yellow'} defaultColor={'white'} />
+                        </button>
                     )
                 }
             )}

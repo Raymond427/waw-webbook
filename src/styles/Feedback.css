@@ -6,6 +6,12 @@
     resize: none;
 }
 
+.rating-button {
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
 .rating__input-star {
-    margin: 0.5rem 0.3rem;
+    margin: 0.5rem 0;
 }

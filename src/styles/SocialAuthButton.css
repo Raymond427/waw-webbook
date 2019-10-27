@@ -1,15 +1,17 @@
-.social-button {
+.social-auth-button {
     cursor: pointer;
     height: 46px;
     font-weight: bold;
+    font-size: 1rem;
     border-radius: 3px;
     display: flex;
     justify-content: center;
     margin: 2rem auto;
+    border: none;
 }
 
-.social-button span {
-    margin: auto 0.6rem;
+.social-auth-button span {
+    margin: auto 0.5rem;
 }
 
 .google-button {
@@ -35,5 +37,24 @@
 @media (max-width: 768px) {
     .facebook-button svg {
         height: 3.2rem;
+    }
+
+    .social-auth-button span {
+        margin: auto 0.2rem;
+    }
+
+    .facebook-button span {
+        margin-left: 0.8rem;
+    }
+}
+
+@media (max-width: 320px) {
+    .google-button span {
+        margin: auto 0rem;
+        width: 10rem;
+    }
+    
+    .facebook-button span {
+        margin-left: 0.7rem;
     }
 }
