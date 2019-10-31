@@ -29,7 +29,7 @@ export const signIn = (email, password) => auth.signInWithEmailAndPassword(email
 
 export const sendPasswordResetEmail = emailAddress => auth.sendPasswordResetEmail(emailAddress)
 export const verifyPasswordResetCode = actionCode => auth.verifyPasswordResetCode(actionCode)
-export const handlePasswordReset = (newPassword, actionCode) => auth.confirmPasswordReset(newPassword, actionCode)
+export const handlePasswordReset = (actionCode, newPassword) => auth.confirmPasswordReset(actionCode, newPassword)
 
 const firestore = firebase.firestore()
 firestore.settings({})

@@ -30,9 +30,9 @@ const PasswordReset = withRouter(({ searchParams, history }) => {
         actionCodePromise()
     }, [])
 
-    const resetPassword = (newPassword, actionCode) => {
+    const resetPassword = (actionCode, newPassword) => {
         setIsResettingPassword(true)
-        handlePasswordReset(newPassword, actionCode)
+        handlePasswordReset(actionCode, newPassword)
             .then(() => setPasswordReset(true))
             .catch(({ message }) => setSubmissionError(message))
             .finally(() => setIsResettingPassword(false))
@@ -81,7 +81,7 @@ const PasswordReset = withRouter(({ searchParams, history }) => {
                     <h2>Reset Password for {email}</h2>
                     <Form
                         submitValue="Reset Password"
-                        onSubmit={() => resetPassword(newPassword, actionCode)}
+                        onSubmit={() => resetPassword(actionCode, newPassword)}
                         submitting={isResettingPassword}
                         submittingValue="Resetting your password..."
                         errorMessage={submittonError}
