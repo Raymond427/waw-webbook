@@ -6,6 +6,7 @@ import LoadingGIF from '../icon/WhiteLoadingGIF'
 
 const SubmitButton = ({ id, onSubmit, submitValue = 'Submit', submittingValue, submitting = false, valid, setSubmissionAttempted }) => {
     const onClick = event => {
+        event.target.focus()
         valid ? onSubmit() : setSubmissionAttempted(true)
         event.preventDefault()
     }

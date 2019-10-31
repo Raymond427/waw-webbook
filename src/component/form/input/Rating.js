@@ -4,8 +4,10 @@ import Star from '../../icon/Star'
 const RatingInput = ({ id, showErrors, required, onBlur, onValid, onInValid, valueHook, maxValue = 5 }) => {
     const [ rating, setRating ] = useState(0)
     const isValid = () => required ? rating > 0 : true
+    const buttonRefs = [ ...Array(maxValue).keys() ].map(() => React.createRef())
 
-    const onRatingButtonClick = (event, value) => {
+    const onRatingButtonClick = (value, idx) => event => {
+        buttonRefs[idx].current.focus()
         event.preventDefault()
         setRating(value)
     }
@@ -18,19 +20,18 @@ const RatingInput = ({ id, showErrors, required, onBlur, onValid, onInValid, val
     }, [])
 
     return (
-        <div id={id} className={`${showErrors ? `rating__wrapper--invalid rating__wrapper` : 'rating__wrapper'}`} onBlur={() => onBlur(isValid())}>
+        <div id={id} className={`${showErrors ? `rating__wrapper--invalid rating__wrapper` : 'rating__wrapper'}`}>
             {[ ...Array(maxValue).keys() ].map(
                 idx => {
                     const value = idx + 1
 
                     return(
-                        <button className="rating-button" key={value} onClick={event => onRatingButtonClick(event, value)}>
-                            <Star className="rating__input-star" id={`rating__input-star-${value}-${id}`} highlight={value <= rating} highlightColor={'yellow'} defaultColor={'white'} />
+                        <button className="rating-button" id={`rating__button-${value}-${id}`} key={`rating-button-${value}`} onClick={onRatingButtonClick(value, idx)} onBlur={() => onBlur(isValid())} ref={buttonRefs[idx]}>
+                            <Star className="rating__input-star" id={`rating__input-star-${value}-${id}`} highlight={value <= rating} highlightColor={'yellow'} />
                         </button>
                     )
                 }
             )}
-                
         </div>
     )
 }
