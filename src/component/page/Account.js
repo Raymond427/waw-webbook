@@ -3,10 +3,11 @@ import { Link, Redirect } from 'react-router-dom'
 import { UserContext } from '../provider/UserProvider'
 import Navigation from '../navigation'
 import '../../styles/Account.css'
+import { PATHS } from '../../utils/constants'
 
-const Account = ({ user }) =>
+const Account = ({ user }) => (
     <UserContext.Consumer>
-        {({ setUser}) =>
+        {({ setUser}) => (
             <div className="Account page">
                 <Navigation />
                 <h1>Account</h1>
@@ -16,20 +17,21 @@ const Account = ({ user }) =>
                         Log Out
                     </li>
                     <li>
-                        <Link to='/orders'>Orders</Link>
+                        <Link to={PATHS.ORDERS}>Orders</Link>
                     </li>
                     <li>
-                        <Link to='/feedback'>Give Feedback</Link>
+                        <Link to={PATHS.FEEDBACK}>Give Feedback</Link>
                     </li>
                     <li>
-                        <a href="mailto:admin@advancinginnovativeminds.org" target="_blank" rel="noopener noreferrer">
+                        <a href={PATHS.EMAIL_US} target="_blank" rel="noopener noreferrer">
                             Contact Us
                         </a>
                     </li>
                 </ul>
-                {!user && <Redirect to='/' />}
+                {!user && <Redirect to={PATHS.HOME} />}
             </div>
-        }
+        )}
     </UserContext.Consumer>
+)
 
 export default Account

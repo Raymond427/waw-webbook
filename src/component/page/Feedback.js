@@ -5,6 +5,7 @@ import Navigation from '../navigation'
 import { postFeedback } from '../../firebase'
 import '../../styles/Feedback.css'
 import { useHistory } from 'react-router-dom'
+import { PATHS } from '../../utils/constants'
 
 const FeedBackForm = ({ user, setPosted }) => {
     const [ rating, setRating ] = useState(0)
@@ -47,7 +48,7 @@ const Feedback = ({ user }) => {
                         <h2>Thank you for your feedback!</h2>
                         <button className="button" onClick={event => {
                             event.preventDefault()
-                            history.push('/')
+                            history.push(PATHS.HOME)
                         }}>Read a Chapter</button>
                     </>)
                 : (

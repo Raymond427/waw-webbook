@@ -48,7 +48,7 @@ const CardForm = ({ user, stripe, chapter, PaymentButton }) => {
     }
 
     return (
-            <div>
+            <>
                 {paymentSuccessful
                     ?   <>
                             <h2>Payment Successful!</h2>
@@ -71,7 +71,7 @@ const CardForm = ({ user, stripe, chapter, PaymentButton }) => {
                             </Form>
                         </>
                 }
-            </div>
+            </>
     )
 }
 

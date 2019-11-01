@@ -14,56 +14,57 @@ import ProtectedRoute from './routing/ProtectedRoute'
 import UserManagementRoute from './routing/UserManagementRoute'
 import ThemeProvider from './provider/ThemeProvider'
 import UserChapterAndOrderProvider from './provider/UserChapterAndOrderProvider'
+import { PATHS } from '../utils/constants'
 
-const App = () =>
+const App = () => (
     <div>
         <ThemeProvider>
             <UserChapterAndOrderProvider>
                 {({ user, orders, chapters }) => (
                     <Switch>
-                        <Route exact path='/'>
+                        <Route exact path={PATHS.HOME}>
                             <Home chapters={chapters} />
                         </Route>
-                        <Route exact path='/login'>
+                        <Route exact path={PATHS.LOGIN}>
                             <Login user={user} />
                         </Route>
-                        <Route exact path='/sign-up'>
+                        <Route exact path={PATHS.SIGN_UP}>
                             <Login user={user} />
                         </Route>
-                        <UserManagementRoute path='/usermgmt' />
+                        <UserManagementRoute path={PATHS.USER_MANAGEMENT} />
                         <ProtectedRoute
-                            path='/reset-password'
+                            path={PATHS.RESET_PASSWORD}
                             condition={!user}
                             Component={ResetPassword}
                         />
                         <ProtectedRoute
-                            path='/account'
+                            path={PATHS.ACCOUNT}
                             condition={user}
                             user={user}
                             Component={Account}
                         />
                         <ProtectedRoute
-                            path='/buy/:productName'
+                            path={`${PATHS.BUY}/:productName`}
                             condition={user}
                             user={user}
                             chapters={chapters}
                             Component={Payment}
                         />
                         <ProtectedRoute
-                            path='/feedback'
+                            path={PATHS.FEEDBACK}
                             condition={user}
                             user={user}
                             Component={Feedback}
                         />
                         <ProtectedRoute
-                            path='/orders'
+                            path={PATHS.ORDERS}
                             condition={user}
                             user={user}
                             orders={orders}
                             Component={Orders}
                         />
                         <ChapterRoute
-                            path='/chapters/:chapterName'
+                            path={`${PATHS.CHAPTERS}/:chapterName`}
                             Component={Chapter}
                             chapters={chapters}
                             user={user}
@@ -73,5 +74,6 @@ const App = () =>
             </UserChapterAndOrderProvider>
         </ThemeProvider>
     </div>
+)
 
 export default App

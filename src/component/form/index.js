@@ -34,11 +34,12 @@ SubmitButton.propTypes = {
     setSubmissionAttempted: PropTypes.func.isRequired
 }
 
-const SubmissionErrorMessage = ({ errorMessage, id }) =>
+const SubmissionErrorMessage = ({ errorMessage, id }) => (
     <div className='submission-error-message' id={id ? `submission-error-message-${id}` : null}>
         <Warning />
         <p className='submission-error-message__text' id={id ? `submission-error-message__text-${id}` : null}>{errorMessage}</p>
     </div>
+)
 
 SubmissionErrorMessage.propTypes = {
     errorMessage: PropTypes.string.isRequired,

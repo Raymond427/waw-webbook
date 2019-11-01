@@ -17,7 +17,7 @@ const postOrderPayload = (user, chapter, processingFee, totalCost) => ({
 export const chargeWithToken = (token, chapter, user, totalCost, processingFee, setPaymentSuccessful, setPaymentResult) =>
     fetch(FIREBASE_CHARGE_CARD_FUNCTION_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'text/plain', 'Access-Control-Allow-Origin': '*' },
+        headers: { 'Content-Type': 'text/plain' },
         body: chargePayload(user, chapter, totalCost, processingFee, token)
     })
         .then(response => response.json().then(({ status }) => {

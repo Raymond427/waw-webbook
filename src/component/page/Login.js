@@ -8,6 +8,7 @@ import { EmailField, PasswordField } from '../form/input'
 import SocialAuthButton from '../authentication/SocialAuthButton'
 import Navigation from '../navigation'
 import { useLocation } from 'react-router-dom'
+import { PATHS } from '../../utils/constants'
 
 const SignInAndSignUp = ({ setUser, newUser }) => {
     const [ authErrorMessage, setAuthErrorMessage ] = useState('')
@@ -56,10 +57,10 @@ const SignInAndSignUp = ({ setUser, newUser }) => {
             </Form>
             <p className='login-links'>
                 {newUser
-                    ? <span>Already have an account? <Link to={{pathname: '/login', state: { newUser: false }}}>Sign In</Link></span>
+                    ? <span>Already have an account? <Link to={{pathname: PATHS.LOGIN, state: { newUser: false }}}>Sign In</Link></span>
                     : <>
-                        <span>Don't have an account? <Link to={{pathname: '/sign-up', state: { newUser: true }}}>Sign Up</Link></span>
-                        <Link to='/reset-password'>Forgot Your Password?</Link>
+                        <span>Don't have an account? <Link to={{pathname: PATHS.SIGN_UP, state: { newUser: true }}}>Sign Up</Link></span>
+                        <Link to={PATHS.RESET_PASSWORD}>Forgot Your Password?</Link>
                       </>}
             </p>
         </div>
@@ -72,14 +73,14 @@ const Login = ({ user }) => {
     return (
         <UserContext.Consumer>
             {({ setUser }) => {
-                const pathOnSignIn = (location.state && location.state.pathOnSignIn) ? location.state.pathOnSignIn : '/'
+                const pathOnSignIn = (location.state && location.state.pathOnSignIn) ? location.state.pathOnSignIn : PATHS.HOME
                 return user
                     ? <Redirect to={pathOnSignIn} />
                     : (
                         <SignInAndSignUp
                             setUser={setUser}
-                            newUser={location.state ? location.state.newUser : location.pathname === '/sign-up'}
-                            pathOnSignIn={location.state && pathOnSignIn ? pathOnSignIn : '/'}
+                            newUser={location.state ? location.state.newUser : location.pathname === PATHS.SIGN_UP}
+                            pathOnSignIn={location.state && pathOnSignIn ? pathOnSignIn : PATHS.HOME}
                         />
                     )
             }}

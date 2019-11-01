@@ -1,3 +1,19 @@
+export const COMPANY_EMAIL = 'admin@advancinginnovativeminds.org'
+
+export const PATHS = {
+    HOME: '/',
+    LOGIN: '/login',
+    SIGN_UP: '/sign-up',
+    USER_MANAGEMENT: '/usermgmt',
+    RESET_PASSWORD: '/reset-password',
+    ACCOUNT: '/account',
+    BUY: '/buy',
+    FEEDBACK: '/feedback',
+    ORDERS: '/orders',
+    CHAPTERS: '/chapters',
+    EMAIL_US: `mailto:${COMPANY_EMAIL}`
+}
+
 export const THEMES = {
     DARK: 'dark',
     LIGHT: 'light'

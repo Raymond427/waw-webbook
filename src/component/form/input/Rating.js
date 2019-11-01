@@ -25,7 +25,7 @@ const RatingInput = ({ id, showErrors, required, onBlur, onValid, onInValid, val
                 idx => {
                     const value = idx + 1
 
-                    return(
+                    return (
                         <button className="rating-button" id={`rating__button-${value}-${id}`} key={`rating-button-${value}`} onClick={onRatingButtonClick(value, idx)} onBlur={() => onBlur(isValid())} ref={buttonRefs[idx]}>
                             <Star className="rating__input-star" id={`rating__input-star-${value}-${id}`} highlight={value <= rating} highlightColor={'yellow'} />
                         </button>

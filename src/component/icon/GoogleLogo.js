@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default () =>
+export default () => (
     <svg width="46px" height="46px" viewBox="0 0 46 46" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlnssketch="http://www.bohemiancoding.com/sketch/ns">
         <g id="Google-Button" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd" sketchtype="MSPage">
             <g id="logo_googleg_48dp" sketchtype="MSLayerGroup" transform="translate(15.000000, 15.000000)">
@@ -12,3 +12,4 @@ export default () =>
             </g>
         </g>
     </svg>
+)

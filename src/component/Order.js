@@ -2,7 +2,7 @@ import React from 'react'
 import '../styles/Order.css'
 import { usdFormat, totalPrice, formatDate, capitalize } from '../utils'
 
-const Order = ({ id, productName, datePurchased, charges }) =>
+const Order = ({ id, productName, datePurchased, charges }) => (
     <div className="Order">
         <p>Chapter: {capitalize(productName)}</p>
         {id && <p>{`Order ID: ${id}`}</p>}
@@ -20,5 +20,6 @@ const Order = ({ id, productName, datePurchased, charges }) =>
             </div>
         </div>
     </div>
+)
 
 export default Order

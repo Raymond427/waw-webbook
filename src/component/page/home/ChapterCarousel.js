@@ -4,6 +4,7 @@ import Arrow from '../../icon/Arrow'
 import { capitalize, usdFormat } from '../../../utils'
 import LoadingIcon from '../../icon/WhiteLoadingGIF'
 import { useHistory } from 'react-router-dom'
+import { PATHS } from '../../../utils/constants'
 
 const ChapterCarouselSlide = ({ title, description, available, chapterName, buttonText, currentSlide }) => {
     const history = useHistory()
@@ -12,7 +13,7 @@ const ChapterCarouselSlide = ({ title, description, available, chapterName, butt
         <div className="chapter-carousel-slide">
             <h1>{title}</h1>
             <p>{description}</p>
-            <button className="button" tabIndex={currentSlide ? '0' : '-1'} disabled={!available} onClick={() => history.push(`/chapters/${chapterName}`)}>{buttonText}</button>
+            <button className="button" tabIndex={currentSlide ? '0' : '-1'} disabled={!available} onClick={() => history.push(`${PATHS.CHAPTERS}/${chapterName}`)}>{buttonText}</button>
         </div>
     )
 }

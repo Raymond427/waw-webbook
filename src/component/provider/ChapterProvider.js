@@ -11,8 +11,8 @@ const ChapterProvider = ({ user, orders, children }) => {
     useEffect(() => {
         const snapshot = () => getChapters().then(snapShot => 
             setChapters(
-                snapShot.docs.map(doc => 
-                    addPurchasedProp(user, orders, { id: doc.id, ...doc.data() })
+                snapShot.docs.map(
+                    doc => addPurchasedProp(user, orders, { id: doc.id, ...doc.data() })
                 ).sort(compareChapterNames)
             )
         )

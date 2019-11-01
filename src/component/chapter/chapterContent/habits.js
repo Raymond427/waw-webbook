@@ -7,7 +7,7 @@ import Note from '../layout/Note'
 import Video from '../layout/Video'
 import Quote from '../layout/Quote'
 
-const Habits = () =>
+const Habits = () => (
     <main>
         <Header
             title="Habits"
@@ -43,5 +43,6 @@ const Habits = () =>
             <Video src="https://www.w3schools.com/html/mov_bbb.mp4" fileExtention="mp4" caption="Some dumb video I found" />
         </ChapterContentListProvider>
     </main>
+)
 
 export default Habits

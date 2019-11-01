@@ -4,6 +4,7 @@ import Form from '../form'
 import { PasswordField } from '../form/input'
 import Navigation from '../navigation'
 import { Redirect, withRouter } from 'react-router-dom'
+import { PATHS } from '../../utils/constants'
 
 const PasswordReset = withRouter(({ searchParams, history }) => {
     const [ verifyingActionCode, setVerifyingActionCode ] = useState(true)
@@ -16,7 +17,7 @@ const PasswordReset = withRouter(({ searchParams, history }) => {
     const actionCode = searchParams.get('oobCode')
 
     if (!actionCode) {
-        return <Redirect to="/" />
+        return <Redirect to={PATHS.HOME} />
     }
 
     useEffect(() => {
@@ -54,7 +55,7 @@ const PasswordReset = withRouter(({ searchParams, history }) => {
                         className="button"
                         onClick={event => {
                             event.preventDefault()
-                            history.push('/reset-password')
+                            history.push(PATHS.RESET_PASSWORD)
                         }}
                     >
                         Get Another Link
@@ -70,7 +71,7 @@ const PasswordReset = withRouter(({ searchParams, history }) => {
                             className="button"
                             onClick={event => {
                                 event.preventDefault()
-                                history.push('/login')
+                                history.push(PATHS.LOGIN)
                             }}
                         >
                             Log In

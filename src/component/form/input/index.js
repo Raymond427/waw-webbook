@@ -7,11 +7,12 @@ import RadioInput from './Radio'
 import RatingInput from './Rating'
 import '../../../styles/Input.css'
 
-const Label = ({ htmlFor, labelText, required }) =>
+const Label = ({ htmlFor, labelText, required }) => (
     <label className='field-label' id={`${htmlFor}-label`} htmlFor={htmlFor}>
         {labelText}
         {required && <abbr className='field-label-required' title='This field is mandatory'>*</abbr>}
     </label>
+)
 
 Label.propTypes = {
     htmlFor: PropTypes.string,
@@ -19,8 +20,9 @@ Label.propTypes = {
     required: PropTypes.bool
 }
 
-const ErrorMessage = ({ id, errorMessage }) =>
+const ErrorMessage = ({ id, errorMessage }) => (
     <small className='field-error' id={`${id}-error`}>{errorMessage}</small>
+)
 
 ErrorMessage.propTypes = {
     id: PropTypes.string.isRequired,
@@ -50,7 +52,7 @@ const Field = ({ id, type, labelText, required, errorMessage, input, addToInVali
 
     const Input = input
 
-    return(
+    return (
         <div className='field' id={`${id}-field`}>
             {labelText && <Label htmlFor={id} labelText={labelText} required={required} />}
             {showErrors && errorMessage && <ErrorMessage id={id} errorMessage={errorMessage} />}
@@ -68,13 +70,15 @@ Field.propTypes = {
     input: PropTypes.func.isRequired
 }
 
-export const TextField = ({ type = 'text', ...props }) =>
+export const TextField = ({ type = 'text', ...props }) => (
     <Field type={type} input={TextInput} {...props} />
+)
 
-export const TextAreaField = props =>
+export const TextAreaField = props => (
     <Field type='textarea' input={TextInput} {...props} />
+)
 
-export const EmailField = props =>
+export const EmailField = props => (
     <Field
         type='email'
         id='email'
@@ -85,8 +89,9 @@ export const EmailField = props =>
         required
         {...props}
     />
+)
 
-export const PasswordField = props =>
+export const PasswordField = props => (
     <Field
         type='password'
         id='password'
@@ -97,15 +102,20 @@ export const PasswordField = props =>
         required
         {...props}
     />
+)
 
-export const SelectField = props =>
+export const SelectField = props => (
     <Field input={SelectInput} {...props} />
+)
 
-export const CheckboxField = props =>
+export const CheckboxField = props => (
     <Field input={Checkboxes} {...props} />
+)
 
-export const RadioField = props =>
+export const RadioField = props => (
     <Field input={RadioInput} {...props} />
+)
 
-export const RatingField = props =>
+export const RatingField = props => (
     <Field input={RatingInput} {...props} />
+)
