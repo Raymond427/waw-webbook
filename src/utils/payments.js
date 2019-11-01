@@ -1,5 +1,6 @@
 import { capitalize } from '.'
 import { postOrder } from '../firebase'
+import { formatPaymentErrorMessage } from './errorMessages'
 
 const FIREBASE_CHARGE_CARD_FUNCTION_URL = 'https://us-central1-waw-webbook.cloudfunctions.net/charge'
 
@@ -14,22 +15,27 @@ const postOrderPayload = (user, chapter, processingFee, totalCost) => ({
     totalCost
 })
 
-export const chargeWithToken = (token, chapter, user, totalCost, processingFee, setPaymentSuccessful, setPaymentResult) =>
+export const chargeWithToken = (token, chapter, user, totalCost, processingFee, setPaymentSuccessful, setPaymentResult) => (
     fetch(FIREBASE_CHARGE_CARD_FUNCTION_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'text/plain' },
         body: chargePayload(user, chapter, totalCost, processingFee, token)
     })
-        .then(response => response.json().then(({ status }) => {
-                if (status) {
+        .then(response => response.json().then(response => {
+                if (response.status === 'succeeded') {
                     postOrder(postOrderPayload(user, chapter, processingFee, totalCost))
                     setPaymentSuccessful(true)
+                    return { successful: true }
                 } else {
-                    setPaymentResult(status || 'Error processing payment, check the card info you entered and try again')
+                    throw (response)
                 }
             })
         )
-        .catch(({ message }) => setPaymentResult(message || `There was an error contacting our server!`))
+        .catch(error => {
+            setPaymentResult(formatPaymentErrorMessage(error))
+            return { successful: false }
+        })
+)
 
 export const chargePayload = (user, chapter, totalCost, processingFee, token) => JSON.stringify({
     amount: totalCost,

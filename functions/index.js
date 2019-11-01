@@ -15,7 +15,7 @@ app.post('/', (req, res) => {
       return res.json(response)
     })
     .catch(err => {
-      res.json(JSON.stringify(err))
+      res.json(err)
       res.status(500).end()
     })
 })

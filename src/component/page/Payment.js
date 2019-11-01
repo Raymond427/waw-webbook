@@ -19,7 +19,7 @@ const Payment = ({ user, chapters, computedMatch }) => {
         window.Stripe
             ? setStripe(window.Stripe(STRIPE_API_KEY))
             : document.getElementById('stripe-js').addEventListener('load', () => setStripe(window.Stripe(STRIPE_API_KEY)))
-    }, window.Stripe)
+    }, [ window.Stripe ])
 
     return (
         <div className="Payment page">

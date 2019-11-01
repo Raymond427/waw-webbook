@@ -9,6 +9,7 @@ import SocialAuthButton from '../authentication/SocialAuthButton'
 import Navigation from '../navigation'
 import { useLocation } from 'react-router-dom'
 import { PATHS } from '../../utils/constants'
+import { formatAuthErrorMessage } from '../../utils/errorMessages'
 
 const SignInAndSignUp = ({ setUser, newUser }) => {
     const [ authErrorMessage, setAuthErrorMessage ] = useState('')
@@ -21,9 +22,9 @@ const SignInAndSignUp = ({ setUser, newUser }) => {
         setUser(user)
     }
 
-    const handleAuthError = ({ message }) => {
+    const handleAuthError = error => {
         setIsLoading(false)
-        setAuthErrorMessage(message)
+        setAuthErrorMessage(formatAuthErrorMessage(error))
     }
 
     const handleAuth = (authProvider) => {

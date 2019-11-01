@@ -22,10 +22,10 @@ const PaymentRequestButton = ({ stripe, user, chapter, processingFee, totalCost,
 
         paymentRequest.canMakePayment().then(result => setCanMakePayment(result))
 
-        paymentRequest.on('token', ({complete, token, data}) => {
-            console.log(complete, token.id, data)
-            complete('success')
+        paymentRequest.on('token', ({ token, complete }) => {
             chargeWithToken(token, chapter, user, totalCost, processingFee, setPaymentSuccessful, setPaymentResult)
+                .then(({ successful }) => successful ? complete('success') : complete('fail'))
+
         })
 
         setPaymentRequest(paymentRequest)

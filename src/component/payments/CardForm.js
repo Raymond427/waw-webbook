@@ -7,6 +7,7 @@ import { chargeWithToken } from '../../utils/payments'
 import { TextField } from '../form/input'
 import { CardElement } from 'react-stripe-elements'
 import { useHistory } from 'react-router-dom'
+import { formatPaymentErrorMessage } from '../../utils/errorMessages'
 
 const CardForm = ({ user, stripe, chapter, PaymentButton }) => {
     const [ paymentSuccessful, setPaymentSuccessful] = useState(false)
@@ -43,7 +44,7 @@ const CardForm = ({ user, stripe, chapter, PaymentButton }) => {
         setIsLoading(true)
         stripe.createToken(cardData)
             .then(({ token }) => chargeWithToken(token, chapter, user, totalCost, processingFee, setPaymentSuccessful, setPaymentResult))
-            .catch(({ message }) => setPaymentResult(message || `There was an error contacting Stripe!`))
+            .catch(error => setPaymentResult(formatPaymentErrorMessage(error)))
             .finally(() => setIsLoading(false))
     }
 
