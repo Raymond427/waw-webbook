@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { TextField, RatingField } from '../form/input'
 import Form from '../form'
 import Navigation from '../navigation'
-import { postFeedback } from '../../firebase'
+import { postFeedback, performanceMonitor } from '../../firebase'
 import '../../styles/Feedback.css'
 import { useHistory } from 'react-router-dom'
 import { PATHS } from '../../utils/constants'
@@ -15,15 +15,23 @@ const FeedBackForm = ({ user, setPosted }) => {
 
     const handlePost = () => {
         setIsPosting(true)
+        const feedbackPostTrace = performanceMonitor.trace('submitFeedback')
+        feedbackPostTrace.start()
         postFeedback({
             rating,
             comment,
             email: user.user.email,
             uid: user.user.uid
         }).then(() => {
+            feedbackPostTrace.putAttribute('result', 'success')
             setPosted(true)
-        }).catch(error => {
-            setPostingError(error.message)
+        }).catch(({ message }) => {
+            feedbackPostTrace.putAttribute('errorMessage', message)
+            feedbackPostTrace.putAttribute('result', 'fail')
+            setPostingError(message)
+        }).finally(() => {
+            feedbackPostTrace.putAttribute('commentLength', comment.length)
+            feedbackPostTrace.stop()
         })
     }
 

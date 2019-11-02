@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { UserContext } from '../provider/UserProvider'
 import { Link, Redirect } from 'react-router-dom'
-import { signInWithGoogle, signIn, signUp, signInWithFacebook } from '../../firebase'
+import { signInWithGoogle, signIn, signUp, signInWithFacebook, performanceMonitor } from '../../firebase'
 import Form from '../form'
 import '../../styles/Login.css'
 import { EmailField, PasswordField } from '../form/input'
@@ -16,18 +16,27 @@ const SignInAndSignUp = ({ setUser, newUser }) => {
     const [ isLoading, setIsLoading ] = useState(false)
     const [ email, setEmail ] = useState('')
     const [ password, setPassword ] = useState('')
+    const authTrace = performanceMonitor.trace('auth')
 
     const handleUser = user => {
+        authTrace.putAttribute('result', 'success')
+        authTrace.stop()
         setAuthErrorMessage('')
         setUser(user)
     }
 
     const handleAuthError = error => {
+        authTrace.putAttribute('result', 'fail')
+        const errorMessage = formatAuthErrorMessage(error)
+        authTrace.putAttribute('errorMessage', errorMessage)
+        authTrace.stop()
         setIsLoading(false)
-        setAuthErrorMessage(formatAuthErrorMessage(error))
+        setAuthErrorMessage(errorMessage)
     }
 
-    const handleAuth = (authProvider) => {
+    const handleAuth = (authProvider, type) => {
+        authTrace.start()
+        authTrace.putAttribute('type', type)
         setIsLoading(true)
         authProvider()
             .then(handleUser)
@@ -35,17 +44,18 @@ const SignInAndSignUp = ({ setUser, newUser }) => {
     }
 
     const genericAuth = () => {
+        authTrace.putAttribute('method', 'email')
         newUser
-            ? handleAuth(() => signUp(email, password))
-            : handleAuth(() => signIn(email, password))
+            ? handleAuth(() => signUp(email, password), 'emailSignUp')
+            : handleAuth(() => signIn(email, password), 'emailSignIn')
     }
 
     return (
         <div className="Login page">
             <Navigation />
             <h2>{newUser? 'Sign Up' : 'Sign In'}</h2>
-            <SocialAuthButton name="google" onClick={() => handleAuth(signInWithGoogle)} newUser={newUser} />
-            <SocialAuthButton name="facebook" onClick={() => handleAuth(signInWithFacebook)} newUser={newUser} />
+            <SocialAuthButton name="google" onClick={() => handleAuth(signInWithGoogle, 'google')} newUser={newUser} />
+            <SocialAuthButton name="facebook" onClick={() => handleAuth(signInWithFacebook, 'facebook')} newUser={newUser} />
             <Form
                 onSubmit={genericAuth}
                 submitValue={newUser ? 'Sign Up' : 'Sign In'}

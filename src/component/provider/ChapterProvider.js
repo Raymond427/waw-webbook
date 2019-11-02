@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getChapters } from '../../firebase'
+import { getChapters, performanceMonitor } from '../../firebase'
 import { addPurchasedProp, compareChapterNames } from '../../utils'
 
 export const { Provider, Consumer } = React.createContext()
@@ -9,13 +9,26 @@ const ChapterProvider = ({ user, orders, children }) => {
     const [ chapters, setChapters ] = useState([])
 
     useEffect(() => {
-        const snapshot = () => getChapters().then(snapShot => 
-            setChapters(
-                snapShot.docs.map(
-                    doc => addPurchasedProp(user, orders, { id: doc.id, ...doc.data() })
-                ).sort(compareChapterNames)
-            )
-        )
+        const snapshot = () => {
+            const chaptersFetchTrace = performanceMonitor.trace('fetchChapters')
+            chaptersFetchTrace.start()
+            getChapters()
+                .then(snapShot => {
+                        chaptersFetchTrace.putAttribute('numOfChapters', snapShot.docs.length)
+                        chaptersFetchTrace.putAttribute('result', 'success')
+                        setChapters(
+                            snapShot.docs.map(
+                                doc => addPurchasedProp(user, orders, { id: doc.id, ...doc.data() })
+                            ).sort(compareChapterNames)
+                        )
+                    }
+                )
+                .catch(({ message }) => {
+                    chaptersFetchTrace.putAttribute('result', 'fail')
+                    chaptersFetchTrace.putAttribute('errorMessage', message)
+                })
+                .finally(() => chaptersFetchTrace.stop())
+        }
         snapshot()
     }, [ orders ])
     

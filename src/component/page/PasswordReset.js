@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { verifyPasswordResetCode, handlePasswordReset } from '../../firebase'
+import { verifyPasswordResetCode, handlePasswordReset, performanceMonitor } from '../../firebase'
 import Form from '../form'
 import { PasswordField } from '../form/input'
 import Navigation from '../navigation'
@@ -21,22 +21,43 @@ const PasswordReset = withRouter(({ searchParams, history }) => {
     }
 
     useEffect(() => {
-        const actionCodePromise = () => verifyPasswordResetCode(actionCode)
-            .then(email => {
-                setEmail(email)
-                setActionCodeVerified(true)
-            }).catch(() => {
-                setActionCodeVerified(false)
-            }).finally(() => setVerifyingActionCode(false))
+        const verifyPasswordResetCodeTrace = performanceMonitor.trace('verifyPasswordResetCode')
+        const actionCodePromise = () => {
+            verifyPasswordResetCode(actionCode)
+                .then(email => {
+                    verifyPasswordResetCodeTrace.putAttribute('result', 'success')
+                    setEmail(email)
+                    setActionCodeVerified(true)
+                }).catch(() => {
+                    verifyPasswordResetCodeTrace.putAttribute('result', 'fail')
+                    setActionCodeVerified(false)
+                }).finally(() => {
+                    verifyPasswordResetCodeTrace.stop()
+                    setVerifyingActionCode(false)
+                })
+        }
+        
+        verifyPasswordResetCodeTrace.start()
         actionCodePromise()
     }, [])
 
     const resetPassword = (actionCode, newPassword) => {
         setIsResettingPassword(true)
+        const resettingPasswordTrace = performanceMonitor.trace('resettingPassword')
         handlePasswordReset(actionCode, newPassword)
-            .then(() => setPasswordReset(true))
-            .catch(({ message }) => setSubmissionError(message))
-            .finally(() => setIsResettingPassword(false))
+            .then(() => {
+                resettingPasswordTrace.putAttribute('result', 'success')
+                setPasswordReset(true)
+            })
+            .catch(({ message }) => {
+                resettingPasswordTrace.putAttribute('result', 'fail')
+                resettingPasswordTrace.putAttribute('errorMessage', message)
+                setSubmissionError(message)
+            })
+            .finally(() => {
+                resettingPasswordTrace.stop()
+                setIsResettingPassword(false)
+            })
     }
 
     const PageContents = () => {

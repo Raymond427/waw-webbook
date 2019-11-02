@@ -1,17 +1,21 @@
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
+import 'firebase/performance'
 
 const config = {
-    apiKey: "AIzaSyBXluHazFPzbOHWoeWKjyU0N12uqgnJFNg",
-    authDomain: "waw-webbook.firebaseapp.com",
-    databaseURL: "https://waw-webbook.firebaseio.com",
-    projectId: "waw-webbook",
-    storageBucket: "waw-webbook.appspot.com",
-    messagingSenderId: "166075662993"
+    apiKey: 'AIzaSyBXluHazFPzbOHWoeWKjyU0N12uqgnJFNg',
+    authDomain: 'waw-webbook.firebaseapp.com',
+    databaseURL: 'https://waw-webbook.firebaseio.com',
+    projectId: 'waw-webbook',
+    storageBucket: 'waw-webbook.appspot.com',
+    messagingSenderId: '166075662993',
+    appId: '1:166075662993:web:281d0382e1aabf2a34b530'
 }
 
 firebase.initializeApp(config)
+
+export const performanceMonitor = firebase.performance()
 
 export const auth = firebase.auth()
 export const signInWithGoogle = () => {

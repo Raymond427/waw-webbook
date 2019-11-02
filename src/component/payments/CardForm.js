@@ -8,6 +8,7 @@ import { TextField } from '../form/input'
 import { CardElement } from 'react-stripe-elements'
 import { useHistory } from 'react-router-dom'
 import { formatPaymentErrorMessage } from '../../utils/errorMessages'
+import { performanceMonitor } from '../../firebase'
 
 const CardForm = ({ user, stripe, chapter, PaymentButton }) => {
     const [ paymentSuccessful, setPaymentSuccessful] = useState(false)
@@ -42,10 +43,22 @@ const CardForm = ({ user, stripe, chapter, PaymentButton }) => {
 
     const processPayment = () => {
         setIsLoading(true)
+        const tokenCreationTrace = performanceMonitor.trace('tokenCreation')
+        tokenCreationTrace.start()
         stripe.createToken(cardData)
-            .then(({ token }) => chargeWithToken(token, chapter, user, totalCost, processingFee, setPaymentSuccessful, setPaymentResult))
-            .catch(error => setPaymentResult(formatPaymentErrorMessage(error)))
-            .finally(() => setIsLoading(false))
+            .then(({ token }) => {
+                tokenCreationTrace.putAttribute('result', 'success')
+                tokenCreationTrace.stop()
+                chargeWithToken(token, chapter, user, totalCost, processingFee, setPaymentSuccessful, setPaymentResult, 'card')
+            })
+            .catch(error => {
+                const errorMessage = formatPaymentErrorMessage(error)
+                tokenCreationTrace.putAttribute('result', 'fail')
+                tokenCreationTrace.putAttribute('errorMessage', errorMessage)
+                tokenCreationTrace.stop()
+                setPaymentResult(errorMessage)
+            })
+            .finally(setIsLoading(false))
     }
 
     return (

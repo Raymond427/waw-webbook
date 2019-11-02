@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { sendPasswordResetEmail } from '../../firebase'
+import { sendPasswordResetEmail, performanceMonitor } from '../../firebase'
 import Form from '../form'
 import { EmailField } from '../form/input'
 import Navigation from '../navigation'
@@ -11,11 +11,23 @@ const ResetPassword = () => {
         const [ isLoading, setIsLoading ] = useState(false)
 
         const handlePasswordReset = emailAddress => {
+            const passwordResetEmailTrace = performanceMonitor.trace('sendPasswordResetEmail')
+            passwordResetEmailTrace.start()
             setIsLoading(true)
             sendPasswordResetEmail(emailAddress)
-                .then(() => setPasswordResetEmailSent(true))
-                .catch(error => setSubmissionError(error))
-                .finally(() => setIsLoading(false))
+                .then(() => {
+                    passwordResetEmailTrace.putAttribute('result', 'success')
+                    setPasswordResetEmailSent(true)
+                })
+                .catch(({ message }) => {
+                    passwordResetEmailTrace.putAttribute('result', 'fail')
+                    passwordResetEmailTrace.putAttribute('errorMessage', message)
+                    setSubmissionError(message)
+                })
+                .finally(() => {
+                    passwordResetEmailTrace.stop()
+                    setIsLoading(false)
+                })
         }
 
         return (
