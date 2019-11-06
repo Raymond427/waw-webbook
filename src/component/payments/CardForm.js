@@ -2,13 +2,14 @@ import React, { useState } from 'react'
 import Order from '../Order'
 import Form from '../form'
 import { capitalize, totalPrice } from '../../utils'
-import { PROCESSING_FEE_RATE } from '../../utils/constants'
+import { PROCESSING_FEE_RATE, THEMES } from '../../utils/constants'
 import { chargeWithToken } from '../../utils/payments'
 import { TextField } from '../form/input'
 import { CardElement } from 'react-stripe-elements'
 import { useHistory } from 'react-router-dom'
 import { formatPaymentErrorMessage } from '../../utils/errorMessages'
 import { performanceMonitor } from '../../firebase'
+import { ThemeContext } from '../provider/ThemeProvider'
 
 const CardForm = ({ user, stripe, chapter, PaymentButton }) => {
     const [ paymentSuccessful, setPaymentSuccessful] = useState(false)
@@ -81,7 +82,11 @@ const CardForm = ({ user, stripe, chapter, PaymentButton }) => {
                                 <TextField id='zip-code' required errorMessage='Please provide a valid zip code' placeholder='Zipcode' valueHook={setZipCode} />
                                 <TextField id='city' required errorMessage='Please provide a city' placeholder='City' valueHook={setCity} />
                                 <TextField id='state' required errorMessage='Please provide a state' placeholder='State' valueHook={setState} />
-                                <CardElement style={{base: { fontSize: '14px', color: '#FFFFFF', "::placeholder": { color: "#878787" } }}} />
+                                <ThemeContext.Consumer>
+                                    {({ theme }) => (
+                                        <CardElement style={{base: { fontSize: '14px', color: theme === THEMES.LIGHT ? '#121212' : '#FFFFFF', "::placeholder": { color: '#878787' } }}} />
+                                    )}
+                                </ThemeContext.Consumer>
                             </Form>
                         </>
                 }
