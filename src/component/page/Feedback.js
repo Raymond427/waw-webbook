@@ -30,7 +30,7 @@ const FeedBackForm = ({ user, setPosted }) => {
             feedbackPostTrace.putAttribute('result', 'fail')
             setPostingError(message)
         }).finally(() => {
-            feedbackPostTrace.putAttribute('commentLength', comment.length)
+            feedbackPostTrace.putAttribute('commentLength', `${comment.length}`)
             feedbackPostTrace.stop()
         })
     }
