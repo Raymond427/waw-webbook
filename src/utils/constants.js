@@ -14,6 +14,19 @@ export const PATHS = {
     EMAIL_US: `mailto:${COMPANY_EMAIL}`
 }
 
+export const PAGE_TITLES = {
+    '/': 'Home',
+    '/login': 'Log In',
+    '/sign-up': 'Sign In',
+    '/usermgmt': 'User Management',
+    '/reset-password': 'Reset Password',
+    '/account': 'Account',
+    '/buy': 'Buy',
+    '/feedback': 'Feedback',
+    '/orders': 'Orders',
+    '/chapters': 'Chapters'
+}
+
 export const THEMES = {
     DARK: 'dark',
     LIGHT: 'light'

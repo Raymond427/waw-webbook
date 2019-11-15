@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { verifyPasswordResetCode, handlePasswordReset, performanceMonitor } from '../../firebase'
+import { verifyPasswordResetCode, handlePasswordReset, performanceMonitor, MAX_ATTRIBUTE_VALUE_LENGTH } from '../../firebase'
 import Form from '../form'
 import { PasswordField } from '../form/input'
 import Navigation from '../navigation'
@@ -51,7 +51,7 @@ const PasswordReset = withRouter(({ searchParams, history }) => {
             })
             .catch(({ message }) => {
                 resettingPasswordTrace.putAttribute('result', 'fail')
-                resettingPasswordTrace.putAttribute('errorMessage', message)
+                resettingPasswordTrace.putAttribute('errorMessage', message.slice(0, MAX_ATTRIBUTE_VALUE_LENGTH))
                 setSubmissionError(message)
             })
             .finally(() => {

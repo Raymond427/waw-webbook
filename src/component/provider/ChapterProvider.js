@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getChapters, performanceMonitor } from '../../firebase'
+import { getChapters, performanceMonitor, MAX_ATTRIBUTE_VALUE_LENGTH } from '../../firebase'
 import { addPurchasedProp, compareChapterNames } from '../../utils'
 
 export const { Provider, Consumer } = React.createContext()
@@ -14,7 +14,7 @@ const ChapterProvider = ({ user, orders, children }) => {
             chaptersFetchTrace.start()
             getChapters()
                 .then(snapShot => {
-                        chaptersFetchTrace.putAttribute('numOfChapters', snapShot.docs.length)
+                        chaptersFetchTrace.putAttribute('numOfChapters', `${snapShot.docs.length}`)
                         chaptersFetchTrace.putAttribute('result', 'success')
                         setChapters(
                             snapShot.docs.map(
@@ -25,7 +25,7 @@ const ChapterProvider = ({ user, orders, children }) => {
                 )
                 .catch(({ message }) => {
                     chaptersFetchTrace.putAttribute('result', 'fail')
-                    chaptersFetchTrace.putAttribute('errorMessage', message)
+                    chaptersFetchTrace.putAttribute('errorMessage', message.slice(0, MAX_ATTRIBUTE_VALUE_LENGTH))
                 })
                 .finally(() => chaptersFetchTrace.stop())
         }

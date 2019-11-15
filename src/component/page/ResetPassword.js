@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { sendPasswordResetEmail, performanceMonitor } from '../../firebase'
+import { sendPasswordResetEmail, performanceMonitor, MAX_ATTRIBUTE_VALUE_LENGTH } from '../../firebase'
 import Form from '../form'
 import { EmailField } from '../form/input'
 import Navigation from '../navigation'
@@ -21,7 +21,7 @@ const ResetPassword = () => {
                 })
                 .catch(({ message }) => {
                     passwordResetEmailTrace.putAttribute('result', 'fail')
-                    passwordResetEmailTrace.putAttribute('errorMessage', message)
+                    passwordResetEmailTrace.putAttribute('errorMessage', message.slice(0, MAX_ATTRIBUTE_VALUE_LENGTH))
                     setSubmissionError(message)
                 })
                 .finally(() => {

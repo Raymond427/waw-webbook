@@ -2,6 +2,7 @@ import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
 import 'firebase/performance'
+import 'firebase/analytics'
 
 const config = {
     apiKey: 'AIzaSyBXluHazFPzbOHWoeWKjyU0N12uqgnJFNg',
@@ -10,12 +11,15 @@ const config = {
     projectId: 'waw-webbook',
     storageBucket: 'waw-webbook.appspot.com',
     messagingSenderId: '166075662993',
-    appId: '1:166075662993:web:281d0382e1aabf2a34b530'
+    appId: '1:166075662993:web:281d0382e1aabf2a34b530',
+    measurementId: "G-CQH4FB5VT8"
 }
 
 firebase.initializeApp(config)
 
 export const performanceMonitor = firebase.performance()
+export const MAX_ATTRIBUTE_VALUE_LENGTH = 40
+export const analytics = firebase.analytics()
 
 export const auth = firebase.auth()
 export const signInWithGoogle = () => {

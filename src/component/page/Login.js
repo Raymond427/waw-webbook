@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { UserContext } from '../provider/UserProvider'
 import { Link, Redirect } from 'react-router-dom'
-import { signInWithGoogle, signIn, signUp, signInWithFacebook, performanceMonitor } from '../../firebase'
+import { signInWithGoogle, signIn, signUp, signInWithFacebook, performanceMonitor, MAX_ATTRIBUTE_VALUE_LENGTH, analytics } from '../../firebase'
 import Form from '../form'
 import '../../styles/Login.css'
 import { EmailField, PasswordField } from '../form/input'
@@ -18,9 +18,11 @@ const SignInAndSignUp = ({ setUser, newUser }) => {
     const [ password, setPassword ] = useState('')
     const authTrace = performanceMonitor.trace('auth')
 
-    const handleUser = user => {
+    const handleUser = (user, type) => {
         authTrace.putAttribute('result', 'success')
-        authTrace.stop()
+        analytics.logEvent(type === 'emailSignUp' ? 'sign_up' : 'login', {
+            method: type
+        })
         setAuthErrorMessage('')
         setUser(user)
     }
@@ -28,8 +30,7 @@ const SignInAndSignUp = ({ setUser, newUser }) => {
     const handleAuthError = error => {
         authTrace.putAttribute('result', 'fail')
         const errorMessage = formatAuthErrorMessage(error)
-        authTrace.putAttribute('errorMessage', errorMessage)
-        authTrace.stop()
+        authTrace.putAttribute('errorMessage', errorMessage.slice(0, MAX_ATTRIBUTE_VALUE_LENGTH))
         setIsLoading(false)
         setAuthErrorMessage(errorMessage)
     }
@@ -39,8 +40,9 @@ const SignInAndSignUp = ({ setUser, newUser }) => {
         authTrace.putAttribute('type', type)
         setIsLoading(true)
         authProvider()
-            .then(handleUser)
+            .then(user => handleUser(user, type))
             .catch(handleAuthError)
+            .finally(() => authTrace.stop())
     }
 
     const genericAuth = () => {

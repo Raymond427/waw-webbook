@@ -7,11 +7,16 @@ import HomePageBackground from './HomepageBackground'
 import Navigation from '../../navigation'
 import homePageImages from '../../../data/homePageImages.json'
 import ChapterCarousel from './ChapterCarousel'
+import { analytics } from '../../../firebase'
 
 const HomeContents = ({ chapters }) => {
     const [ currentIndex, setCurrentIndex ] = useState(0)
 
     const currentChapter = chapters[currentIndex - 1]
+
+    if (currentChapter) {
+        analytics.logEvent('view_item', { items: [ currentChapter.name ] })
+    }
 
     return (
         <div className="Home">

@@ -3,7 +3,7 @@ import { PaymentRequestButtonElement } from 'react-stripe-elements'
 import { ThemeContext } from '../provider/ThemeProvider'
 import { chargeWithToken } from '../../utils/payments'
 import { capitalize } from '../../utils'
-import { performanceMonitor } from '../../firebase'
+import { performanceMonitor, MAX_ATTRIBUTE_VALUE_LENGTH, analytics } from '../../firebase'
 import { formatPaymentErrorMessage } from '../../utils/errorMessages'
 
 const PaymentRequestButton = ({ stripe, user, chapter, processingFee, totalCost, setPaymentSuccessful, setPaymentResult }) => {
@@ -27,17 +27,19 @@ const PaymentRequestButton = ({ stripe, user, chapter, processingFee, totalCost,
         paymentRequest.canMakePayment()
             .then(result => {
                 canMakePaymentTrace.putAttribute('result', 'success')
-                canMakePaymentTrace.stop()
+                analytics.logEvent('payment_request_button_available', { available: `${result}` })
                 setCanMakePayment(result)
             })
             .catch(error => {
                 canMakePaymentTrace.putAttribute('result', 'fail')
                 const errorMessage = formatPaymentErrorMessage(error)
-                canMakePaymentTrace.putAttribute('errorMessage', errorMessage)
-                canMakePaymentTrace.stop()
-            })
+                canMakePaymentTrace.putAttribute('errorMessage', errorMessage.slice(0, MAX_ATTRIBUTE_VALUE_LENGTH))
+            }).finally(() => canMakePaymentTrace.stop())
 
         paymentRequest.on('token', ({ token, complete }) => {
+            analytics.logEvent('set_checkout_option', {
+                checkout_option: 'payment_request_button'
+            })
             chargeWithToken(token, chapter, user, totalCost, processingFee, setPaymentSuccessful, setPaymentResult, 'paymentRequest')
                 .then(({ successful }) => successful ? complete('success') : complete('fail'))
         })

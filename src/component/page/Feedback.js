@@ -2,10 +2,11 @@ import React, { useState } from 'react'
 import { TextField, RatingField } from '../form/input'
 import Form from '../form'
 import Navigation from '../navigation'
-import { postFeedback, performanceMonitor } from '../../firebase'
+import { postFeedback, performanceMonitor, MAX_ATTRIBUTE_VALUE_LENGTH } from '../../firebase'
 import '../../styles/Feedback.css'
 import { useHistory } from 'react-router-dom'
 import { PATHS } from '../../utils/constants'
+import { analytics } from '../../firebase'
 
 const FeedBackForm = ({ user, setPosted }) => {
     const [ rating, setRating ] = useState(0)
@@ -26,12 +27,13 @@ const FeedBackForm = ({ user, setPosted }) => {
             feedbackPostTrace.putAttribute('result', 'success')
             setPosted(true)
         }).catch(({ message }) => {
-            feedbackPostTrace.putAttribute('errorMessage', message)
+            feedbackPostTrace.putAttribute('errorMessage', message.slice(0, MAX_ATTRIBUTE_VALUE_LENGTH))
             feedbackPostTrace.putAttribute('result', 'fail')
             setPostingError(message)
         }).finally(() => {
             feedbackPostTrace.putAttribute('commentLength', `${comment.length}`)
             feedbackPostTrace.stop()
+            analytics.logEvent('give_feedback', { rating: `${rating}` })
         })
     }
 

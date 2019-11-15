@@ -8,8 +8,9 @@ import { TextField } from '../form/input'
 import { CardElement } from 'react-stripe-elements'
 import { useHistory } from 'react-router-dom'
 import { formatPaymentErrorMessage } from '../../utils/errorMessages'
-import { performanceMonitor } from '../../firebase'
+import { performanceMonitor, MAX_ATTRIBUTE_VALUE_LENGTH } from '../../firebase'
 import { ThemeContext } from '../provider/ThemeProvider'
+import { analytics } from '../../firebase'
 
 const CardForm = ({ user, stripe, chapter, PaymentButton }) => {
     const [ paymentSuccessful, setPaymentSuccessful] = useState(false)
@@ -43,24 +44,34 @@ const CardForm = ({ user, stripe, chapter, PaymentButton }) => {
     }
 
     const processPayment = () => {
+        analytics.logEvent('set_checkout_option', {
+            checkout_option: 'card_form'
+        })
         setIsLoading(true)
         const tokenCreationTrace = performanceMonitor.trace('tokenCreation')
         tokenCreationTrace.start()
         stripe.createToken(cardData)
             .then(({ token }) => {
                 tokenCreationTrace.putAttribute('result', 'success')
-                tokenCreationTrace.stop()
                 chargeWithToken(token, chapter, user, totalCost, processingFee, setPaymentSuccessful, setPaymentResult, 'card')
             })
             .catch(error => {
                 const errorMessage = formatPaymentErrorMessage(error)
                 tokenCreationTrace.putAttribute('result', 'fail')
-                tokenCreationTrace.putAttribute('errorMessage', errorMessage)
-                tokenCreationTrace.stop()
+                tokenCreationTrace.putAttribute('errorMessage', errorMessage.slice(0, MAX_ATTRIBUTE_VALUE_LENGTH))
                 setPaymentResult(errorMessage)
             })
-            .finally(setIsLoading(false))
+            .finally(() => {
+                tokenCreationTrace.stop()
+                setIsLoading(false)
+            })
     }
+
+    analytics.logEvent('begin_checkout', {
+        currency: 'usd',
+        items: [ chapter.name ],
+        value: chapter.price
+    })
 
     return (
             <>

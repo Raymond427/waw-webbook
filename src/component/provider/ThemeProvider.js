@@ -1,5 +1,6 @@
 import React, { useState, useEffect, createContext } from 'react'
 import { THEMES } from '../../utils/constants'
+import { analytics } from '../../firebase'
 
 export const ThemeContext = createContext()
 
@@ -16,6 +17,7 @@ const ThemeProvider = ({ children }) => {
     const changeTheme = theme => {
         document.documentElement.setAttribute('data-theme', theme)
         setTheme(theme)
+        analytics.logEvent('toggle_theme', { theme })
     }
 
     const toggleTheme = () => {

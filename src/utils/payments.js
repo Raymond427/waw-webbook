@@ -1,13 +1,14 @@
 import { capitalize } from '.'
-import { postOrder, performanceMonitor } from '../firebase'
+import { postOrder, performanceMonitor, analytics } from '../firebase'
 import { formatPaymentErrorMessage } from './errorMessages'
 
 const FIREBASE_CHARGE_CARD_FUNCTION_URL = 'https://us-central1-waw-webbook.cloudfunctions.net/charge'
 
-const postOrderPayload = (user, chapter, processingFee, totalCost) => ({
+const postOrderPayload = (user, chapter, processingFee, totalCost, chargeId) => ({
     datePurchased: new Date().getTime(),
     userId: user.user.uid,
     productName: chapter.name,
+    stripeChargeId: chargeId,
     charges: {
         product: chapter.price,
         processing: processingFee
@@ -29,7 +30,14 @@ export const chargeWithToken = (token, chapter, user, totalCost, processingFee, 
                 chargeTrace.putAttribute('status', 'response.status')
                 if (response.status === 'succeeded') {
                     chargeTrace.putAttribute('result', 'success')
-                    postOrder(postOrderPayload(user, chapter, processingFee, totalCost))
+                    postOrder(postOrderPayload(user, chapter, processingFee, totalCost, response.id))
+                    analytics.logEvent('purchase', {
+                        currency: 'usd',
+                        items: [ chapter.name ],
+                        transaction_id: response.id,
+                        tax: processingFee,
+                        value: chapter.price
+                    })
                     setPaymentSuccessful(true)
                     return { successful: true }
                 } else {
