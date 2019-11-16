@@ -32,7 +32,7 @@ export const chargeWithToken = (token, chapter, user, totalCost, processingFee, 
                     chargeTrace.putAttribute('result', 'success')
                     postOrder(postOrderPayload(user, chapter, processingFee, totalCost, response.id))
                     analytics.logEvent('purchase', {
-                        currency: 'usd',
+                        currency: response.currency,
                         items: [ chapter.name ],
                         transaction_id: response.id,
                         tax: processingFee,
