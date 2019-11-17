@@ -5,6 +5,7 @@ import App from './component'
 import { Router } from 'react-router-dom'
 import ScrollToTop from './component/ScrollToTop'
 import history from './history'
+import * as serviceWorker from './serviceWorker'
 
 ReactDOM.render(
     <Router history={history}>
@@ -14,3 +15,5 @@ ReactDOM.render(
     </Router>,
     document.getElementById('root')
 )
+
+serviceWorker.register()
