@@ -1,94 +1,114 @@
 {
-    "home":
-        {
-            "images": [
-                {
-                    "maxWidth": "411",
-                    "src": "home-411.jpg"
-                },
-                {
-                    "maxWidth": "768",
-                    "src": "home-768.jpg"
-                },
-                {
-                    "maxWidth": "1440",
-                    "src": "home-1440.jpg"
-                }
-            ]
-        },
-    "habits":
-        {
-            "images": [
-                {
-                    "maxWidth": "411",
-                    "src": "bruceLee-411.jpg"
-                },
-                {
-                    "maxWidth": "768",
-                    "src": "bruceLee-768.jpg"
-                },
-                {
-                    "maxWidth": "1440",
-                    "src": "bruceLee-1440.jpg"
-                }
-            ],
-            "quote": "I fear not the man who has practiced 10,000 kicks once, but I do fear the man who has practiced one kick 10,000 times",
-            "author": "Bruce Lee",
-            "chapterBackgroundImages": [
-                {
-                    "maxWidth": "1440",
-                    "src": "bruceLee-1440.jpg"
-                }
-            ]
-        },
-    "product":
-        {
-            "images": [
-                {
-                    "maxWidth": "411",
-                    "src": "simonSinek-411.jpg"
-                },
-                {
-                    "maxWidth": "768",
-                    "src": "simonSinek-768.jpg"
-                },
-                {
-                    "maxWidth": "1440",
-                    "src": "simonSinek-1440.jpg"
-                }
-            ],
-            "quote": "People don’t buy what you do, they buy why you do it.",
-            "author": "Simon Sinek",
-            "chapterBackgroundImages": [
-                {
-                    "maxWidth": "1440",
-                    "src": "simonSinek-1440.jpg"
-                }
-            ]
-        },
-    "finances":
-        {
-            "images": [
-                {
-                    "maxWidth": "550",
-                    "src": "warrenBuffett-550.jpg"
-                },
-                {
-                    "maxWidth": "768",
-                    "src": "warrenBuffett-768.jpg"
-                },
-                {
-                    "maxWidth": "1440",
-                    "src": "warrenBuffett-1440.jpg"
-                }
-            ],
-            "quote": "Only when you combine sound intellect with emotional discipline do you get rational behavior.",
-            "author": "Warren Buffett",
-            "chapterBackgroundImages": [
-                {
-                    "maxWidth": "1440",
-                    "src": "warrenBuffett-1440.jpg"
-                }
-            ]
-        }
+  "home": {
+    "images": [
+      {
+        "maxWidth": "411",
+        "src": "home-411.jpg"
+      },
+      {
+        "maxWidth": "768",
+        "src": "home-768.jpg"
+      },
+      {
+        "maxWidth": "1440",
+        "src": "home-1440.jpg"
+      }
+    ]
+  },
+  "habits": {
+    "images": [
+      {
+        "maxWidth": "411",
+        "src": "bruceLee-411.jpg"
+      },
+      {
+        "maxWidth": "768",
+        "src": "bruceLee-768.jpg"
+      },
+      {
+        "maxWidth": "1440",
+        "src": "bruceLee-1440.jpg"
+      }
+    ],
+    "quote": "I fear not the man who has practiced 10,000 kicks once, but I do fear the man who has practiced one kick 10,000 times",
+    "author": "Bruce Lee",
+    "chapterBackgroundImages": [
+      {
+        "maxWidth": "1440",
+        "src": "bruceLee-1440.jpg"
+      }
+    ]
+  },
+  "product": {
+    "images": [
+      {
+        "maxWidth": "411",
+        "src": "simonSinek-411.jpg"
+      },
+      {
+        "maxWidth": "768",
+        "src": "simonSinek-768.jpg"
+      },
+      {
+        "maxWidth": "1440",
+        "src": "simonSinek-1440.jpg"
+      }
+    ],
+    "quote": "People don’t buy what you do, they buy why you do it.",
+    "author": "Simon Sinek",
+    "chapterBackgroundImages": [
+      {
+        "maxWidth": "1440",
+        "src": "simonSinek-1440.jpg"
+      }
+    ]
+  },
+  "finances": {
+    "images": [
+      {
+        "maxWidth": "550",
+        "src": "warrenBuffett-550.jpg"
+      },
+      {
+        "maxWidth": "768",
+        "src": "warrenBuffett-768.jpg"
+      },
+      {
+        "maxWidth": "1440",
+        "src": "warrenBuffett-1440.jpg"
+      }
+    ],
+    "quote": "Only when you combine sound intellect with emotional discipline do you get rational behavior.",
+    "author": "Warren Buffett",
+    "chapterBackgroundImages": [
+      {
+        "maxWidth": "1440",
+        "src": "warrenBuffett-1440.jpg"
+      }
+    ]
+  },
+  "strategy": {
+    "images": [
+      {
+        "maxWidth": "550",
+        "src": "warrenBuffett-550.jpg"
+      },
+      {
+        "maxWidth": "768",
+        "src": "warrenBuffett-768.jpg"
+      },
+      {
+        "maxWidth": "1440",
+        "src": "warrenBuffett-1440.jpg"
+      }
+    ],
+    "quote": "Only when you combine sound intellect with emotional discipline do you get rational behavior.",
+    "author": "Warren Buffett",
+    "chapterBackgroundImages": [
+      {
+        "maxWidth": "1440",
+        "src": "warrenBuffett-1440.jpg"
+      }
+    ]
+  }
 }
