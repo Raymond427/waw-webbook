@@ -6,7 +6,7 @@ const FIREBASE_CHARGE_CARD_FUNCTION_URL = 'https://us-central1-waw-webbook.cloud
 
 const postOrderPayload = (user, chapter, processingFee, totalCost, chargeId) => ({
     datePurchased: new Date().getTime(),
-    userId: user.user.uid,
+    userId: user.uid,
     productName: chapter.name,
     stripeChargeId: chargeId,
     charges: {
@@ -57,7 +57,7 @@ export const chargePayload = (user, chapter, totalCost, processingFee, token) =>
     amount: totalCost,
     currency: 'usd',
     description: `Work After Work Profit Guide: ${capitalize(chapter.name)}`,
-    receipt_email: user.user.email,
+    receipt_email: user.email,
     metadata: {
         price: chapter.price,
         processing_fee: processingFee

@@ -12,7 +12,7 @@ const SignInAndSignUpLinks = ({ onHomePage }) => (
     </div>
 )
 
-const AccountLink = ({ user: { user: { photoURL } }, history, onHomePage }) => {
+const AccountLink = ({ user: { photoURL }, history, onHomePage }) => {
     const [ showDefaultIcon, setShowDefaultIcon ] = useState(false)
 
     return (

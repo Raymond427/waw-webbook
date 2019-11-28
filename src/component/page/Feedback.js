@@ -21,8 +21,8 @@ const FeedBackForm = ({ user, setPosted }) => {
         postFeedback({
             rating,
             comment,
-            email: user.user.email,
-            uid: user.user.uid
+            email: user.email,
+            uid: user.uid
         }).then(() => {
             feedbackPostTrace.putAttribute('result', 'success')
             setPosted(true)

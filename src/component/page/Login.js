@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { UserContext } from '../provider/UserProvider'
 import { Link, Redirect } from 'react-router-dom'
 import { signInWithGoogle, signIn, signUp, signInWithFacebook, performanceMonitor, MAX_ATTRIBUTE_VALUE_LENGTH, analytics } from '../../firebase'
 import Form from '../form'
@@ -11,20 +10,19 @@ import { useLocation } from 'react-router-dom'
 import { PATHS } from '../../utils/constants'
 import { formatAuthErrorMessage } from '../../utils/errorMessages'
 
-const SignInAndSignUp = ({ setUser, newUser }) => {
+const SignInAndSignUp = ({ newUser }) => {
     const [ authErrorMessage, setAuthErrorMessage ] = useState('')
     const [ isLoading, setIsLoading ] = useState(false)
     const [ email, setEmail ] = useState('')
     const [ password, setPassword ] = useState('')
     const authTrace = performanceMonitor.trace('auth')
 
-    const handleUser = (user, type) => {
+    const handleUser = (type) => {
         authTrace.putAttribute('result', 'success')
         analytics.logEvent(type === 'emailSignUp' ? 'sign_up' : 'login', {
             method: type
         })
         setAuthErrorMessage('')
-        setUser(user)
     }
 
     const handleAuthError = error => {
@@ -40,7 +38,7 @@ const SignInAndSignUp = ({ setUser, newUser }) => {
         authTrace.putAttribute('type', type)
         setIsLoading(true)
         authProvider()
-            .then(user => handleUser(user, type))
+            .then(() => handleUser(type))
             .catch(handleAuthError)
             .finally(() => authTrace.stop())
     }
@@ -82,22 +80,16 @@ const SignInAndSignUp = ({ setUser, newUser }) => {
 
 const Login = ({ user }) => {
     const location = useLocation()
+    const pathOnSignIn = (location.state && location.state.pathOnSignIn) ? location.state.pathOnSignIn : PATHS.HOME
 
-    return (
-        <UserContext.Consumer>
-            {({ setUser }) => {
-                const pathOnSignIn = (location.state && location.state.pathOnSignIn) ? location.state.pathOnSignIn : PATHS.HOME
-                return user
-                    ? <Redirect to={pathOnSignIn} />
-                    : (
-                        <SignInAndSignUp
-                            setUser={setUser}
-                            newUser={location.state ? location.state.newUser : location.pathname === PATHS.SIGN_UP}
-                            pathOnSignIn={location.state && pathOnSignIn ? pathOnSignIn : PATHS.HOME}
-                        />
-                    )
-            }}
-        </UserContext.Consumer>
-)}
+    return user
+        ? <Redirect to={pathOnSignIn} />
+        : (
+            <SignInAndSignUp
+                newUser={location.state ? location.state.newUser : location.pathname === PATHS.SIGN_UP}
+                pathOnSignIn={location.state && pathOnSignIn ? pathOnSignIn : PATHS.HOME}
+            />
+        )
+}
 
 export default Login

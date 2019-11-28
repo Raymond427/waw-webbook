@@ -78,7 +78,7 @@ const CardForm = ({ user, stripe, chapter, PaymentButton }) => {
                 {paymentSuccessful
                     ?   <>
                             <h2>Payment Successful!</h2>
-                            <p>We’ve sent a reciept to {user.user.email}</p>
+                            <p>We’ve sent a reciept to {user.email}</p>
                             <Order productName={capitalizedChapterName} charges={charges} />
                             <button className="button" onClick={() => history.push(`/chapters/${chapter.name}`)}>Read Chapter</button>
                         </>

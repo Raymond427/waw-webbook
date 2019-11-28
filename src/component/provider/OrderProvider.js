@@ -16,7 +16,7 @@ export default ({ user, children }) => {
 
     useEffect(() => {
         if (user) {
-            unSubscribeFromOrders = orderSubscription(user.user.uid, updateOrders).onSnapshot(updateOrders)
+            unSubscribeFromOrders = orderSubscription(user.uid, updateOrders).onSnapshot(updateOrders)
             return unSubscribeFromOrders
         } else {
             setOrders([])
