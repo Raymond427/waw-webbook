@@ -4,13 +4,11 @@ import { UserContext } from '../provider/UserProvider'
 import '../../styles/AuthenticationLinks.css'
 import Account from '../icon/Account'
 import { PATHS } from '../../utils/constants'
-import Offline from '../icon/Offline'
 
 const SignInAndSignUpLinks = ({ onHomePage }) => (
     <div className="AuthenticationLinks">
         <Link to={{pathname: PATHS.LOGIN, state: { newUser: false }}} style={{ color: onHomePage ? '#FFFFFF' : 'var(--primary-text-color)' }}>Sign In</Link>
         <Link to={{pathname: PATHS.SIGN_UP, state: { newUser: true }}} style={{ color: onHomePage ? '#FFFFFF' : 'var(--primary-text-color)' }}>Sign Up</Link>
-        <Offline color={onHomePage ? '#FFFFFF' : null} />
     </div>
 )
 
