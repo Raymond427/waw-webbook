@@ -20,3 +20,21 @@
     font-size: 1.25rem;
     margin: 0 0.5rem;
 }
+
+.offline-label {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    position: absolute;
+    top: 0.75rem;
+}
+
+.offline-label > svg {
+    height: 1.25rem;
+}
+
+.offline-label > span {
+    font-size: 1.25rem;
+    margin-left: 0.5rem;
+}
