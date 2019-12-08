@@ -41,6 +41,7 @@ export const handlePasswordReset = (actionCode, newPassword) => auth.confirmPass
 
 const firestore = firebase.firestore()
 firestore.settings({})
+firestore.enablePersistence()
 export const postFeedback = feedback => firestore.collection('/feedback').add(feedback)
 export const getChapters = () => firestore.collection('/chapters').get()
 export const getOrders = uid => firestore.collection('/orders').where('userId', '==', uid).orderBy('datePurchased', 'desc').get()
