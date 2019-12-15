@@ -3,6 +3,7 @@ import 'firebase/firestore'
 import 'firebase/auth'
 import 'firebase/performance'
 import 'firebase/analytics'
+import 'firebase/messaging'
 
 const config = {
     apiKey: 'AIzaSyBXluHazFPzbOHWoeWKjyU0N12uqgnJFNg',
@@ -20,6 +21,28 @@ firebase.initializeApp(config)
 export const performanceMonitor = firebase.performance()
 export const MAX_ATTRIBUTE_VALUE_LENGTH = 40
 export const analytics = firebase.analytics()
+
+export const CLOUD_MESSAGING_IDENTITY_KEY = 'BOTrnlU1jHNxDGuR-_guJdEB5fWB2AXBio_DRjyhvWRbxDUG_Q9dOVXTDOZlYmI62OQ46CrGjaqTSer8deeT7Ko'
+
+export const messaging = firebase.messaging()
+
+messaging.usePublicVapidKey(CLOUD_MESSAGING_IDENTITY_KEY)
+
+messaging.onTokenRefresh(() => {
+    const currentToken = sessionStorage.getItem('fcmToken')
+    messaging.deleteToken(currentToken)
+    messaging.getToken()
+        .then(token => sessionStorage.setItem('fcmToken', token))
+})
+
+export const requestNotificationPermission = () => (
+    messaging.requestPermission()
+        .then(() => {
+            messaging.getToken().then(token => sessionStorage.setItem('fcmToken', token))
+            analytics.logEvent('notification_permission', { accepted: true })
+        })
+        .catch(() => analytics.logEvent('notification_permission', { accepted: false }))
+)
 
 export const auth = firebase.auth()
 export const signInWithGoogle = () => {

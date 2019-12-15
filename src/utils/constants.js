@@ -32,6 +32,12 @@ export const THEMES = {
     LIGHT: 'light'
 }
 
+export const NOTIFICATION_PERMISSION_STATUS = {
+    GRANTED: 'granted',
+    DENIED: 'denied',
+    DEFAULT: 'default'
+}
+
 const CHAPTER_NAME = {
     HABITS: 'habits',
     PRODUCT: 'product',
