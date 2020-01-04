@@ -45,3 +45,10 @@ export const CHAPTER_ORDER = [
 ]
 
 export const PROCESSING_FEE_RATE = 0.3
+
+export const DIALOG = {
+    IOS_INSTALL: 'ios-install',
+    ANDROID_INSTALL: 'android-install',
+    NOTIFICATION_PERMISSION: 'notification_permission',
+    UPDATE_AVAILABLE: 'update_available'
+}

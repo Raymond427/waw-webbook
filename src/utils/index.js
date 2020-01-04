@@ -2,7 +2,7 @@ import { CHAPTER_ORDER } from "./constants"
 
 export const lowerCase = string => string.replace(/^\w/, c => c.toLowerCase())
 
-export const kebabCase = string => lowerCase(string).replace(/ /g, '-');
+export const kebabCase = string => lowerCase(string).replace(/ /g, '-')
 
 export const capitalize = string => string.replace(/^\w/, c => c.toUpperCase())
 

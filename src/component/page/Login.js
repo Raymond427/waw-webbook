@@ -7,10 +7,12 @@ import { EmailField, PasswordField } from '../form/input'
 import SocialAuthButton from '../authentication/SocialAuthButton'
 import Navigation from '../navigation'
 import { useLocation } from 'react-router-dom'
-import { PATHS } from '../../utils/constants'
+import { PATHS, DIALOG } from '../../utils/constants'
 import { formatAuthErrorMessage } from '../../utils/errorMessages'
+import { isInStandaloneMode, isIOS } from '../../utils/browser'
+import { DialogConsumer } from '../dialog'
 
-const SignInAndSignUp = ({ newUser }) => {
+const SignInAndSignUp = ({ newUser, showDialog }) => {
     const [ authErrorMessage, setAuthErrorMessage ] = useState('')
     const [ isLoading, setIsLoading ] = useState(false)
     const [ email, setEmail ] = useState('')
@@ -23,6 +25,18 @@ const SignInAndSignUp = ({ newUser }) => {
             method: type
         })
         setAuthErrorMessage('')
+        const notInstalled = !isInStandaloneMode()
+        const showIOSInstallPrompt = isIOS() && notInstalled
+        const showAndroidInstallPrompt = window.onbeforeinstallprompt && notInstalled
+
+        if (!localStorage.getItem('installation_requested')) {
+            if (showIOSInstallPrompt) {
+                showDialog(DIALOG.IOS_INSTALL)
+            }
+            if (showAndroidInstallPrompt) {
+                showDialog(DIALOG.ANDROID_INSTALL)
+            }
+        }
     }
 
     const handleAuthError = error => {
@@ -85,10 +99,15 @@ const Login = ({ user }) => {
     return user
         ? <Redirect to={pathOnSignIn} />
         : (
-            <SignInAndSignUp
-                newUser={location.state ? location.state.newUser : location.pathname === PATHS.SIGN_UP}
-                pathOnSignIn={location.state && pathOnSignIn ? pathOnSignIn : PATHS.HOME}
-            />
+            <DialogConsumer>
+                {({ showDialog }) => (
+                    <SignInAndSignUp
+                        newUser={location.state ? location.state.newUser : location.pathname === PATHS.SIGN_UP}
+                        pathOnSignIn={location.state && pathOnSignIn ? pathOnSignIn : PATHS.HOME}
+                        showDialog={showDialog}
+                    />
+                )}
+            </DialogConsumer>
         )
 }
 

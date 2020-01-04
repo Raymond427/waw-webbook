@@ -1,0 +1,46 @@
+import React, { useState, useEffect } from 'react'
+import { analytics } from '../../firebase'
+
+export const { Provider, Consumer: InstallPromptConsumer } = React.createContext()
+
+const InstallPromptProvider = ({ children }) => {
+    const [ installPrompt, setInstallPrompt ] = useState()
+
+    const storeInstallPrompt = installPromptEvent => {
+        installPromptEvent.preventDefault()
+        setInstallPrompt(installPromptEvent)
+    }
+
+    const logAppInstallation = () => {
+        analytics.logEvent('app_installed')
+        localStorage.setItem('installation_requested', true)
+    }
+
+    useEffect(() => {
+        window.addEventListener('beforeinstallprompt', storeInstallPrompt)
+
+        window.addEventListener('appinstalled', logAppInstallation)
+
+        return () => {
+            window.removeEventListener('beforeinstallprompt', storeInstallPrompt)
+            window.removeEventListener('appinstalled', logAppInstallation)
+        }
+    })
+
+    const addToHomeScreen = () => {
+        if (installPrompt) {
+            installPrompt.prompt()
+            installPrompt.userChoice.then(choiceResult =>
+                analytics.logEvent('install_prompt', { accepted: choiceResult.outcome === 'accepted' })
+            )
+        }
+    }
+
+    return (
+        <Provider value={{ addToHomeScreen }}>
+            {children}
+        </Provider>
+    )
+}
+
+export default InstallPromptProvider

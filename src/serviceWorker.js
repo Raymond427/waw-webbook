@@ -69,10 +69,7 @@ const isLocalhost = Boolean(
 				// At this point, the updated precached content has been fetched,
 				// but the previous service worker will still serve the older
 				// content until all client tabs are closed.
-				console.log(
-				  'New content is available and will be used when all ' +
-					'tabs for this page are closed. See https://bit.ly/CRA-PWA.'
-				)
+				navigator.serviceWorker.controller.postMessage({ message: 'updateAvailable' })
   
 				// Execute callback
 				if (config && config.onUpdate) {
@@ -119,9 +116,9 @@ const isLocalhost = Boolean(
 		  registerValidSW(swUrl, config)
 		}
 	  })
-	  .catch(() => {
+	  .catch(error => {
 		console.log(
-		  'No internet connection found. App is running in offline mode.'
+		  'No internet connection found. App is running in offline mode.', error
 		)
 	  })
   }
