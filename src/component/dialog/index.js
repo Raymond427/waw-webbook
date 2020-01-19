@@ -50,17 +50,10 @@ const Dialog = ({ addToHomeScreen, children }) => {
     }
 
     useEffect(() => {
-        navigator.serviceWorker.addEventListener('foo', event => {
-            console.log('FOO!')
-        })
-
         navigator.serviceWorker.addEventListener('message', e => {
             if (e.data.type === 'updateAvailable') {
                 openUpdateAvailableDialog()
-            } else {
-                console.log('CAUGHT MESSAGE!')
             }
-            
         })
         document.addEventListener('keydown', closeIfEscapeKeyIsPressed)
         return () => document.removeEventListener('keydown', closeIfEscapeKeyIsPressed)

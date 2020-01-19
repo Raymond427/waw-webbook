@@ -11,8 +11,9 @@ import { PATHS, DIALOG } from '../../utils/constants'
 import { formatAuthErrorMessage } from '../../utils/errorMessages'
 import { isInStandaloneMode, isIOS } from '../../utils/browser'
 import { DialogConsumer } from '../dialog'
+import { InstallPromptConsumer } from '../provider/InstallPromptProvider'
 
-const SignInAndSignUp = ({ newUser, showDialog }) => {
+const SignInAndSignUp = ({ newUser, showDialog, addToHomeScreen }) => {
     const [ authErrorMessage, setAuthErrorMessage ] = useState('')
     const [ isLoading, setIsLoading ] = useState(false)
     const [ email, setEmail ] = useState('')
@@ -27,7 +28,7 @@ const SignInAndSignUp = ({ newUser, showDialog }) => {
         setAuthErrorMessage('')
         const notInstalled = !isInStandaloneMode()
         const showIOSInstallPrompt = isIOS() && notInstalled
-        const showAndroidInstallPrompt = window.onbeforeinstallprompt && notInstalled
+        const showAndroidInstallPrompt = window.BeforeInstallPromptEvent && notInstalled && addToHomeScreen
 
         if (!localStorage.getItem('installation_requested')) {
             if (showIOSInstallPrompt) {
@@ -101,11 +102,15 @@ const Login = ({ user }) => {
         : (
             <DialogConsumer>
                 {({ showDialog }) => (
-                    <SignInAndSignUp
-                        newUser={location.state ? location.state.newUser : location.pathname === PATHS.SIGN_UP}
-                        pathOnSignIn={location.state && pathOnSignIn ? pathOnSignIn : PATHS.HOME}
-                        showDialog={showDialog}
-                    />
+                    <InstallPromptConsumer>
+                        {addToHomeScreen => (
+                            <SignInAndSignUp
+                                newUser={location.state ? location.state.newUser : location.pathname === PATHS.SIGN_UP}
+                                showDialog={showDialog}
+                                addToHomeScreen={addToHomeScreen}
+                            />
+                        )}
+                    </InstallPromptConsumer>
                 )}
             </DialogConsumer>
         )
