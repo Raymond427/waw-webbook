@@ -18,12 +18,16 @@ const InstallPromptProvider = ({ children }) => {
 
     useEffect(() => {
         window.addEventListener('beforeinstallprompt', storeInstallPrompt)
+        window.onbeforeinstallprompt = storeInstallPrompt
 
         window.addEventListener('appinstalled', logAppInstallation)
+        window.onappinstalled = logAppInstallation
 
         return () => {
             window.removeEventListener('beforeinstallprompt', storeInstallPrompt)
+            window.onbeforeinstallprompt = null
             window.removeEventListener('appinstalled', logAppInstallation)
+            window.onappinstalled = null
         }
     })
 

@@ -6,6 +6,7 @@ import IOSInstallDialog from './IOSInstallDialog'
 import AndroidInstallDialog from './AndroidInstallDialog'
 import NotificationDialog from './NotificationDialog'
 import UpdateDialog from './UpdateDialog'
+import X from '../icon/X'
 
 export const { Provider, Consumer: DialogConsumer } = React.createContext()
 
@@ -76,7 +77,7 @@ const Dialog = ({ addToHomeScreen, children }) => {
         <Provider value={{ showDialog }}>
             {showing && (
                 <dialog ref={dialogRef}>
-                    <button className="dialog-close-button" onClick={closeDialog}>X</button>
+                    <button className="dialog-close-button" onClick={closeDialog}><X /></button>
                     <DialogContent type={type} addToHomeScreen={addToHomeScreen} closeDialog={closeDialog} />
                 </dialog>
             )}
