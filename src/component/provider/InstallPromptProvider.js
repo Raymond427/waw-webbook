@@ -29,7 +29,7 @@ const InstallPromptProvider = ({ children }) => {
             window.removeEventListener('appinstalled', logAppInstallation)
             window.onappinstalled = null
         }
-    })
+    }, [])
 
     const addToHomeScreen = () => {
         if (installPrompt) {

@@ -15,7 +15,7 @@ const DialogContent = ({ type, addToHomeScreen, closeDialog }) => {
         case DIALOG.IOS_INSTALL:
             return <IOSInstallDialog />
         case DIALOG.ANDROID_INSTALL:
-            return <AndroidInstallDialog addToHomeScreen={addToHomeScreen} closeDialog={closeDialog} />
+            return <AndroidInstallDialog homeSreenPrompt={addToHomeScreen} closeDialog={closeDialog} />
         case DIALOG.NOTIFICATION_PERMISSION:
             return <NotificationDialog closeDialog={closeDialog} />
         case DIALOG.UPDATE_AVAILABLE:
