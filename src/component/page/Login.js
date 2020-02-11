@@ -12,6 +12,7 @@ import { formatAuthErrorMessage } from '../../utils/errorMessages'
 import { isInStandaloneMode, isIOS } from '../../utils/browser'
 import { DialogConsumer } from '../dialog'
 import { InstallPromptConsumer } from '../provider/InstallPromptProvider'
+import { NOTIFICATION_PERMISSION_STATUS } from '../../utils/constants'
 
 const SignInAndSignUp = ({ newUser, showDialog, addToHomeScreen }) => {
     const [ authErrorMessage, setAuthErrorMessage ] = useState('')
@@ -33,10 +34,11 @@ const SignInAndSignUp = ({ newUser, showDialog, addToHomeScreen }) => {
         if (!localStorage.getItem('installation_requested')) {
             if (showIOSInstallPrompt) {
                 showDialog(DIALOG.IOS_INSTALL)
-            }
-            if (showAndroidInstallPrompt) {
+            } else if (showAndroidInstallPrompt) {
                 showDialog(DIALOG.ANDROID_INSTALL)
             }
+        } else if (Notification.permission === NOTIFICATION_PERMISSION_STATUS.DEFAULT) {
+            showDialog(DIALOG.NOTIFICATION_PERMISSION)
         }
     }
 
