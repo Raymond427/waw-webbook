@@ -52,18 +52,19 @@ const Dialog = ({ addToHomeScreen, children }) => {
         }
     }
 
-    const openUpdateAvailableDialog = () => {
-        showDialog(DIALOG.UPDATE_AVAILABLE)
+    const openUpdateAvailableDialog = e => {
+        if (e.data === 'serviceWorkerUpdateAvailable') {
+            showDialog(DIALOG.UPDATE_AVAILABLE)
+        }
     }
 
     useEffect(() => {
-        navigator.serviceWorker.addEventListener('message', e => {
-            if (e.data.type === 'updateAvailable') {
-                openUpdateAvailableDialog()
-            }
-        })
+        window.addEventListener('message', openUpdateAvailableDialog)
         document.addEventListener('keydown', closeIfEscapeKeyIsPressed)
-        return () => document.removeEventListener('keydown', closeIfEscapeKeyIsPressed)
+        return () => {
+            window.removeEventListener('message', openUpdateAvailableDialog)
+            document.removeEventListener('keydown', closeIfEscapeKeyIsPressed)
+        }
     }, [])
 
     useEffect(() => {
