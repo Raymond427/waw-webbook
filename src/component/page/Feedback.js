@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { TextField, RatingField } from '../form/input'
 import Form from '../form'
-import Navigation from '../navigation'
 import { postFeedback, performanceMonitor, MAX_ATTRIBUTE_VALUE_LENGTH } from '../../firebase'
 import '../../styles/Feedback.css'
 import { useHistory } from 'react-router-dom'
 import { PATHS } from '../../utils/constants'
 import { analytics } from '../../firebase'
+import Page from '.'
 
 const FeedBackForm = ({ user, setPosted }) => {
     const [ rating, setRating ] = useState(0)
@@ -50,8 +50,7 @@ const Feedback = ({ user }) => {
     const history = useHistory()
 
     return (
-        <div className="Feedback page">
-            <Navigation />
+        <Page pageClassName="Feedback">
             {posted
                 ? (
                     <>
@@ -67,7 +66,7 @@ const Feedback = ({ user }) => {
                         <FeedBackForm user={user} setPosted={setPosted} />
                     </>
                 )}
-        </div>
+        </Page>
     )
 }
 

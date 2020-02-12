@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { verifyPasswordResetCode, handlePasswordReset, performanceMonitor, MAX_ATTRIBUTE_VALUE_LENGTH } from '../../firebase'
 import Form from '../form'
 import { PasswordField } from '../form/input'
-import Navigation from '../navigation'
 import { Redirect, withRouter } from 'react-router-dom'
 import { PATHS } from '../../utils/constants'
+import Page from '.'
 
 const PasswordReset = withRouter(({ searchParams, history }) => {
     const [ verifyingActionCode, setVerifyingActionCode ] = useState(true)
@@ -115,10 +115,9 @@ const PasswordReset = withRouter(({ searchParams, history }) => {
     }
 
     return (
-        <div className="PasswordReset page">
-            <Navigation hideBack />
+        <Page pageClassName="PasswordReset" hideBack>
             <PageContents />
-        </div>
+        </Page>
     )
 })
 

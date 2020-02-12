@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { sendPasswordResetEmail, performanceMonitor, MAX_ATTRIBUTE_VALUE_LENGTH } from '../../firebase'
 import Form from '../form'
 import { EmailField } from '../form/input'
-import Navigation from '../navigation'
+import Page from '.'
 
 const ResetPassword = () => {
         const [ email, setEmail ] = useState('')
@@ -31,8 +31,7 @@ const ResetPassword = () => {
         }
 
         return (
-            <div className="ResetPassword page">
-                <Navigation />
+            <Page pageClassName="ResetPassword">
                 {passwordResetEmailSent
                 ?   <h2>Open the link we sent to {email} to reset your password</h2>
                 :   <>
@@ -48,7 +47,7 @@ const ResetPassword = () => {
                         </Form>
                     </>
                 }
-            </div>
+            </Page>
         )
     }
 

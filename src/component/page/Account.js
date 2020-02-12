@@ -1,13 +1,12 @@
 import React from 'react'
 import { Link, Redirect } from 'react-router-dom'
-import Navigation from '../navigation'
 import '../../styles/Account.css'
 import { PATHS } from '../../utils/constants'
 import { auth } from '../../firebase'
+import Page from '.'
 
 const Account = ({ user }) => (
-    <div className="Account page">
-        <Navigation />
+    <Page pageClassName="Account">
         <h1>Account</h1>
         <ul className="account-links">
             {user && user && <li>{user.email}</li>}
@@ -27,7 +26,7 @@ const Account = ({ user }) => (
             </li>
         </ul>
         {!user && <Redirect to={PATHS.HOME} />}
-    </div>
+    </Page>
 )
 
 export default Account

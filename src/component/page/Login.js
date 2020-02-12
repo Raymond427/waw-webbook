@@ -5,7 +5,6 @@ import Form from '../form'
 import '../../styles/Login.css'
 import { EmailField, PasswordField } from '../form/input'
 import SocialAuthButton from '../authentication/SocialAuthButton'
-import Navigation from '../navigation'
 import { useLocation } from 'react-router-dom'
 import { PATHS, DIALOG } from '../../utils/constants'
 import { formatAuthErrorMessage } from '../../utils/errorMessages'
@@ -13,6 +12,7 @@ import { isInStandaloneMode, isIOS } from '../../utils/browser'
 import { DialogConsumer } from '../dialog'
 import { InstallPromptConsumer } from '../provider/InstallPromptProvider'
 import { NOTIFICATION_PERMISSION_STATUS } from '../../utils/constants'
+import Page from '.'
 
 const SignInAndSignUp = ({ newUser, showDialog, addToHomeScreen }) => {
     const [ authErrorMessage, setAuthErrorMessage ] = useState('')
@@ -68,8 +68,7 @@ const SignInAndSignUp = ({ newUser, showDialog, addToHomeScreen }) => {
     }
 
     return (
-        <div className="Login page">
-            <Navigation />
+        <Page pageClassName="Login">
             <h2>{newUser? 'Sign Up' : 'Sign In'}</h2>
             <SocialAuthButton name="google" onClick={() => handleAuth(signInWithGoogle, 'google')} newUser={newUser} />
             <SocialAuthButton name="facebook" onClick={() => handleAuth(signInWithFacebook, 'facebook')} newUser={newUser} />
@@ -91,7 +90,7 @@ const SignInAndSignUp = ({ newUser, showDialog, addToHomeScreen }) => {
                         <Link to={PATHS.RESET_PASSWORD}>Forgot Your Password?</Link>
                       </>}
             </p>
-        </div>
+        </Page>
     )
 }
 

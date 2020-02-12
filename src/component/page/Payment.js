@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { injectStripe, Elements, StripeProvider } from 'react-stripe-elements'
 import '../../styles/Payment.css'
-import Navigation from '../navigation'
 import PaymentRequestButton from '../payments/PaymentRequestButton'
 import CardForm from '../payments/CardForm'
+import Page from '.'
 
 const STRIPE_API_KEY = 'pk_test_e7SFycDVuCMFeUwmn0bGr6iE00O4ZoyrYB'
 
@@ -22,14 +22,13 @@ const Payment = ({ user, chapters, computedMatch }) => {
     }, [ window.Stripe ])
 
     return (
-        <div className="Payment page">
-            <Navigation />
+        <Page pageClassName="Payment">
             <StripeProvider stripe={stripe} apiKey={STRIPE_API_KEY}>
                 <Elements>
                     <CheckoutForm user={user} chapter={chapter} PaymentButton={PaymentButton} />
                 </Elements>
             </StripeProvider>
-        </div>
+        </Page>
     )
 }
 

@@ -1,12 +1,11 @@
 import React from 'react'
 import Order from '../Order'
-import Navigation from '../navigation'
 import { capitalize } from '../../utils'
 import { PATHS } from '../../utils/constants'
+import Page from '.'
 
 const Orders = ({ orders }) => (
-    <div className="Orders page">
-        <Navigation />
+    <Page pageClassName="Orders">
         <h2>Orders</h2>
         <p>Have a question about an order?</p>
         <a href={PATHS.EMAIL_US} target="_blank" rel="noopener noreferrer">
@@ -17,7 +16,7 @@ const Orders = ({ orders }) => (
                 <Order key={id} id={id} productName={productName} datePurchased={datePurchased} charges={[ { name: capitalize(productName), price: charges.product }, { name: 'Processing', price: charges.processing } ]} />)
             )}
         </div>
-    </div>
+    </Page>
 )
 
 export default Orders
