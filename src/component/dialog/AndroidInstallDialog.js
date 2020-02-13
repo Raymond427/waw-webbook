@@ -8,6 +8,7 @@ const AndroidInstallDialog = ({ homeSreenPrompt, onClose }) => (
             <button className="dialog-primary-button"
                 onClick={() => {
                     homeSreenPrompt.addToHomeScreen()
+                    localStorage.setItem('installation_requested', 'true')
                     onClose()
                 }}
             >
