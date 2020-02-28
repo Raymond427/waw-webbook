@@ -37,7 +37,7 @@ const SignInAndSignUp = ({ newUser, showDialog, addToHomeScreen }) => {
             } else if (showAndroidInstallPrompt) {
                 showDialog(DIALOG.ANDROID_INSTALL)
             }
-        } else if (Notification.permission === NOTIFICATION_PERMISSION_STATUS.DEFAULT) {
+        } else if (Notification && Notification.permission === NOTIFICATION_PERMISSION_STATUS.DEFAULT) {
             showDialog(DIALOG.NOTIFICATION_PERMISSION)
         }
     }
